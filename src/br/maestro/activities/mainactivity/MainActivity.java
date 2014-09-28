@@ -12,9 +12,9 @@ import android.widget.ListView;
 
 public class MainActivity extends Activity {
 
-    private ListView drawerList;
-    private DrawerLayout mainActivityLayout;
-    private ActionBarDrawerToggle drawerToggle;
+    ListView drawerList;
+    DrawerLayout mainActivityLayout;
+    ActionBarDrawerToggle drawerToggle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +30,7 @@ public class MainActivity extends Activity {
         drawerList = (ListView) findViewById(R.id.mainactivity_drawerlist);
         mainActivityLayout = (DrawerLayout) findViewById(R.id.mainactivity);
 
-        drawerToggle = new ActionBarDrawerToggle(this, mainActivityLayout, R.drawable.ic_launcher, R.string.mainactivity_draweropened, R.string.mainactivity_drawerclosed);
+        drawerToggle = new DrawerToggle(this);
 
         getActionBar().setDisplayHomeAsUpEnabled(true);
         getActionBar().setHomeButtonEnabled(true);
