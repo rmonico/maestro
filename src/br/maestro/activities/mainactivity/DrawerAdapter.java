@@ -1,7 +1,9 @@
-package br.maestro;
+package br.maestro.activities.mainactivity;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import br.maestro.R;
 
 import android.content.Context;
 import android.view.LayoutInflater;

@@ -1,5 +1,6 @@
-package br.maestro;
+package br.maestro.activities.mainactivity;
 
+import br.maestro.R;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
