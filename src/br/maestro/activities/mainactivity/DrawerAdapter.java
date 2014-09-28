@@ -13,7 +13,7 @@ import android.widget.BaseAdapter;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 
-public class DrawerAdapter extends BaseAdapter implements ListAdapter {
+class DrawerAdapter extends BaseAdapter implements ListAdapter {
 
     private List<String> list;
 
