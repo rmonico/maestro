@@ -1,0 +1,12 @@
+- Layout de atividade <atividade>: <slug>activity
+
+- Objetos de atividade <objeto_atividade>: <atividade>_<slug><tipo>
+* Onde tipo é a classe do objeto simplificado, como text (para TextView) ou list (para ListView)
+
+- Listas <lista>: <atividade>_<slug>list
+
+- Layout de item de lista <item_lista>: <lista>item_<slug>
+* <slug> é default quando há apenas um layout na mesma lista.
+
+- Objetos de item de lista <>: <item_lista>_<slug>[<tipo>]
+
