@@ -1,6 +1,5 @@
 package br.maestro.activities.mainactivity;
 
-import br.maestro.R;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
@@ -12,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import br.maestro.R;
 
 public class MainActivity extends Activity {
 
@@ -28,7 +28,7 @@ public class MainActivity extends Activity {
 
         assignEventHandlers();
 
-        setDrawerAdapter();
+        setDrawerListAdapter();
     }
 
     private void initializeControls() {
@@ -53,7 +53,7 @@ public class MainActivity extends Activity {
         });
     }
 
-    private void setDrawerAdapter() {
+    private void setDrawerListAdapter() {
         ListAdapter adapter = new DrawerAdapter();
         drawerList.setAdapter(adapter);
     }
