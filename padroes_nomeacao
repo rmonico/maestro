@@ -8,5 +8,4 @@
 - Layout de item de lista <item_lista>: <lista>item_<slug>
 * <slug> é default quando há apenas um layout na mesma lista.
 
-- Objetos de item de lista <>: <item_lista>_<slug>[<tipo>]
-
+- Objetos de item de lista <objeto_item_list>: <item_lista>_<slug>[<tipo>]
