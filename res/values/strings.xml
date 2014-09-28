@@ -2,8 +2,7 @@
 <resources>
 
     <string name="app_name">Maestro</string>
-    <string name="action_settings">Settings</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="mainactivity_actionbarmenu_settings">Settings</string>
     <string name="mainactivity_draweropened">Opened drawer</string>
     <string name="mainactivity_drawerclosed">Closed drawer</string>
 
