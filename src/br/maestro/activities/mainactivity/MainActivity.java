@@ -23,14 +23,20 @@ public class MainActivity extends Activity {
 
         initializeControls();
 
+        assignEventHandlers();
+
         setDrawerAdapter();
     }
 
     private void initializeControls() {
         drawerList = (ListView) findViewById(R.id.mainactivity_drawerlist);
         mainActivityLayout = (DrawerLayout) findViewById(R.id.mainactivity);
+    }
 
+    private void assignEventHandlers() {
         drawerToggle = new DrawerToggle(this);
+
+        mainActivityLayout.setDrawerListener(drawerToggle);
 
         getActionBar().setDisplayHomeAsUpEnabled(true);
         getActionBar().setHomeButtonEnabled(true);
