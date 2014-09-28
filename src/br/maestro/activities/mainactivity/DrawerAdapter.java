@@ -24,9 +24,9 @@ class DrawerAdapter extends BaseAdapter implements ListAdapter {
     private ArrayList<String> createList() {
         final ArrayList<String> list = new ArrayList<String>();
         
-        list.add("Hacklab");
-        list.add("Casa");
-        list.add("Saúde");
+        list.add("#Hacklab");
+        list.add("#Casa");
+        list.add("#Saúde");
 
         return list;
     }
