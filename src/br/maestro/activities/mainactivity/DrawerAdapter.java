@@ -50,9 +50,9 @@ class DrawerAdapter extends BaseAdapter implements ListAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) parent.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        View defaultItem = inflater.inflate(R.layout.mainactivity_drawerlistitem_default, parent, false);
+        View defaultItem = inflater.inflate(R.layout.userobjectlistitem_tag, parent, false);
         
-        TextView label = (TextView) defaultItem.findViewById(R.id.mainactivity_drawerlistitem_label);
+        TextView label = (TextView) defaultItem.findViewById(R.id.userobjectlistitem_tag_label);
         
         label.setText(list.get(position));
         

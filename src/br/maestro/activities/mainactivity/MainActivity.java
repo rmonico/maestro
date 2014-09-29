@@ -18,6 +18,7 @@ public class MainActivity extends Activity {
     ListView drawerList;
     DrawerLayout mainActivityLayout;
     ActionBarDrawerToggle drawerToggle;
+    private ListView userObjectList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,11 +30,19 @@ public class MainActivity extends Activity {
         assignEventHandlers();
 
         setDrawerListAdapter();
+
+        setUserObjectListAdapter();
     }
 
     private void initializeControls() {
         drawerList = (ListView) findViewById(R.id.mainactivity_drawerlist);
         mainActivityLayout = (DrawerLayout) findViewById(R.id.mainactivity);
+        userObjectList = (ListView) findViewById(R.id.mainactivity_userobjectlist);
+    }
+
+    private void setUserObjectListAdapter() {
+        ListAdapter adapter = new UserObjectListAdapter(this);
+        userObjectList.setAdapter(adapter);
     }
 
     private void assignEventHandlers() {
