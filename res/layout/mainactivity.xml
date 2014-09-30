@@ -2,9 +2,10 @@
     android:id="@+id/mainactivity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-     android:background="#111" >
+    android:background="#111" >
 
     <!-- The main content view -->
+
     <FrameLayout
         android:id="@+id/mainactivity_content"
         android:layout_width="match_parent"
@@ -15,17 +16,25 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" >
         </ListView>
-
     </FrameLayout>
 
     <!-- The navigation drawer -->
-    <ListView android:id="@+id/mainactivity_drawerlist"
+
+    <RelativeLayout
+        android:id="@+id/mainactivity_drawerframe"
         android:layout_width="240dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:choiceMode="singleChoice"
-        android:divider="@android:color/transparent"
-        android:dividerHeight="0dp"
-        android:background="#111"/>
+        android:background="#111" >
+
+        <ListView
+            android:id="@+id/mainactivity_drawerlist"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:choiceMode="singleChoice"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="0dp" >
+        </ListView>
+    </RelativeLayout>
 
 </android.support.v4.widget.DrawerLayout>

@@ -11,14 +11,16 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import br.maestro.R;
 
 public class MainActivity extends Activity {
 
+    RelativeLayout drawerFrame;
     ListView drawerList;
     DrawerLayout mainActivityLayout;
     ActionBarDrawerToggle drawerToggle;
-    private ListView userObjectList;
+    ListView userObjectList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +37,7 @@ public class MainActivity extends Activity {
     }
 
     private void initializeControls() {
+        drawerFrame = (RelativeLayout) findViewById(R.id.mainactivity_drawerframe);
         drawerList = (ListView) findViewById(R.id.mainactivity_drawerlist);
         mainActivityLayout = (DrawerLayout) findViewById(R.id.mainactivity);
         userObjectList = (ListView) findViewById(R.id.mainactivity_userobjectlist);
@@ -52,7 +55,7 @@ public class MainActivity extends Activity {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long viewId) {
-                mainActivityLayout.closeDrawer(drawerList);
+                mainActivityLayout.closeDrawer(drawerFrame);
             }
         });
     }
