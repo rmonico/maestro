@@ -40,11 +40,6 @@ public class MainActivity extends Activity {
         userObjectList = (ListView) findViewById(R.id.mainactivity_userobjectlist);
     }
 
-    private void setUserObjectListAdapter() {
-        ListAdapter adapter = new UserObjectListAdapter(this);
-        userObjectList.setAdapter(adapter);
-    }
-
     private void assignEventHandlers() {
         drawerToggle = new DrawerToggle(this);
 
@@ -65,6 +60,11 @@ public class MainActivity extends Activity {
     private void setDrawerListAdapter() {
         ListAdapter adapter = new DrawerAdapter();
         drawerList.setAdapter(adapter);
+    }
+
+    private void setUserObjectListAdapter() {
+        ListAdapter adapter = new UserObjectListAdapter(this);
+        userObjectList.setAdapter(adapter);
     }
 
     @Override
