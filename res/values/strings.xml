@@ -2,9 +2,11 @@
 <resources>
 
     <string name="app_name">Maestro</string>
+    <string name="bullet">•</string>
     <string name="mainactivity_actionbarmenu_settings">Settings</string>
     <string name="mainactivity_draweropened">Opened drawer</string>
     <string name="mainactivity_drawerclosed">Closed drawer</string>
-    <string name="bullet">•</string>
+    <string name="mainactivity_addsearchhint">Procurar...</string>
+    <string name="mainactivity_addsearchbuttondescription">Quick search/add task button</string>
 
 </resources>
