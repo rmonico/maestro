@@ -1,6 +1,11 @@
 package br.maestro.activities.mainactivity;
 
+import java.util.Locale;
+
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
@@ -12,6 +17,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 import br.maestro.R;
 
 public class MainActivity extends Activity {
@@ -84,6 +90,29 @@ public class MainActivity extends Activity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void onDrawerListItemBulletClick(final int itemPosition) {
+        AlertDialog.Builder b = new AlertDialog.Builder(this);
+
+        String[] items = new String[] { "Alterar", "Excluir", "Cancelar" };
+
+        OnClickListener listener = new OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface origin, int option) {
+                String text = String.format(Locale.getDefault(), "Opção %d do item %d clicado.", option, itemPosition);
+
+                Toast t = Toast.makeText(MainActivity.this, text, Toast.LENGTH_SHORT);
+
+                t.show();
+            }
+
+        };
+
+        b.setItems(items, listener);
+
+        b.show();
     }
 
 }

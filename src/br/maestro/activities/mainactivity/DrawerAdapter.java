@@ -3,7 +3,6 @@ package br.maestro.activities.mainactivity;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,10 +17,10 @@ import br.maestro.R;
 class DrawerAdapter extends BaseAdapter implements ListAdapter {
 
     private List<String> list;
-    private Activity activity;
+    private MainActivity mainActivity;
 
-    public DrawerAdapter(Activity activity) {
-        this.activity = activity;
+    public DrawerAdapter(MainActivity mainActivity) {
+        this.mainActivity = mainActivity;
         list = createList();
     }
 
@@ -51,7 +50,7 @@ class DrawerAdapter extends BaseAdapter implements ListAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) parent.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         View defaultItem = inflater.inflate(R.layout.userobjectlistitem_tag, parent, false);
@@ -64,7 +63,7 @@ class DrawerAdapter extends BaseAdapter implements ListAdapter {
 
             @Override
             public void onClick(View v) {
-                Context context = activity;
+                Context context = mainActivity;
                 CharSequence text = "Label onClick";
                 int duration = Toast.LENGTH_SHORT;
 
@@ -78,13 +77,8 @@ class DrawerAdapter extends BaseAdapter implements ListAdapter {
         bullet.setOnClickListener(new OnClickListener() {
 
             @Override
-            public void onClick(View v) {
-                Context context = activity;
-                CharSequence text = "Bullet onClick";
-                int duration = Toast.LENGTH_SHORT;
-
-                Toast toast = Toast.makeText(context, text, duration);
-                toast.show();
+            public void onClick(View view) {
+                mainActivity.onDrawerListItemBulletClick(position);
             }
         });
 
