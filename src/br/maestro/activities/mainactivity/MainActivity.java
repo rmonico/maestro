@@ -41,6 +41,8 @@ public class MainActivity extends Activity {
         drawerList = (ListView) findViewById(R.id.mainactivity_drawerlist);
         mainActivityLayout = (DrawerLayout) findViewById(R.id.mainactivity);
         userObjectList = (ListView) findViewById(R.id.mainactivity_userobjectlist);
+
+        drawerList.setItemsCanFocus(true);
     }
 
     private void assignEventHandlers() {
@@ -61,7 +63,7 @@ public class MainActivity extends Activity {
     }
 
     private void setDrawerListAdapter() {
-        ListAdapter adapter = new DrawerAdapter();
+        ListAdapter adapter = new DrawerAdapter(this);
         drawerList.setAdapter(adapter);
     }
 

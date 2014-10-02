@@ -3,27 +3,31 @@ package br.maestro.activities.mainactivity;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.maestro.R;
-
+import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ListAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
+import br.maestro.R;
 
 class DrawerAdapter extends BaseAdapter implements ListAdapter {
 
     private List<String> list;
+    private Activity activity;
 
-    public DrawerAdapter() {
+    public DrawerAdapter(Activity activity) {
+        this.activity = activity;
         list = createList();
     }
 
     private ArrayList<String> createList() {
         final ArrayList<String> list = new ArrayList<String>();
-        
+
         list.add("#Hacklab");
         list.add("#Casa");
         list.add("#Saúde");
@@ -51,11 +55,39 @@ class DrawerAdapter extends BaseAdapter implements ListAdapter {
         LayoutInflater inflater = (LayoutInflater) parent.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         View defaultItem = inflater.inflate(R.layout.userobjectlistitem_tag, parent, false);
-        
+
         TextView label = (TextView) defaultItem.findViewById(R.id.userobjectlistitem_tag_label);
-        
+
         label.setText(list.get(position));
-        
+
+        label.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Context context = activity;
+                CharSequence text = "Label onClick";
+                int duration = Toast.LENGTH_SHORT;
+
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.show();
+            }
+        });
+
+        TextView bullet = (TextView) defaultItem.findViewById(R.id.userobjectlistitem_tag_bullet);
+
+        bullet.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Context context = activity;
+                CharSequence text = "Bullet onClick";
+                int duration = Toast.LENGTH_SHORT;
+
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.show();
+            }
+        });
+
         return defaultItem;
     }
 
