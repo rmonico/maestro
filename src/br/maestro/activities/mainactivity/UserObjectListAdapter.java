@@ -1,6 +1,5 @@
 package br.maestro.activities.mainactivity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;
@@ -12,51 +11,34 @@ import android.widget.TextView;
 import br.maestro.R;
 
 class UserObjectListAdapter extends BaseAdapter {
-    
-//    private MainActivity mainActivity;
-    private List<UserObject> list;
 
-    public UserObjectListAdapter(MainActivity mainActivity) {
-//        this.mainActivity = mainActivity;
-        list = createList();
+    // private MainActivity mainActivity;
+    private List<UserObject> items;
+
+    public UserObjectListAdapter(MainActivity mainActivity, final List<UserObject> items) {
+        // this.mainActivity = mainActivity;
+        this.items = items;
     }
 
-    private List<UserObject> createList() {
-        final ArrayList<UserObject> list = new ArrayList<UserObject>();
-        
-        list.add(createTag("#Totomote"));
-        list.add(createTag("#Baixar"));
-        list.add(createTask("Entrar no site do Itau"));
-        list.add(createTask("Passar no mercado"));
-
-        return list;
-    }
-
-    private UserObject createTag(String text) {
-        return createUO(true, text);
-    }
-
-    private UserObject createTask(String text) {
-        return createUO(false, text);
-    }
-    
-    private UserObject createUO(boolean isTag, String text) {
-        final UserObject uo = new UserObject();
-        
-        uo.isTag = isTag;
-        uo.text = text;
-
-        return uo;
-    }
+    // private List<UserObject> createList() {
+    // final ArrayList<UserObject> list = new ArrayList<UserObject>();
+    //
+    // list.add(createTag("#Totomote"));
+    // list.add(createTag("#Baixar"));
+    // list.add(createTask("Entrar no site do Itau"));
+    // list.add(createTask("Passar no mercado"));
+    //
+    // return list;
+    // }
 
     @Override
     public int getCount() {
-        return list.size();
+        return items.size();
     }
 
     @Override
     public String getItem(int position) {
-        return list.get(position).text;
+        return items.get(position).text;
     }
 
     @Override
@@ -67,19 +49,19 @@ class UserObjectListAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        UserObject uo = list.get(position);
+        UserObject uo = items.get(position);
 
         int layoutId = uo.isTag ? R.layout.userobjectlistitem_tag : R.layout.userobjectlistitem_task;
         int labelId = uo.isTag ? R.id.userobjectlistitem_tag_label : R.id.userobjectlistitem_task_label;
-        
+
         LayoutInflater inflater = (LayoutInflater) parent.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         View defaultItem = inflater.inflate(layoutId, parent, false);
 
         TextView label = (TextView) defaultItem.findViewById(labelId);
-        
-        label.setText(list.get(position).text);
-        
+
+        label.setText(items.get(position).text);
+
         return defaultItem;
     }
 

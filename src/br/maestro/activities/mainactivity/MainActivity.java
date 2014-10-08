@@ -1,5 +1,6 @@
 package br.maestro.activities.mainactivity;
 
+import java.util.List;
 import java.util.Locale;
 
 import android.app.Activity;
@@ -74,7 +75,9 @@ public class MainActivity extends Activity {
     }
 
     private void setUserObjectListAdapter() {
-        ListAdapter adapter = new UserObjectListAdapter(this);
+        List<UserObject> items = UserObject.createItemList(UserObject.createTag("#Totomote"), UserObject.createTag("#Baixar"), UserObject.createTask("Entrar no site do Itau"), UserObject.createTask("Passar no mercado"));
+
+        ListAdapter adapter = new UserObjectListAdapter(this, items);
         userObjectList.setAdapter(adapter);
     }
 
