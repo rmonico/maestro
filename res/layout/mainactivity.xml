@@ -24,7 +24,7 @@
             android:layout_toLeftOf="@+id/mainactivity_addsearchbutton"
             android:hint="@string/mainactivity_addsearchhint" />
 
-        <ImageButton
+        <ImageView
             android:id="@+id/mainactivity_addsearchbutton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
