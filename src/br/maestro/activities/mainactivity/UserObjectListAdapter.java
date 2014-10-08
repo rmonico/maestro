@@ -7,29 +7,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.TextView;
-import br.maestro.R;
 
 class UserObjectListAdapter extends BaseAdapter {
 
-    // private MainActivity mainActivity;
     private List<UserObject> items;
+    private TagListItemBuilder tagListItemBuilder;
+    private TaskListItemBuilder taskListItemBuilder;
 
     public UserObjectListAdapter(MainActivity mainActivity, final List<UserObject> items) {
-        // this.mainActivity = mainActivity;
         this.items = items;
-    }
 
-    // private List<UserObject> createList() {
-    // final ArrayList<UserObject> list = new ArrayList<UserObject>();
-    //
-    // list.add(createTag("#Totomote"));
-    // list.add(createTag("#Baixar"));
-    // list.add(createTask("Entrar no site do Itau"));
-    // list.add(createTask("Passar no mercado"));
-    //
-    // return list;
-    // }
+        tagListItemBuilder = new TagListItemBuilder(mainActivity);
+
+        taskListItemBuilder = new TaskListItemBuilder();
+    }
 
     @Override
     public int getCount() {
@@ -48,21 +39,17 @@ class UserObjectListAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-
-        UserObject uo = items.get(position);
-
-        int layoutId = uo.isTag ? R.layout.userobjectlistitem_tag : R.layout.userobjectlistitem_task;
-        int labelId = uo.isTag ? R.id.userobjectlistitem_tag_label : R.id.userobjectlistitem_task_label;
-
         LayoutInflater inflater = (LayoutInflater) parent.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        View defaultItem = inflater.inflate(layoutId, parent, false);
+        ListItemBuilder builder = getBuilderFor(items.get(position));
 
-        TextView label = (TextView) defaultItem.findViewById(labelId);
+        builder.build(inflater, position, items, parent);
 
-        label.setText(items.get(position).text);
+        return builder.getView();
+    }
 
-        return defaultItem;
+    private ListItemBuilder getBuilderFor(UserObject userObject) {
+        return userObject.isTag ? tagListItemBuilder : taskListItemBuilder;
     }
 
 }

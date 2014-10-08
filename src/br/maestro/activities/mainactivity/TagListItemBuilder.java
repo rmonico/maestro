@@ -1,6 +1,5 @@
 package br.maestro.activities.mainactivity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;
@@ -8,56 +7,27 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.ListAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 import br.maestro.R;
 
-class DrawerAdapter extends BaseAdapter implements ListAdapter {
+public class TagListItemBuilder extends ListItemBuilder {
 
-    private List<String> list;
     private MainActivity mainActivity;
 
-    public DrawerAdapter(MainActivity mainActivity) {
+    public TagListItemBuilder(MainActivity mainActivity) {
         this.mainActivity = mainActivity;
-        list = createList();
-    }
-
-    private ArrayList<String> createList() {
-        final ArrayList<String> list = new ArrayList<String>();
-
-        list.add("#Hacklab");
-        list.add("#Casa");
-        list.add("#Saúde");
-
-        return list;
     }
 
     @Override
-    public int getCount() {
-        return list.size();
-    }
-
-    @Override
-    public String getItem(int position) {
-        return list.get(position);
-    }
-
-    @Override
-    public long getItemId(int position) {
-        return position;
-    }
-
-    @Override
-    public View getView(final int position, View convertView, ViewGroup parent) {
-        LayoutInflater inflater = (LayoutInflater) parent.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
+    public void build(LayoutInflater inflater, final int position, List<UserObject> items, ViewGroup parent) {
         View defaultItem = inflater.inflate(R.layout.userobjectlistitem_tag, parent, false);
 
         TextView label = (TextView) defaultItem.findViewById(R.id.userobjectlistitem_tag_label);
 
-        label.setText(list.get(position));
+        UserObject uo = items.get(position);
+
+        label.setText(uo.text);
 
         label.setOnClickListener(new OnClickListener() {
 
@@ -81,8 +51,12 @@ class DrawerAdapter extends BaseAdapter implements ListAdapter {
                 mainActivity.onDrawerListItemBulletClick(position);
             }
         });
+    }
 
-        return defaultItem;
+    @Override
+    public View getView() {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }
