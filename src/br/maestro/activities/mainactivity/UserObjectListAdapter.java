@@ -13,11 +13,6 @@ import br.maestro.R;
 
 class UserObjectListAdapter extends BaseAdapter {
     
-    private static class UserObject {
-        boolean isTag;
-        String text;
-    }
-
 //    private MainActivity mainActivity;
     private List<UserObject> list;
 
