@@ -95,7 +95,7 @@ public class MainActivity extends Activity {
     public void onDrawerListItemBulletClick(final int itemPosition) {
         AlertDialog.Builder b = new AlertDialog.Builder(this);
 
-        String[] items = new String[] { "Alterar", "Excluir", "Cancelar" };
+        String[] items = new String[] { "Renomear", "Configurar", "Excluir" };
 
         OnClickListener listener = new OnClickListener() {
 
@@ -109,6 +109,10 @@ public class MainActivity extends Activity {
             }
 
         };
+
+        b.setTitle("#Hacklab");
+
+        // b.setIcon(icon);
 
         b.setItems(items, listener);
 
