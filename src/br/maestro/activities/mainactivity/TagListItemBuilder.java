@@ -14,6 +14,7 @@ import br.maestro.R;
 public class TagListItemBuilder extends ListItemBuilder {
 
     private MainActivity mainActivity;
+    private View view;
 
     public TagListItemBuilder(MainActivity mainActivity) {
         this.mainActivity = mainActivity;
@@ -21,9 +22,9 @@ public class TagListItemBuilder extends ListItemBuilder {
 
     @Override
     public void build(LayoutInflater inflater, final int position, List<UserObject> items, ViewGroup parent) {
-        View defaultItem = inflater.inflate(R.layout.userobjectlistitem_tag, parent, false);
+        view = inflater.inflate(R.layout.userobjectlistitem_tag, parent, false);
 
-        TextView label = (TextView) defaultItem.findViewById(R.id.userobjectlistitem_tag_label);
+        TextView label = (TextView) view.findViewById(R.id.userobjectlistitem_tag_label);
 
         UserObject uo = items.get(position);
 
@@ -42,7 +43,7 @@ public class TagListItemBuilder extends ListItemBuilder {
             }
         });
 
-        TextView bullet = (TextView) defaultItem.findViewById(R.id.userobjectlistitem_tag_bullet);
+        TextView bullet = (TextView) view.findViewById(R.id.userobjectlistitem_tag_bullet);
 
         bullet.setOnClickListener(new OnClickListener() {
 
@@ -55,8 +56,7 @@ public class TagListItemBuilder extends ListItemBuilder {
 
     @Override
     public View getView() {
-        // TODO Auto-generated method stub
-        return null;
+        return view;
     }
 
 }
