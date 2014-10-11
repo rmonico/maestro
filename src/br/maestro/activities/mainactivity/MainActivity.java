@@ -70,7 +70,7 @@ public class MainActivity extends Activity {
     }
 
     private void setDrawerListAdapter() {
-        List<UserObject> items = UserObject.createItemList(UserObject.createTag("#Totomote"), UserObject.createTag("#Baixar"), UserObject.createTask("Entrar no site do Itau"), UserObject.createTask("Passar no mercado"));
+        List<UserObject> items = UserObject.createItemList(UserObject.createTag("#Hacklab"), UserObject.createTag("#Casa"), UserObject.createTag("#Saúde"));
 
         UserObjectListAdapter adapter = new UserObjectListAdapter(this, items);
         drawerList.setAdapter(adapter);
