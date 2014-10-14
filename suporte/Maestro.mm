@@ -1,7 +1,7 @@
 <map version="0.9.0">
 <!-- To view this file, download free mind mapping software FreeMind from http://freemind.sourceforge.net -->
 <node CREATED="1413173006422" ID="ID_1709137031" MODIFIED="1413174745754" TEXT="Maestro">
-<node CREATED="1413174747586" FOLDED="true" ID="ID_211431028" MODIFIED="1413227716438" POSITION="right" TEXT="Modelo">
+<node CREATED="1413174747586" FOLDED="true" ID="ID_211431028" MODIFIED="1413253423903" POSITION="right" TEXT="Modelo">
 <node CREATED="1413175726390" ID="ID_58940402" MODIFIED="1413176825800" TEXT="Object">
 <richcontent TYPE="NOTE"><html>
   <head>
@@ -26,8 +26,7 @@
       &#218;ltima pessoa que modificou
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1413175813747" ID="ID_1128051741" MODIFIED="1413175828784" TEXT="last_modified"/>
 </node>
@@ -346,7 +345,7 @@
 <node CREATED="1413173476599" ID="ID_626605992" MODIFIED="1413173477477" TEXT="value"/>
 </node>
 </node>
-<node CREATED="1413174754407" FOLDED="true" ID="ID_979565566" MODIFIED="1413227259376" POSITION="right" TEXT="Funcionalidades (plano)">
+<node CREATED="1413174754407" FOLDED="true" ID="ID_979565566" MODIFIED="1413253442622" POSITION="right" TEXT="Funcionalidades (categoria)">
 <node CREATED="1413176603604" ID="ID_1609654143" MODIFIED="1413176606788" TEXT="Navega&#xe7;&#xe3;o">
 <node CREATED="1413174782902" ID="ID_1265740557" MODIFIED="1413225395270" TEXT="Gaveta">
 <richcontent TYPE="NOTE"><html>
@@ -358,8 +357,7 @@
       Mostrar as tags que possuam um TagAttributeValueType de Drawer
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1413174779079" ID="ID_1430001074" MODIFIED="1413225395278" TEXT="Lista">
 <richcontent TYPE="NOTE"><html>
@@ -371,8 +369,7 @@
       Inicialmente mostra as tarefas da tag selecionada na gaveta.
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1413177034193" ID="ID_47252173" MODIFIED="1413177037768" TEXT="Calend&#xe1;rio"/>
 </node>
@@ -386,8 +383,7 @@
       Dever&#225; adicionar/procurar uma tarefa rapidamente
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1413176617273" ID="ID_1426892700" MODIFIED="1413176623785" TEXT="Itens de lista">
 <node CREATED="1413177168098" ID="ID_1906973330" MODIFIED="1413226608199" TEXT="Ambos">
@@ -400,8 +396,7 @@
       Devem possuir o nome do objeto e um bot&#227;o de bullet &#224; direita.
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1413175512579" ID="ID_985477837" MODIFIED="1413225411773" TEXT="Item de lista de Tag">
 <richcontent TYPE="NOTE"><html>
@@ -413,8 +408,7 @@
       Deve ter um &#237;cone para indicar que n&#227;o &#233; uma tarefa.
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1413175544128" ID="ID_1315423697" MODIFIED="1413226608098" TEXT="Item de lista de Tarefa">
 <richcontent TYPE="NOTE"><html>
@@ -426,8 +420,7 @@
       Deve ter um &#237;cone &#224; esquerda indicando seu status (aberto [default], atrasado e conclu&#237;do)
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 </node>
 <node CREATED="1413176859268" ID="ID_921576524" MODIFIED="1413176866230" TEXT="Gerenciamento de Tag">
@@ -441,8 +434,7 @@
       Dispon&#237;vel na item da lista.
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1413176596611" ID="ID_1972703725" MODIFIED="1413177164725" TEXT="Configurar tag">
 <richcontent TYPE="NOTE"><html>
@@ -480,8 +472,7 @@
       Dispon&#237;vel no bot&#227;o de bullet do item de tarefa.
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1413177432367" ID="ID_950152206" MODIFIED="1413226792676" TEXT="Renomear tarefa">
 <richcontent TYPE="NOTE"><html>
@@ -493,8 +484,7 @@
       Dispon&#237;vel no bot&#227;o de bullet do item de tarefa.
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1413176960270" ID="ID_1656664346" MODIFIED="1413226792682" TEXT="Atribuir tags">
 <richcontent TYPE="NOTE"><html>
@@ -506,12 +496,11 @@
       Dispon&#237;vel no bot&#227;o de bullet do item de tarefa.
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 </node>
 </node>
-<node CREATED="1413226018811" FOLDED="true" ID="ID_431332729" MODIFIED="1413227717437" POSITION="right" TEXT="MainActivity">
+<node CREATED="1413226018811" ID="ID_431332729" MODIFIED="1413253436316" POSITION="right" TEXT="MainActivity">
 <richcontent TYPE="NOTE"><html>
   <head>
     
@@ -521,8 +510,7 @@
       Funcionalidades por layout
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <node CREATED="1413225596110" FOLDED="true" ID="ID_1934671788" MODIFIED="1413227459494" TEXT="Bot&#xe3;o da barra de t&#xed;tulo">
 <richcontent TYPE="NOTE"><html>
   <head>
@@ -602,7 +590,7 @@
     </p>
   </body>
 </html></richcontent>
-<node CREATED="1413174797549" FOLDED="true" ID="ID_1887772205" MODIFIED="1413227455542" TEXT="Barra r&#xe1;pida de tarefa">
+<node CREATED="1413174797549" ID="ID_1887772205" MODIFIED="1413253367745" TEXT="Barra r&#xe1;pida de tarefa">
 <richcontent TYPE="NOTE"><html>
   <head>
     
@@ -612,8 +600,7 @@
       Dever&#225; adicionar/procurar uma tarefa rapidamente. Deve fazer uma busca incremental pelos itens da lista ativa. Quando a busca n&#227;o encontrar nada deve mudar o bot&#227;o de pesquisa para adicionar. Um toque duplo no bot&#227;o de busca aciona o fragmento de busca avan&#231;ada.
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <node CREATED="1413177417190" ID="ID_750262841" MODIFIED="1413226665124" TEXT="Adicionar tarefa">
 <richcontent TYPE="NOTE"><html>
   <head>
@@ -636,8 +623,7 @@
       Busca incremental pelo t&#237;tulo da tarefa
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1413226382304" ID="ID_127904162" MODIFIED="1413226760548" TEXT="Busca avan&#xe7;ada #todo"/>
 </node>
@@ -674,8 +660,7 @@
       Quando o item for da gaveta, deve selecion&#225;-lo na lista
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1413225488303" ID="ID_489957864" MODIFIED="1413225491868" TEXT="Bullet menu">
 <node CREATED="1413176586495" ID="ID_12999075" MODIFIED="1413225472010" TEXT="Renomear Tag">
@@ -737,8 +722,7 @@
       Ao tocar no label aciona um fragmento exibindo as propriedades da tarefa
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1413225488303" ID="ID_154901464" MODIFIED="1413225491868" TEXT="Bullet menu">
 <node CREATED="1413177429291" ID="ID_1958916217" MODIFIED="1413226663536" TEXT="Excluir tarefa">
@@ -765,7 +749,7 @@
   </body>
 </html></richcontent>
 </node>
-<node CREATED="1413176960270" ID="ID_838313110" MODIFIED="1413227618116" TEXT="Atribuir tags #todo">
+<node CREATED="1413176960270" ID="ID_838313110" MODIFIED="1413253378546" TEXT="Atribuir tags #todo">
 <richcontent TYPE="NOTE"><html>
   <head>
     
@@ -787,25 +771,22 @@
       Quando uma tarefa estiver marcada com tag &quot;Note&quot; deve mostrar esta tag direto no menu de bullet da tarefa.
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 </node>
 </node>
 </node>
 </node>
-<node CREATED="1413174759859" FOLDED="true" ID="ID_1404369176" MODIFIED="1413227718204" POSITION="right" TEXT="Planejamento">
+<node CREATED="1413174759859" ID="ID_1404369176" MODIFIED="1413254063078" POSITION="right" TEXT="Planejamento">
 <node CREATED="1413175927664" ID="ID_519550750" MODIFIED="1413227189599" TEXT="Definir prot&#xf3;tipo"/>
+<node CREATED="1413254075985" ID="ID_370069275" MODIFIED="1413254085601" TEXT="Definir demais passos do planejamento"/>
 <node CREATED="1413227189866" ID="ID_341479657" MODIFIED="1413227199023" TEXT="Montar layouts do prot&#xf3;tipo"/>
 <node CREATED="1413227202514" ID="ID_178391480" MODIFIED="1413227227807" TEXT="Desenvolvimento #todo"/>
 </node>
-<node CREATED="1413227003252" FOLDED="true" ID="ID_1910835836" MODIFIED="1413227720276" POSITION="right" TEXT="#todo">
+<node CREATED="1413227003252" ID="ID_1910835836" MODIFIED="1413253348076" POSITION="right" TEXT="#todo">
 <node CREATED="1413177842788" ID="ID_408412777" MODIFIED="1413226989121" TEXT="Ver se h&#xe1; alguma situa&#xe7;&#xe3;o onde alguma parte do modelo n&#xe3;o pode ser manipulada"/>
-<node CREATED="1413227010188" ID="ID_613868989" LINK="#ID_452260561" MODIFIED="1413227041276" TEXT="Views de calend&#xe1;rio"/>
-<node CREATED="1413227106547" ID="ID_1843635061" LINK="#ID_127904162" MODIFIED="1413227112059" TEXT="Busca avan&#xe7;ada"/>
-<node CREATED="1413227229610" ID="ID_817530887" LINK="#ID_178391480" MODIFIED="1413227248770" TEXT="Planejar passos do desenvolvimento"/>
-<node CREATED="1413227371657" ID="ID_1509189898" LINK="#ID_315810424" MODIFIED="1413227389817" TEXT="Definir o que ser&#xe1; configur&#xe1;vel"/>
-<node CREATED="1413227440296" ID="ID_1075176758" LINK="#ID_1016328759" MODIFIED="1413227708989" TEXT="Definir detalhes da lista principal">
+<node CREATED="1413227668431" ID="ID_1135575562" LINK="#ID_306946758" MODIFIED="1413253464452" TEXT="Separar atributos de tag e de tarefa (organiza&#xe7;&#xe3;o apenas)"/>
+<node CREATED="1413227440296" ID="ID_1075176758" LINK="#ID_1016328759" MODIFIED="1413253365740" TEXT="Definir detalhes da lista principal">
 <richcontent TYPE="NOTE"><html>
   <head>
     
@@ -815,11 +796,11 @@
       Ao listar uma tag exatamente o que vai aparecer na lista principal?
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
+<node CREATED="1413227106547" ID="ID_1843635061" LINK="#ID_127904162" MODIFIED="1413253457965" TEXT="Busca avan&#xe7;ada"/>
 <node CREATED="1413227623039" ID="ID_612091161" LINK="#ID_838313110" MODIFIED="1413227635559" TEXT="Atribuir tags"/>
-<node CREATED="1413227639583" ID="ID_442762239" LINK="#ID_489957864" MODIFIED="1413227665414" TEXT="Acho que outros itens eleg&#xed;veis aqui">
+<node CREATED="1413227639583" ID="ID_442762239" LINK="#ID_489957864" MODIFIED="1413253454142" TEXT="Acho que h&#xe1; outros itens eleg&#xed;veis aqui">
 <richcontent TYPE="NOTE"><html>
   <head>
     
@@ -829,10 +810,11 @@
       Ver atributos de tag
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
-<node CREATED="1413227668431" ID="ID_1135575562" LINK="#ID_306946758" MODIFIED="1413227701908" TEXT="Separar atributos de tag e de tarefa"/>
+<node CREATED="1413227371657" ID="ID_1509189898" LINK="#ID_315810424" MODIFIED="1413253461505" TEXT="Definir o que ser&#xe1; configur&#xe1;vel"/>
+<node CREATED="1413227010188" ID="ID_613868989" LINK="#ID_452260561" MODIFIED="1413253454923" TEXT="Views de calend&#xe1;rio"/>
+<node CREATED="1413227229610" ID="ID_817530887" LINK="#ID_178391480" MODIFIED="1413253360022" TEXT="Planejar passos do desenvolvimento"/>
 </node>
 </node>
 </map>
