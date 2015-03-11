@@ -1,4 +1,4 @@
-<map version="0.9.0">
+<map version="1.0.1">
 <!-- To view this file, download free mind mapping software FreeMind from http://freemind.sourceforge.net -->
 <node CREATED="1413173006422" ID="ID_1709137031" MODIFIED="1413174745754" TEXT="Maestro">
 <node CREATED="1413174747586" FOLDED="true" ID="ID_211431028" MODIFIED="1413253423903" POSITION="right" TEXT="Modelo">
@@ -23,7 +23,7 @@
   </head>
   <body>
     <p>
-      &#218;ltima pessoa que modificou
+      &#xda;ltima pessoa que modificou
     </p>
   </body>
 </html></richcontent>
@@ -57,7 +57,7 @@
   </head>
   <body>
     <p>
-      Aplic&#225;vel a Tags apenas. N&#227;o recebe nada. Faz a tag aparecer na gaveta.
+      Aplic&#xe1;vel a Tags apenas. N&#xe3;o recebe nada. Faz a tag aparecer na gaveta.
     </p>
   </body>
 </html></richcontent>
@@ -69,7 +69,7 @@
   </head>
   <body>
     <p>
-      Aplic&#225;vel a Tags apenas. Recebe uma lista de palavras separadas por espa&#231;o. Lista as tarefas que possuem todas as palavras informadas.
+      Aplic&#xe1;vel a Tags apenas. Recebe uma lista de palavras separadas por espa&#xe7;o. Lista as tarefas que possuem todas as palavras informadas.
     </p>
   </body>
 </html></richcontent>
@@ -81,7 +81,7 @@
   </head>
   <body>
     <p>
-      Aplic&#225;vel a Tags apenas. Recebe uma lista de palavras separadas por espa&#231;o. Lista as tarefas que possuem pelo menos uma das palavras informadas.
+      Aplic&#xe1;vel a Tags apenas. Recebe uma lista de palavras separadas por espa&#xe7;o. Lista as tarefas que possuem pelo menos uma das palavras informadas.
     </p>
   </body>
 </html></richcontent>
@@ -93,7 +93,7 @@
   </head>
   <body>
     <p>
-      Aplic&#225;vel a Tags e Tarefas. Recebe um texto. Adiciona uma nota a tarefa que aparece na lista.
+      Aplic&#xe1;vel a Tags e Tarefas. Recebe um texto. Adiciona uma nota a tarefa que aparece na lista.
     </p>
   </body>
 </html></richcontent>
@@ -105,7 +105,7 @@
   </head>
   <body>
     <p>
-      Aplic&#225;vel a Tags e Tarefas. Recebe uma URL. Mostra um link para a URL na lista quando a tarefa &#233; renderizada.
+      Aplic&#xe1;vel a Tags e Tarefas. Recebe uma URL. Mostra um link para a URL na lista quando a tarefa &#xe9; renderizada.
     </p>
   </body>
 </html></richcontent>
@@ -117,7 +117,7 @@
   </head>
   <body>
     <p>
-      Aplic&#225;vel a Tags e Tarefas. Recebe um inteiro que indica a prioridade da tarefa. Quanto menor mais priorit&#225;ria a tarefa &#233;.
+      Aplic&#xe1;vel a Tags e Tarefas. Recebe um inteiro que indica a prioridade da tarefa. Quanto menor mais priorit&#xe1;ria a tarefa &#xe9;.
     </p>
   </body>
 </html></richcontent>
@@ -129,7 +129,7 @@
   </head>
   <body>
     <p>
-      Todas as tags com os atributos listados nos sub-n&#243;s devem tamb&#233;m possuir este atributo.
+      Todas as tags com os atributos listados nos sub-n&#xf3;s devem tamb&#xe9;m possuir este atributo.
     </p>
   </body>
 </html></richcontent>
@@ -140,7 +140,7 @@
   </head>
   <body>
     <p>
-      Aplic&#225;vel a Tarefas apenas. Recebe um lat/lon e dist&#226;ncia. Aciona um lembrete quando o dispositivo estiver a dist&#226;ncia informada do lat/lon informado
+      Aplic&#xe1;vel a Tarefas apenas. Recebe um lat/lon e dist&#xe2;ncia. Aciona um lembrete quando o dispositivo estiver a dist&#xe2;ncia informada do lat/lon informado
     </p>
   </body>
 </html></richcontent>
@@ -152,7 +152,7 @@
   </head>
   <body>
     <p>
-      Aplic&#225;vel a Tarefas apenas. Receba uma data/hora, aviso_previo e sinc_google=yes/no. Faz a tarefa aparecer no view de calend&#225;rio e aciona um lembrete quando a hora do dispositivo chegar a data/hora - aviso_previo. Sincroniza a tarefa com o calend&#225;rio do google conforme valor informado.
+      Aplic&#xe1;vel a Tarefas apenas. Receba uma data/hora, aviso_previo e sinc_google=yes/no. Faz a tarefa aparecer no view de calend&#xe1;rio e aciona um lembrete quando a hora do dispositivo chegar a data/hora - aviso_previo. Sincroniza a tarefa com o calend&#xe1;rio do google conforme valor informado.
     </p>
   </body>
 </html></richcontent>
@@ -163,7 +163,7 @@
   </head>
   <body>
     <p>
-      Aplicavel a Tags apenas. N&#227;o recebe nada. Devolve uma lista de tarefas do dia.
+      Aplicavel a Tags apenas. N&#xe3;o recebe nada. Devolve uma lista de tarefas do dia.
     </p>
   </body>
 </html></richcontent>
@@ -175,7 +175,7 @@
   </head>
   <body>
     <p>
-      Aplicavel a Tags apenas. N&#227;o recebe nada. Devolve uma lista de tarefas do dia seguinte.
+      Aplicavel a Tags apenas. N&#xe3;o recebe nada. Devolve uma lista de tarefas do dia seguinte.
     </p>
   </body>
 </html></richcontent>
@@ -187,7 +187,7 @@
   </head>
   <body>
     <p>
-      Aplicavel a Tags apenas. N&#227;o recebe nada. Devolve uma lista de tarefas atrasadas
+      Aplicavel a Tags apenas. N&#xe3;o recebe nada. Devolve uma lista de tarefas atrasadas
     </p>
   </body>
 </html></richcontent>
@@ -200,7 +200,7 @@
   </head>
   <body>
     <p>
-      Aplic&#225;vel a Tarefas apenas. Recebe um &quot;lugar&quot; gen&#233;rico (por exemplo farm&#225;cia, mercado, padaria, etc). Aciona um lembrete quando o dispositivo estiver pr&#243;ximo a um estabelecimento do tipo informado.
+      Aplic&#xe1;vel a Tarefas apenas. Recebe um "lugar" gen&#xe9;rico (por exemplo farm&#xe1;cia, mercado, padaria, etc). Aciona um lembrete quando o dispositivo estiver pr&#xf3;ximo a um estabelecimento do tipo informado.
     </p>
   </body>
 </html></richcontent>
@@ -212,7 +212,7 @@
   </head>
   <body>
     <p>
-      Aplic&#225;vel a Tarefas apenas. Recebe um contato. Aciona um lembrete quando o dispositivo estiver pr&#243;ximo a pessoa (como?)
+      Aplic&#xe1;vel a Tarefas apenas. Recebe um contato. Aciona um lembrete quando o dispositivo estiver pr&#xf3;ximo a pessoa (como?)
     </p>
   </body>
 </html></richcontent>
@@ -225,7 +225,7 @@
   </head>
   <body>
     <p>
-      Aplic&#225;vel a Tags e Tarefas. Indica uma tag viva. O valor da tag ser&#225; um script de marcar/remover tags de tarefa mediante condi&#231;&#245;es (constantes no script tamb&#233;m)
+      Aplic&#xe1;vel a Tags e Tarefas. Indica uma tag viva. O valor da tag ser&#xe1; um script de marcar/remover tags de tarefa mediante condi&#xe7;&#xf5;es (constantes no script tamb&#xe9;m)
     </p>
   </body>
 </html></richcontent>
@@ -237,7 +237,7 @@
   </head>
   <body>
     <p>
-      Aplic&#225;vel a Tags e Tarefas. Cor de fundo, cor da letra, formata&#231;&#227;o, etc
+      Aplic&#xe1;vel a Tags e Tarefas. Cor de fundo, cor da letra, formata&#xe7;&#xe3;o, etc
     </p>
   </body>
 </html></richcontent>
@@ -249,7 +249,7 @@
   </head>
   <body>
     <p>
-      Aplic&#225;vel a Tags apenas. Recebe uma lista de tags, devolve as tarefas que tiverem todas as tags da lista
+      Aplic&#xe1;vel a Tags apenas. Recebe uma lista de tags, devolve as tarefas que tiverem todas as tags da lista
     </p>
   </body>
 </html></richcontent>
@@ -261,7 +261,7 @@
   </head>
   <body>
     <p>
-      Aplic&#225;vel a Tags apenas. Recebe uma lista de tags, devolve todas as tarefas que tiverem pelo menos uma das tags da lista
+      Aplic&#xe1;vel a Tags apenas. Recebe uma lista de tags, devolve todas as tarefas que tiverem pelo menos uma das tags da lista
     </p>
   </body>
 </html></richcontent>
@@ -273,7 +273,7 @@
   </head>
   <body>
     <p>
-      Aplic&#225;vel a Tarefas apenas. N&#227;o recebe nada. Ao renderizar a tarefa na lista mostra trocar todos os caracteres do nome por x. Ao abrir a tarefa pede um pin do aplicativo.
+      Aplic&#xe1;vel a Tarefas apenas. N&#xe3;o recebe nada. Ao renderizar a tarefa na lista mostra trocar todos os caracteres do nome por x. Ao abrir a tarefa pede um pin do aplicativo.
     </p>
   </body>
 </html></richcontent>
@@ -285,7 +285,7 @@
   </head>
   <body>
     <p>
-      Aplic&#225;vel a Tarefa apenas. N&#227;o recebe nada. Deve mudar a formata&#231;&#227;o da tarefa na lista.
+      Aplic&#xe1;vel a Tarefa apenas. N&#xe3;o recebe nada. Deve mudar a formata&#xe7;&#xe3;o da tarefa na lista.
     </p>
   </body>
 </html></richcontent>
@@ -297,7 +297,7 @@
   </head>
   <body>
     <p>
-      Aplicavel a Tags apenas. N&#227;o recebe nada. Mostra todas as Tags existentes.
+      Aplicavel a Tags apenas. N&#xe3;o recebe nada. Mostra todas as Tags existentes.
     </p>
   </body>
 </html></richcontent>
@@ -309,7 +309,7 @@
   </head>
   <body>
     <p>
-      Aplicavel a Tags apenas. N&#227;o recebe nada. Mostra todas as Tarefas existentes.
+      Aplicavel a Tags apenas. N&#xe3;o recebe nada. Mostra todas as Tarefas existentes.
     </p>
   </body>
 </html></richcontent>
@@ -321,7 +321,7 @@
   </head>
   <body>
     <p>
-      Aplicavel a Tags apenas. N&#227;o recebe nada. Mostra todos os UserObject existentes.od
+      Aplicavel a Tags apenas. N&#xe3;o recebe nada. Mostra todos os UserObject existentes.od
     </p>
   </body>
 </html></richcontent>
@@ -333,7 +333,7 @@
   </head>
   <body>
     <p>
-      Aplicavel a Tags apenas. N&#227;o recebe nada. Quando marcado com este atributo a tag n&#227;o fica dispon&#237;vel para o usu&#225;rio marcar tarefas com ela, e nem pode ser exclu&#237;da, renomeada ou configurada pelo usu&#225;rio.
+      Aplicavel a Tags apenas. N&#xe3;o recebe nada. Quando marcado com este atributo a tag n&#xe3;o fica dispon&#xed;vel para o usu&#xe1;rio marcar tarefas com ela, e nem pode ser exclu&#xed;da, renomeada ou configurada pelo usu&#xe1;rio.
     </p>
   </body>
 </html></richcontent>
@@ -380,7 +380,7 @@
   </head>
   <body>
     <p>
-      Dever&#225; adicionar/procurar uma tarefa rapidamente
+      Dever&#xe1; adicionar/procurar uma tarefa rapidamente
     </p>
   </body>
 </html></richcontent>
@@ -393,7 +393,7 @@
   </head>
   <body>
     <p>
-      Devem possuir o nome do objeto e um bot&#227;o de bullet &#224; direita.
+      Devem possuir o nome do objeto e um bot&#xe3;o de bullet &#xe0; direita.
     </p>
   </body>
 </html></richcontent>
@@ -405,7 +405,7 @@
   </head>
   <body>
     <p>
-      Deve ter um &#237;cone para indicar que n&#227;o &#233; uma tarefa.
+      Deve ter um &#xed;cone para indicar que n&#xe3;o &#xe9; uma tarefa.
     </p>
   </body>
 </html></richcontent>
@@ -417,7 +417,7 @@
   </head>
   <body>
     <p>
-      Deve ter um &#237;cone &#224; esquerda indicando seu status (aberto [default], atrasado e conclu&#237;do)
+      Deve ter um &#xed;cone &#xe0; esquerda indicando seu status (aberto [default], atrasado e conclu&#xed;do)
     </p>
   </body>
 </html></richcontent>
@@ -431,7 +431,7 @@
   </head>
   <body>
     <p>
-      Dispon&#237;vel na item da lista.
+      Dispon&#xed;vel na item da lista.
     </p>
   </body>
 </html></richcontent>
@@ -443,7 +443,7 @@
   </head>
   <body>
     <p>
-      Dispon&#237;vel no bot&#227;o de bullet do item da lista. Consiste em configurar os atributos da tag e seus valores.
+      Dispon&#xed;vel no bot&#xe3;o de bullet do item da lista. Consiste em configurar os atributos da tag e seus valores.
     </p>
   </body>
 </html></richcontent>
@@ -455,7 +455,7 @@
   </head>
   <body>
     <p>
-      Dispon&#237;vel no item da lista.
+      Dispon&#xed;vel no item da lista.
     </p>
   </body>
 </html></richcontent>
@@ -469,7 +469,7 @@
   </head>
   <body>
     <p>
-      Dispon&#237;vel no bot&#227;o de bullet do item de tarefa.
+      Dispon&#xed;vel no bot&#xe3;o de bullet do item de tarefa.
     </p>
   </body>
 </html></richcontent>
@@ -481,7 +481,7 @@
   </head>
   <body>
     <p>
-      Dispon&#237;vel no bot&#227;o de bullet do item de tarefa.
+      Dispon&#xed;vel no bot&#xe3;o de bullet do item de tarefa.
     </p>
   </body>
 </html></richcontent>
@@ -493,7 +493,7 @@
   </head>
   <body>
     <p>
-      Dispon&#237;vel no bot&#227;o de bullet do item de tarefa.
+      Dispon&#xed;vel no bot&#xe3;o de bullet do item de tarefa.
     </p>
   </body>
 </html></richcontent>
@@ -529,7 +529,7 @@
   </head>
   <body>
     <p>
-      Dispon&#237;vel no bot&#227;o de menu quando a gaveta estiver aberta. Est&#225; fun&#231;&#227;o s&#243; dever&#225; existir para criar tags da gaveta.
+      Dispon&#xed;vel no bot&#xe3;o de menu quando a gaveta estiver aberta. Est&#xe1; fun&#xe7;&#xe3;o s&#xf3; dever&#xe1; existir para criar tags da gaveta.
     </p>
   </body>
 </html></richcontent>
@@ -544,7 +544,7 @@
   </head>
   <body>
     <p>
-      Deve ser maestro quando a gaveta estiver aberta. Quando estiver fechada deve ser o t&#237;tulo da tag + super tags da tag selecionada seguido pelas super tarefas da tarefa selecionada em um linha abaixo com letra de detalhe.
+      Deve ser maestro quando a gaveta estiver aberta. Quando estiver fechada deve ser o t&#xed;tulo da tag + super tags da tag selecionada seguido pelas super tarefas da tarefa selecionada em um linha abaixo com letra de detalhe.
     </p>
   </body>
 </html></richcontent>
@@ -569,7 +569,7 @@
   </head>
   <body>
     <p>
-      A vis&#227;o por dia ficar&#225; na lista de tarefas mesmo, ser&#225; um tag para isso. Elaborar direito o que vai ter nessa atividade.
+      A vis&#xe3;o por dia ficar&#xe1; na lista de tarefas mesmo, ser&#xe1; um tag para isso. Elaborar direito o que vai ter nessa atividade.
     </p>
   </body>
 </html></richcontent>
@@ -597,7 +597,7 @@
   </head>
   <body>
     <p>
-      Dever&#225; adicionar/procurar uma tarefa rapidamente. Deve fazer uma busca incremental pelos itens da lista ativa. Quando a busca n&#227;o encontrar nada deve mudar o bot&#227;o de pesquisa para adicionar. Um toque duplo no bot&#227;o de busca aciona o fragmento de busca avan&#231;ada.
+      Dever&#xe1; adicionar/procurar uma tarefa rapidamente. Deve fazer uma busca incremental pelos itens da lista ativa. Quando a busca n&#xe3;o encontrar nada deve mudar o bot&#xe3;o de pesquisa para adicionar. Um toque duplo no bot&#xe3;o de busca aciona o fragmento de busca avan&#xe7;ada.
     </p>
   </body>
 </html></richcontent>
@@ -620,7 +620,7 @@
   </head>
   <body>
     <p>
-      Busca incremental pelo t&#237;tulo da tarefa
+      Busca incremental pelo t&#xed;tulo da tarefa
     </p>
   </body>
 </html></richcontent>
@@ -634,7 +634,7 @@
   </head>
   <body>
     <p>
-      Devem possuir o nome do objeto e um bot&#227;o de bullet &#224; direita.
+      Devem possuir o nome do objeto e um bot&#xe3;o de bullet &#xe0; direita.
     </p>
   </body>
 </html></richcontent>
@@ -646,7 +646,7 @@
   </head>
   <body>
     <p>
-      Deve ter um &#237;cone para indicar que n&#227;o &#233; uma tarefa.
+      Deve ter um &#xed;cone para indicar que n&#xe3;o &#xe9; uma tarefa.
     </p>
   </body>
 </html></richcontent>
@@ -657,7 +657,7 @@
   </head>
   <body>
     <p>
-      Quando o item for da gaveta, deve selecion&#225;-lo na lista
+      Quando o item for da gaveta, deve selecion&#xe1;-lo na lista
     </p>
   </body>
 </html></richcontent>
@@ -670,7 +670,7 @@
   </head>
   <body>
     <p>
-      Dispon&#237;vel na item da lista.
+      Dispon&#xed;vel na item da lista.
     </p>
   </body>
 </html></richcontent>
@@ -682,7 +682,7 @@
   </head>
   <body>
     <p>
-      Dispon&#237;vel no bot&#227;o de bullet do item da lista. Consiste em configurar os atributos da tag e seus valores.
+      Dispon&#xed;vel no bot&#xe3;o de bullet do item da lista. Consiste em configurar os atributos da tag e seus valores.
     </p>
   </body>
 </html></richcontent>
@@ -694,7 +694,7 @@
   </head>
   <body>
     <p>
-      Dispon&#237;vel no item da lista.
+      Dispon&#xed;vel no item da lista.
     </p>
   </body>
 </html></richcontent>
@@ -708,7 +708,7 @@
   </head>
   <body>
     <p>
-      Deve ter um &#237;cone &#224; esquerda indicando seu status (aberto [default], atrasado e conclu&#237;do)
+      Deve ter um &#xed;cone &#xe0; esquerda indicando seu status (aberto [default], atrasado e conclu&#xed;do)
     </p>
   </body>
 </html></richcontent>
@@ -732,7 +732,7 @@
   </head>
   <body>
     <p>
-      Dispon&#237;vel no bot&#227;o de bullet do item de tarefa.
+      Dispon&#xed;vel no bot&#xe3;o de bullet do item de tarefa.
     </p>
   </body>
 </html></richcontent>
@@ -744,7 +744,7 @@
   </head>
   <body>
     <p>
-      Dispon&#237;vel no bot&#227;o de bullet do item de tarefa.
+      Dispon&#xed;vel no bot&#xe3;o de bullet do item de tarefa.
     </p>
   </body>
 </html></richcontent>
@@ -756,12 +756,12 @@
   </head>
   <body>
     <p>
-      Dispon&#237;vel no bot&#227;o de bullet do item de tarefa.
+      Dispon&#xed;vel no bot&#xe3;o de bullet do item de tarefa.
     </p>
   </body>
 </html></richcontent>
 </node>
-<node CREATED="1413226905380" ID="ID_1124284753" MODIFIED="1413226926919" TEXT="Notas">
+<node CREATED="1413226905380" ID="ID_1124284753" MODIFIED="1426099690126" TEXT="Notas">
 <richcontent TYPE="NOTE"><html>
   <head>
     
@@ -771,7 +771,8 @@
       Quando uma tarefa estiver marcada com tag &quot;Note&quot; deve mostrar esta tag direto no menu de bullet da tarefa.
     </p>
   </body>
-</html></richcontent>
+</html>
+</richcontent>
 </node>
 </node>
 </node>
