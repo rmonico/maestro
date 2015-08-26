@@ -63,3 +63,9 @@ Versão 0.1
   *  <expressao>: <operando> [<operador binário> <operando>]
   *  <operando>: [ nome_tag | nome_tag(valor_atributo1,valor_atributo2...) | subtaskof @<task id> ]
   *  <operador binário>: [ and | or ]
+
+
+Futuro
+---
+* Tag automática com a data de criação da tarefa
+    * Talvez montar tags desse tipo para ter todo o histórico da tarefa
