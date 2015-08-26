@@ -12,7 +12,9 @@ import org.junit.Test;
 import zero.easymvc.EasyMVC;
 import zero.easymvc.EasyMVCAssert;
 import zero.easymvc.EasyMVCException;
+import zero.maestro.app.TaskListCommand;
 import zero.maestro.model.Task;
+import zero.maestrocli.renderer.TaskListRenderer;
 
 public class TaskListTests {
 
@@ -26,6 +28,8 @@ public class TaskListTests {
     }
 
     private void registerCommandsAndRenderers() {
+        controller.registerCommandHandler(TaskListCommand.class);
+        controller.registerRenderer(TaskListRenderer.class);
     }
 
     @Test
