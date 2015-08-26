@@ -43,10 +43,16 @@ public class TaskListTests {
 
         assertEquals(3, tasks.size());
 
-        Task task = tasks.get(0);
+        assertTask("First task ever", tasks.get(0));
+        assertTask("Second task", tasks.get(1));
+        assertTask("A third task", tasks.get(2));
+    }
 
-        assertNotNull(task);
-        assertEquals("Primeira tarefa", task.getName());
-        assertNull(task.getSuperTask());
+    private void assertTask(String expectedName, Task actualTask) {
+        assertNotNull(actualTask);
+        assertEquals(expectedName, actualTask.getName());
+
+        // TODO: assert super task
+        assertNull(actualTask.getSuperTask());
     }
 }
