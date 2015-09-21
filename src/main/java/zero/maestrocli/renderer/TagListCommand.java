@@ -1,6 +1,7 @@
 package zero.maestrocli.renderer;
 
 import java.sql.SQLException;
+import java.util.LinkedList;
 import java.util.List;
 
 import zero.easymvc.Bean;
@@ -19,5 +20,18 @@ public class TagListCommand {
 
     @CommandHandler(path = { "tag", "ls" })
     public void execute() throws SQLException {
+        tags = new LinkedList<Tag>();
+
+        tags.add(newTag("first_tag"));
+        tags.add(newTag("second_tag"));
+        tags.add(newTag("third_tag"));
+    }
+
+    private Tag newTag(String string) {
+        Tag tag = new Tag();
+
+        tag.setName(string);
+
+        return tag;
     }
 }
