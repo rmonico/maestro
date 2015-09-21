@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"  ?>
+<!DOCTYPE dataset SYSTEM "dbunit/maestro.dtd">
+<dataset>
+	<task id="1" name="A supertask" />
+	<task id="2" name="A task with supertask" supertask_id="1" />
+</dataset>
