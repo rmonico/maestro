@@ -9,9 +9,13 @@ import zero.easymvc.ormlite.factory.ApplicationFactory;
 import zero.environment.ApplicationPropertyKeys;
 import zero.environment.Environment;
 import zero.maestro.app.TaskListCommand;
+import zero.maestro.app.dao.TagDao;
 import zero.maestro.app.dao.TaskDao;
 import zero.maestro.database.DatabaseVersion_1;
+import zero.maestro.model.Tag;
 import zero.maestro.model.Task;
+import zero.maestrocli.renderer.TagListCommand;
+import zero.maestrocli.renderer.TagListRenderer;
 import zero.maestrocli.renderer.TaskListRenderer;
 
 public class MaestrocliApplicationFactory extends ApplicationFactory {
@@ -43,6 +47,7 @@ public class MaestrocliApplicationFactory extends ApplicationFactory {
         super.populateDaoInfo(daoInfo);
 
         daoInfo.put(TaskDao.class, Task.class);
+        daoInfo.put(TagDao.class, Tag.class);
     }
 
     @Override
@@ -50,6 +55,7 @@ public class MaestrocliApplicationFactory extends ApplicationFactory {
         super.createCommandList(commands);
 
         commands.add(TaskListCommand.class);
+        commands.add(TagListCommand.class);
     }
 
     @Override
@@ -57,6 +63,7 @@ public class MaestrocliApplicationFactory extends ApplicationFactory {
         super.createRendererList(renderers);
 
         renderers.add(TaskListRenderer.class);
+        renderers.add(TagListRenderer.class);
     }
 
     @Override
