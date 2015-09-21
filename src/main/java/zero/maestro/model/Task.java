@@ -1,16 +1,24 @@
 package zero.maestro.model;
 
+import zero.maestro.app.dao.TaskDao;
+
+import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
-//@DatabaseTable(daoClass = TaskDao.class)
+@DatabaseTable(daoClass = TaskDao.class)
 public class Task {
 
     public static final String ID_FIELD_NAME = "id";
     public static final String NAME_FIELD_NAME = "name";
     public static final String SUPERTASK_FIELD_NAME = "supertask_id";
 
+    @DatabaseField(generatedId = true)
     private int id;
+
+    @DatabaseField
     private String name;
+
+    @DatabaseField(foreign = true, canBeNull = true, foreignAutoRefresh = true)
     private Task superTask;
 
     public int getId() {
