@@ -3,6 +3,7 @@ package zero.maestrocli;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+import zero.maestro.model.Tag;
 import zero.maestro.model.Task;
 
 class Assert {
@@ -19,6 +20,11 @@ class Assert {
             assertNotNull(superTask);
             assertEquals(superTaskName, superTask.getName());
         }
+    }
+
+    public static void assertTag(String expectedName, Tag actualTag) {
+        assertNotNull(actualTag);
+        assertEquals(expectedName, actualTag.getName());
     }
 
 }
