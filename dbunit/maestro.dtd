@@ -1,0 +1,11 @@
+<!ELEMENT dataset (metainf*, task*)>
+
+<!ELEMENT metainf (#PCDATA)>
+<!ATTLIST metainf id CDATA #REQUIRED>
+<!ATTLIST metainf key CDATA #REQUIRED>
+<!ATTLIST metainf value CDATA #REQUIRED>
+
+<!ELEMENT task (#PCDATA)>
+<!ATTLIST task id CDATA #REQUIRED>
+<!ATTLIST task name CDATA #REQUIRED>
+<!ATTLIST task supertask_id CDATA #REQUIRED>
