@@ -7,12 +7,18 @@ import zero.maestro.model.Task;
 
 class Assert {
 
-    public static void assertTask(String expectedName, Task actualTask) {
+    public static void assertTask(String expectedName, String superTaskName, Task actualTask) {
         assertNotNull(actualTask);
         assertEquals(expectedName, actualTask.getName());
 
-        // TODO: assert super task
-        assertNull(actualTask.getSuperTask());
+        if (superTaskName == null)
+            assertNull(actualTask.getSuperTask());
+        else {
+            Task superTask = actualTask.getSuperTask();
+
+            assertNotNull(superTask);
+            assertEquals(superTaskName, superTask.getName());
+        }
     }
 
 }
