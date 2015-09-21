@@ -18,6 +18,7 @@ public class TaskListTests extends MaestrocliTest {
     }
 
     @Test
+    @DBUnitDatasetFileNames("dbunit/TaskListTests__should_list_all_three_tasks.xml")
     public void should_list_all_three_tasks() throws EasyMVCException {
         List<Object> beans = controller.run("task", "ls");
 
@@ -34,7 +35,7 @@ public class TaskListTests extends MaestrocliTest {
     }
 
     @Test
-    @DBUnitDatasetFileNames("dbunit/tasklisttests__should_list_task_with_supertask.xml")
+    @DBUnitDatasetFileNames("dbunit/TaskListTests__should_list_task_with_supertask.xml")
     public void should_list_task_with_supertask() throws EasyMVCException {
         List<Object> beans = controller.run("task", "ls");
 
