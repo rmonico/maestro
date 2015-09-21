@@ -5,14 +5,14 @@ import zero.easymvc.PositionalParameter;
 public class TagCreateArguments {
 
     @PositionalParameter
-    private String nome;
+    private String name;
 
-    public String getNome() {
-        return nome;
+    public String getName() {
+        return name;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setName(String name) {
+        this.name = name;
     }
 
 }

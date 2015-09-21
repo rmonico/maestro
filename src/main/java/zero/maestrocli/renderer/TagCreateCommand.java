@@ -23,7 +23,9 @@ public class TagCreateCommand {
     @CommandHandler(path = { "tag", "add" })
     public void execute() throws SQLException {
         tag = new Tag();
-        
-        tag.setName("created_tag");
+
+        tag.setName(arguments.getName());
+
+        dao.create(tag);
     }
 }
