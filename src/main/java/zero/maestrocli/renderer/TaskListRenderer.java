@@ -4,7 +4,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 import zero.easymvc.Renderer;
-import zero.listprinter.BooleanFormatter;
 import zero.listprinter.Column;
 import zero.listprinter.FormattedColumn;
 import zero.listprinter.IDFormatter;
@@ -36,7 +35,7 @@ public class TaskListRenderer {
 
         defs.add(new FormattedColumn("ID", new ReflectionFieldExtractor("id"), IDFormatter.getInstance()));
         defs.add(new FormattedColumn("Nome", new ReflectionFieldExtractor("name"), StringFormatter.getInstance()));
-        defs.add(new FormattedColumn("Super task", new ReflectionFieldExtractor("superTask", new ReflectionFieldExtractor("name")), BooleanFormatter.getInstance()));
+        defs.add(new FormattedColumn("Super task", new ReflectionFieldExtractor("superTask", new ReflectionFieldExtractor("name")), StringFormatter.getInstance()));
 
         return defs;
     }
