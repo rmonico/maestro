@@ -21,7 +21,7 @@ public class TaskListRenderer {
     public void render() throws ListPrinterException {
         ListPrinter printer = new ListPrinter();
 
-        printer.setEntityName("Task", "Tarefas");
+        printer.setEntityName("Task", "Tasks");
 
         printer.setColumnDefinitions(createColumnDefinitions());
 
@@ -34,7 +34,7 @@ public class TaskListRenderer {
         List<Column> defs = new LinkedList<>();
 
         defs.add(new FormattedColumn("ID", new ReflectionFieldExtractor("id"), IDFormatter.getInstance()));
-        defs.add(new FormattedColumn("Nome", new ReflectionFieldExtractor("name"), StringFormatter.getInstance()));
+        defs.add(new FormattedColumn("Name", new ReflectionFieldExtractor("name"), StringFormatter.getInstance()));
         defs.add(new FormattedColumn("Super task", new ReflectionFieldExtractor("superTask", new ReflectionFieldExtractor("name")), StringFormatter.getInstance()));
 
         return defs;
