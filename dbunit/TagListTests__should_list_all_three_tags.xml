@@ -2,6 +2,6 @@
 <!DOCTYPE dataset SYSTEM "dbunit/maestro.dtd">
 <dataset>
 	<tag id="1" name="first_tag" />
-	<tag id="1" name="second_tag" />
-	<tag id="1" name="third_tag" />
+	<tag id="2" name="second_tag" />
+	<tag id="3" name="third_tag" />
 </dataset>
