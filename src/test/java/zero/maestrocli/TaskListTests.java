@@ -13,10 +13,6 @@ import zero.utils.test.DBUnitDatasetFileNames;
 
 public class TaskListTests extends MaestrocliTest {
 
-    public TaskListTests() {
-        super("dbunit/tasklist_dataset.xml");
-    }
-
     @Test
     @DBUnitDatasetFileNames("dbunit/TaskListTests__should_list_all_three_tasks.xml")
     public void should_list_all_three_tasks() throws EasyMVCException {
