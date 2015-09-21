@@ -1,35 +1,19 @@
 package zero.maestrocli;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
 
 import java.util.List;
 
-import org.junit.Before;
 import org.junit.Test;
 
-import zero.easymvc.EasyMVC;
 import zero.easymvc.EasyMVCAssert;
 import zero.easymvc.EasyMVCException;
-import zero.maestro.app.TaskListCommand;
 import zero.maestro.model.Task;
-import zero.maestrocli.renderer.TaskListRenderer;
 
-public class TaskListTests {
+public class TaskListTests extends MaestrocliTest {
 
-    private EasyMVC controller;
-
-    @Before
-    public void setup() {
-        controller = new EasyMVC();
-
-        registerCommandsAndRenderers();
-    }
-
-    private void registerCommandsAndRenderers() {
-        controller.registerCommandHandler(TaskListCommand.class);
-        controller.registerRenderer(TaskListRenderer.class);
+    public TaskListTests() {
+        super("dbunit/tasklist_dataset.xml");
     }
 
     @Test
@@ -43,16 +27,9 @@ public class TaskListTests {
 
         assertEquals(3, tasks.size());
 
-        assertTask("First task ever", tasks.get(0));
-        assertTask("Second task", tasks.get(1));
-        assertTask("A third task", tasks.get(2));
+        Assert.assertTask("First task ever", tasks.get(0));
+        Assert.assertTask("Second task", tasks.get(1));
+        Assert.assertTask("A third task", tasks.get(2));
     }
 
-    private void assertTask(String expectedName, Task actualTask) {
-        assertNotNull(actualTask);
-        assertEquals(expectedName, actualTask.getName());
-
-        // TODO: assert super task
-        assertNull(actualTask.getSuperTask());
-    }
 }
