@@ -2,6 +2,7 @@ package zero.maestro.database;
 
 import zero.easymvc.ormlite.AbstractDatabaseVersion;
 import zero.easymvc.ormlite.MetaInfUpdater;
+import zero.maestro.model.Tag;
 import zero.maestro.model.Task;
 
 import com.j256.ormlite.support.ConnectionSource;
@@ -19,6 +20,7 @@ public class DatabaseVersion_1 extends AbstractDatabaseVersion {
     public void update() throws Exception {
         if (THIS_VERSION > getOldVersion()) {
             TableUtils.createTableIfNotExists(connection, Task.class);
+            TableUtils.createTableIfNotExists(connection, Tag.class);
         }
     }
 
