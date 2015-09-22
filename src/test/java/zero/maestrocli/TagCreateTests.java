@@ -21,4 +21,8 @@ public class TagCreateTests extends MaestrocliTest {
         Assert.assertTag("created_tag", tag);
     }
 
+    @Test(expected = EasyMVCException.class)
+    public void should_throw_exception_when_try_to_create_a_tag_with_invalid_name() throws EasyMVCException {
+        controller.run("tag", "add", "tag with space in name");
+    }
 }
