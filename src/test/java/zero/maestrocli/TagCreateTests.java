@@ -11,7 +11,7 @@ import zero.maestro.model.Tag;
 public class TagCreateTests extends MaestrocliTest {
 
     @Test
-    public void should_list_all_three_tags() throws EasyMVCException {
+    public void should_create_a_new_tag() throws EasyMVCException {
         List<Object> beans = controller.run("tag", "add", "created_tag");
 
         EasyMVCAssert.assertBeanList(beans, 1);
