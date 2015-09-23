@@ -20,15 +20,15 @@ id
 name
 
 
-TagAttribute
+Attribute
 ---
 id
 name
 tag -> Tag
-valueType -> TagAttributeValueType
+type -> AttributeType
 
 
-TagAttributeValueType
+AttributeType
 ---
 VIEW, FIXEDTAGLIST, REGEXTAGLIST, TEXT, DATETIME, INTEGER, GPS
 
