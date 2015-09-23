@@ -1,5 +1,7 @@
 package zero.maestro.model;
 
+import java.util.List;
+
 import zero.maestro.app.dao.TagDao;
 
 import com.j256.ormlite.field.DatabaseField;
@@ -31,6 +33,10 @@ public class Tag {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<TagAttribute> getAttributes() {
+        return null;
     }
 
 }
