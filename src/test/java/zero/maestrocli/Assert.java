@@ -4,12 +4,11 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
-
-import java.util.List;
-
+import zero.maestro.model.Attribute;
 import zero.maestro.model.Tag;
-import zero.maestro.model.TagAttribute;
 import zero.maestro.model.Task;
+
+import com.j256.ormlite.dao.ForeignCollection;
 
 class Assert {
 
@@ -32,19 +31,25 @@ class Assert {
         assertEquals(expectedName, actualTag.getName());
     }
 
-    public static void assertTagAttributes(Tag actualTag, String... expectedAttributeNames) {
+    public static void assertTagAttributes(String[] expectedAttributeNames, String[] expectedAttributeTypes, Tag actualTag) {
         assertNotNull(actualTag);
 
-        List<TagAttribute> attributes = actualTag.getAttributes();
+        ForeignCollection<Attribute> attributes = actualTag.getAttributes();
         assertNotNull(attributes);
         assertTrue(expectedAttributeNames.length == attributes.size());
+        assertTrue(expectedAttributeTypes.length == attributes.size());
 
-        for (int i = 0; i < expectedAttributeNames.length; i++) {
+        int i = 0;
+
+        for (Attribute tagAttribute : attributes) {
             String expectedAttributeName = expectedAttributeNames[i];
+            String expectedAttributeType = expectedAttributeTypes[i];
 
-            TagAttribute tagAttribute = attributes.get(i);
             assertNotNull(tagAttribute);
             assertEquals(expectedAttributeName, tagAttribute.getName());
+            assertEquals(expectedAttributeType, tagAttribute.getType().toString());
+
+            i++;
         }
     }
 }

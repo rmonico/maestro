@@ -30,6 +30,6 @@ public class AttributeCreateTests extends MaestrocliTest {
         Tag tag = tags.get(0);
 
         Assert.assertTag("a_tag", tag);
-        Assert.assertTagAttributes(tag);
+        Assert.assertTagAttributes(new String[] { "note" }, new String[] { "TEXT" }, tag);
     }
 }
