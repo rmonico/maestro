@@ -58,7 +58,7 @@ Versão 0.1
 *  tag ls
 *  attr add <nome tag> <nome atributo> <type>
 *  attr ls [nome tag]
-*  task add <nome> [--supertaskid=<super task id>] [--tags=<tags separadas por ,]
+*  task add <nome> \[ --supertaskid=<super task id> ] [ --tags=<tags separadas por ,> ]
 *  task ls --query="expressao"
   *  <expressao>: <operando> [<operador binário> <operando>]
   *  <operando>: [ nome_tag | nome_tag(valor_atributo1,valor_atributo2...) | subtaskof @<task id> ]
