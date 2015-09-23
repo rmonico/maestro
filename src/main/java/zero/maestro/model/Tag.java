@@ -1,10 +1,10 @@
 package zero.maestro.model;
 
-import java.util.List;
-
 import zero.maestro.app.dao.TagDao;
 
+import com.j256.ormlite.dao.ForeignCollection;
 import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
 
 @DatabaseTable(daoClass = TagDao.class)
@@ -18,6 +18,9 @@ public class Tag {
 
     @DatabaseField
     private String name;
+
+    @ForeignCollectionField(eager = true)
+    private ForeignCollection<Attribute> attributes;
 
     public int getId() {
         return id;
@@ -35,8 +38,8 @@ public class Tag {
         this.name = name;
     }
 
-    public List<TagAttribute> getAttributes() {
-        return null;
+    public ForeignCollection<Attribute> getAttributes() {
+        return attributes;
     }
 
 }
