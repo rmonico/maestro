@@ -1,4 +1,4 @@
-package zero.maestrocli.renderer;
+package zero.maestro.app;
 
 import java.sql.SQLException;
 
