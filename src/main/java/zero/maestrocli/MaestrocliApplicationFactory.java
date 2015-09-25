@@ -21,6 +21,7 @@ import zero.maestro.model.Attribute;
 import zero.maestro.model.Tag;
 import zero.maestro.model.Task;
 import zero.maestrocli.renderer.AttributeCreateRenderer;
+import zero.maestrocli.renderer.AttributeListRenderer;
 import zero.maestrocli.renderer.TagCreateRenderer;
 import zero.maestrocli.renderer.TagListRenderer;
 import zero.maestrocli.renderer.TaskListRenderer;
@@ -77,6 +78,7 @@ public class MaestrocliApplicationFactory extends ApplicationFactory {
         renderers.add(TagListRenderer.class);
         renderers.add(TagCreateRenderer.class);
         renderers.add(AttributeCreateRenderer.class);
+        renderers.add(AttributeListRenderer.class);
     }
 
     @Override

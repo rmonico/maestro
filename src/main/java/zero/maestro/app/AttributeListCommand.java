@@ -1,5 +1,6 @@
 package zero.maestro.app;
 
+import zero.easymvc.ArgumentsBean;
 import zero.easymvc.Bean;
 import zero.easymvc.CommandHandler;
 import zero.easymvc.Dependency;
@@ -10,6 +11,9 @@ public class AttributeListCommand {
 
     @Dependency
     private TagDao dao;
+
+    @ArgumentsBean
+    private AttributeListArguments args;
 
     @Bean
     private Tag tag;
