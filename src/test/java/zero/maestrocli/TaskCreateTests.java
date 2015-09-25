@@ -23,6 +23,7 @@ public class TaskCreateTests extends MaestrocliTest {
     }
 
     @Test
+    @DBUnitDatasetFileNames("dbunit/TaskCreateTests__should_create_a_new_task_with_supertask.xml")
     public void should_create_a_new_task_with_supertask() throws EasyMVCException {
         List<Object> beans = controller.run("task", "add", "A subtask", "--supertaskid=1");
 
