@@ -11,6 +11,7 @@ public class Attribute {
 
     public static final String ID_FIELD_NAME = "id";
     public static final String TYPE_FIELD_NAME = "type";
+    public static final String TAG_FIELD_NAME = "tag_id";
 
     @DatabaseField(generatedId = true)
     private int id;
