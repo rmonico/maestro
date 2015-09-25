@@ -6,9 +6,9 @@ import zero.easymvc.ArgumentsBean;
 import zero.easymvc.Bean;
 import zero.easymvc.CommandHandler;
 import zero.easymvc.Dependency;
+import zero.maestro.app.dao.AttributeDao;
 import zero.maestro.app.dao.TagDao;
 import zero.maestro.model.Attribute;
-import zero.maestro.model.AttributeDao;
 import zero.maestro.model.AttributeType;
 import zero.maestro.model.Tag;
 

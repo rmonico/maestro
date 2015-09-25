@@ -1,8 +1,9 @@
-package zero.maestro.model;
+package zero.maestro.app.dao;
 
 import java.sql.SQLException;
 
 import zero.easymvc.ormlite.dao.AbstractDao;
+import zero.maestro.model.Attribute;
 
 import com.j256.ormlite.support.ConnectionSource;
 
