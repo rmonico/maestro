@@ -9,6 +9,7 @@ import zero.easymvc.ormlite.factory.ApplicationFactory;
 import zero.environment.ApplicationPropertyKeys;
 import zero.environment.Environment;
 import zero.maestro.app.AttributeCreateCommand;
+import zero.maestro.app.AttributeListCommand;
 import zero.maestro.app.TagCreateCommand;
 import zero.maestro.app.TagListCommand;
 import zero.maestro.app.TaskListCommand;
@@ -65,6 +66,7 @@ public class MaestrocliApplicationFactory extends ApplicationFactory {
         commands.add(TagListCommand.class);
         commands.add(TagCreateCommand.class);
         commands.add(AttributeCreateCommand.class);
+        commands.add(AttributeListCommand.class);
     }
 
     @Override
