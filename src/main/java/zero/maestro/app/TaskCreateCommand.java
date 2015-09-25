@@ -15,6 +15,9 @@ public class TaskCreateCommand {
 
     @CommandHandler(path = { "task", "add" })
     public void execute() {
+        task = new Task();
+
+        task.setName("Some task");
     }
 
 }
