@@ -26,7 +26,23 @@ public class TaskCreateCommand {
 
         task.setName(args.getTaskName());
 
+        Task superTask = getSuperTask();
+
+        if (superTask != null)
+            task.setSuperTask(superTask);
+
         dao.create(task);
+    }
+
+    private Task getSuperTask() throws SQLException {
+        Integer superTaskID = args.getSuperTaskID();
+
+        if (superTaskID == null)
+            return null;
+
+        Task superTask = dao.queryForId(superTaskID);
+
+        return superTask;
     }
 
 }
