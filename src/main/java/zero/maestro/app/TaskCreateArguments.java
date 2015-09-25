@@ -9,7 +9,7 @@ public class TaskCreateArguments {
     private String taskName;
 
     @TokenParameter(token = { "-s", "--supertaskid" })
-    private int superTaskID;
+    private Integer superTaskID;
 
     public String getTaskName() {
         return taskName;
@@ -19,11 +19,11 @@ public class TaskCreateArguments {
         this.taskName = taskName;
     }
 
-    public int getSuperTaskID() {
+    public Integer getSuperTaskID() {
         return superTaskID;
     }
 
-    public void setSuperTaskID(int superTaskID) {
+    public void setSuperTaskID(Integer superTaskID) {
         this.superTaskID = superTaskID;
     }
 
