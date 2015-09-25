@@ -1,5 +1,7 @@
 package zero.maestro.app;
 
+import java.sql.SQLException;
+
 import zero.easymvc.ArgumentsBean;
 import zero.easymvc.Bean;
 import zero.easymvc.CommandHandler;
@@ -19,7 +21,10 @@ public class AttributeListCommand {
     private Tag tag;
 
     @CommandHandler(path = { "attr", "ls" })
-    public void execute() {
+    public void execute() throws SQLException {
+        String tagName = args.getTagName();
+
+        tag = dao.getTagByName(tagName);
     }
 
 }
