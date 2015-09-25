@@ -16,7 +16,7 @@ public class AttributeCreateTests extends MaestrocliTest {
     public void should_create_a_text_attribute() throws EasyMVCException {
         controller.run("tag", "add", "a_tag");
 
-        controller.run("attr", "add", "a_tag", "note", "TEXT");
+        controller.run("attr", "add", "a_tag", "note", "text");
 
         List<Object> beans = controller.run("tag", "ls");
 
@@ -30,6 +30,6 @@ public class AttributeCreateTests extends MaestrocliTest {
         Tag tag = tags.get(0);
 
         Assert.assertTag("a_tag", tag);
-        Assert.assertTagAttributes(new String[] { "note" }, new String[] { "TEXT" }, tag);
+        Assert.assertTagAttributes(new String[] { "note" }, new String[] { "text" }, tag);
     }
 }

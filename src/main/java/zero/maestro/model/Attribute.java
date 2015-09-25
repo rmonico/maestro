@@ -38,6 +38,14 @@ public class Attribute {
         this.name = name;
     }
 
+    public Tag getTag() {
+        return tag;
+    }
+
+    public void setTag(Tag tag) {
+        this.tag = tag;
+    }
+
     public AttributeType getType() {
         return type;
     }
