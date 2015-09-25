@@ -10,6 +10,7 @@ import com.j256.ormlite.table.DatabaseTable;
 public class Attribute {
 
     public static final String ID_FIELD_NAME = "id";
+    public static final String NAME_FIELD_NAME = "name";
     public static final String TYPE_FIELD_NAME = "type";
     public static final String TAG_FIELD_NAME = "tag_id";
 
