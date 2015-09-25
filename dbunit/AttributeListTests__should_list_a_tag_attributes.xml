@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"  ?>
+<!DOCTYPE dataset SYSTEM "dbunit/maestro.dtd">
+<dataset>
+	<tag id="1" name="uma_tag" />
+	<attribute id="1" name="note" type="text" tag_id="1" />
+	<attribute id="2" name="place" type="gps" tag_id="1" />
+	<attribute id="3" name="schedule" type="datetime" tag_id="1" />
+</dataset>
