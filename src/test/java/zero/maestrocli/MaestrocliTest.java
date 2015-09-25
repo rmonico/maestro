@@ -10,7 +10,7 @@ public class MaestrocliTest extends AbstractEasyMVCOrmliteTest {
     }
 
     public MaestrocliTest(String... defaultDBUnitDatasetFileNames) {
-        super("%%HOME%%/.config/maestro", defaultDBUnitDatasetFileNames);
+        super("%%HOME%%/.config/maestro_test", defaultDBUnitDatasetFileNames);
     }
 
     @Override
