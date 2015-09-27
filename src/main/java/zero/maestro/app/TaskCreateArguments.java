@@ -1,6 +1,7 @@
 package zero.maestro.app;
 
 import zero.easymvc.PositionalParameter;
+import zero.easymvc.StringArrayParser;
 import zero.easymvc.TokenParameter;
 
 public class TaskCreateArguments {
@@ -10,6 +11,9 @@ public class TaskCreateArguments {
 
     @TokenParameter(token = { "-s", "--supertaskid" })
     private Integer superTaskID;
+
+    @TokenParameter(token = { "-t", "--tags" }, parser = StringArrayParser.class)
+    private String[] tags;
 
     public String getTaskName() {
         return taskName;
