@@ -6,13 +6,23 @@ import zero.easymvc.ArgumentsBean;
 import zero.easymvc.Bean;
 import zero.easymvc.CommandHandler;
 import zero.easymvc.Dependency;
+import zero.maestro.app.dao.TagDao;
 import zero.maestro.app.dao.TaskDao;
+import zero.maestro.app.dao.TaskTagDao;
+import zero.maestro.model.Tag;
 import zero.maestro.model.Task;
+import zero.maestro.model.TaskTag;
 
 public class TaskCreateCommand {
 
     @Dependency
     private TaskDao dao;
+
+    @Dependency
+    private TagDao tagDao;
+
+    @Dependency
+    private TaskTagDao taskTagDao;
 
     @ArgumentsBean
     private TaskCreateArguments args;
@@ -32,6 +42,8 @@ public class TaskCreateCommand {
             task.setSuperTask(superTask);
 
         dao.create(task);
+
+        assignTagsToTask();
     }
 
     private Task getSuperTask() throws SQLException {
@@ -43,6 +55,22 @@ public class TaskCreateCommand {
         Task superTask = dao.queryForId(superTaskID);
 
         return superTask;
+    }
+
+    private void assignTagsToTask() throws SQLException {
+        if (args.getTags() == null)
+            return;
+
+        for (String tagName : args.getTags()) {
+            Tag tag = tagDao.getTagByName(tagName);
+
+            TaskTag taskTag = new TaskTag();
+
+            taskTag.setTag(tag);
+            taskTag.setTask(task);
+
+            taskTagDao.create(taskTag);
+        }
     }
 
 }

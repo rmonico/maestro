@@ -23,34 +23,28 @@ public class TaskTagDao extends AbstractDao<TaskTag> {
     }
 
     public List<Tag> getTags(TagDao tagDao, int taskId) throws SQLException {
-        // QueryBuilder<TaskTag, Integer> builder = queryBuilder();
-        //
-        // QueryBuilder<Tag, Integer> tagBuilder = tagDao.queryBuilder();
-        //
-        // tagBuilder.orderBy(Tag.NAME_FIELD_NAME, true);
-        //
-        // builder.join(tagBuilder);
-        //
-        // builder.where().eq(TaskTag.TASK_FIELD_NAME, taskId);
-        //
-        // PreparedQuery<TaskTag> query = builder.prepare();
-        //
-        // List<TaskTag> list = query(query);
-        //
+        QueryBuilder<TaskTag, Integer> builder = queryBuilder();
+
+        QueryBuilder<Tag, Integer> tagBuilder = tagDao.queryBuilder();
+
+        tagBuilder.orderBy(Tag.NAME_FIELD_NAME, true);
+
+        builder.join(tagBuilder);
+
+        builder.where().eq(TaskTag.TASK_FIELD_NAME, taskId);
+
+        PreparedQuery<TaskTag> query = builder.prepare();
+
+        List<TaskTag> list = query(query);
+
         List<Tag> tagList = new LinkedList<>();
 
-        // for (TaskTag taskTag : list) {
-        // Tag tag = taskTag.getTag();
-        //
-        // tagList.add(tag);
-        // }
-        //
+        for (TaskTag taskTag : list) {
+            Tag tag = taskTag.getTag();
 
-        Tag tag = new Tag();
+            tagList.add(tag);
+        }
 
-        tag.setName("important");
-
-        tagList.add(tag);
         return tagList;
     }
 
