@@ -10,6 +10,9 @@ public class TagCreateRenderer {
 
     @Renderer(path = { "tag", "add" })
     public void render() throws ListPrinterException {
+        String message = String.format("New tag created: %s (#%d)", tag.getName(), tag.getId());
+
+        System.out.println(message);
     }
 
 }
