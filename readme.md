@@ -61,6 +61,16 @@ Versão 0.1
 *  task add <nome> \[ --supertaskid=<super task id> ] [ --tags=<tags separadas por ,> ]
 *  task ls
 
+Versão 0.2
+---
+
+* prop set <task name or id> <tag name> <attribute name> <attribute value>
+* task add, parâmetro --tags: passa a receber o valor das propriedades das tags no formato: <tag name>:<default property>[<attribute>:<property>] (O [] é literal)
+* O nome da default property é definido no MetaInf
+
+task add "Nova tarefa com nota" -t=nota:Nota da tarefa
+task add "Comprar pão" -t=perto[local:padaria;proximidade:100 metros]
+task add "Comprar pão" -t=perto:valor da propriedade default[local:padaria;proximidade:100 metros]
 
 Futuro
 ---
