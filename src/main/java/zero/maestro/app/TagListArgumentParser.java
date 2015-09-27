@@ -2,13 +2,14 @@ package zero.maestro.app;
 
 public class TagListArgumentParser {
 
-    public void parse(String string) {
-        // TODO Auto-generated method stub
+    private String tagName;
 
+    public void parse(String arguments) {
+        tagName = arguments;
     }
 
     public String getTagName() {
-        return "the_tag";
+        return tagName;
     }
 
 }
