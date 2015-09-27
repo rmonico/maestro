@@ -31,4 +31,12 @@ public class TaskCreateArguments {
         this.superTaskID = superTaskID;
     }
 
+    public String[] getTags() {
+        return tags;
+    }
+
+    public void setTags(String[] tags) {
+        this.tags = tags;
+    }
+
 }
