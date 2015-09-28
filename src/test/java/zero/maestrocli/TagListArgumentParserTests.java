@@ -1,6 +1,7 @@
 package zero.maestrocli;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.util.List;
@@ -9,7 +10,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import zero.maestro.app.ArgumentAttribute;
-import zero.maestro.app.TagListArgumentParseException;
 import zero.maestro.app.TagListArgumentParser;
 
 public class TagListArgumentParserTests {
@@ -24,16 +24,17 @@ public class TagListArgumentParserTests {
     }
 
     @Test
-    public void should_parse_a_single_tag() throws TagListArgumentParseException {
+    public void should_parse_a_single_tag() {
         parser.parse("the_tag");
 
         assertEquals("the_tag", parser.getTagName());
     }
 
     @Test
-    public void should_parse_a_tag_with_empty_attribute_list() throws TagListArgumentParseException {
+    public void should_parse_a_tag_with_empty_attribute_list() {
         parser.parse("tag[]");
 
+        assertTrue("No error", parser.getErrors().isEmpty());
         assertEquals("Tag name", "tag", parser.getTagName());
 
         List<ArgumentAttribute> attributes = parser.getAttributes();
@@ -46,9 +47,10 @@ public class TagListArgumentParserTests {
     }
 
     @Test
-    public void should_parse_a_tag_with_one_attribute() throws TagListArgumentParseException {
+    public void should_parse_a_tag_with_one_attribute() {
         parser.parse("tag[attribute:value]");
 
+        assertTrue("No error", parser.getErrors().isEmpty());
         assertEquals("Tag name", "tag", parser.getTagName());
 
         List<ArgumentAttribute> attributes = parser.getAttributes();
@@ -57,9 +59,10 @@ public class TagListArgumentParserTests {
     }
 
     @Test
-    public void should_parse_a_tag_with_more_than_one_attribute() throws TagListArgumentParseException {
+    public void should_parse_a_tag_with_more_than_one_attribute() {
         parser.parse("tag[first:value of first;second_attribute:second's value;terceiro:valor do terceiro]");
 
+        assertTrue("No error", parser.getErrors().isEmpty());
         assertEquals("Tag name", "tag", parser.getTagName());
 
         List<ArgumentAttribute> attributes = parser.getAttributes();
@@ -71,9 +74,10 @@ public class TagListArgumentParserTests {
     }
 
     @Test
-    public void should_parse_a_tag_with_default_attribute_only() throws TagListArgumentParseException {
+    public void should_parse_a_tag_with_default_attribute_only() {
         parser.parse("tag:default attribute's value");
 
+        assertTrue("No error", parser.getErrors().isEmpty());
         assertEquals("Tag name", "tag", parser.getTagName());
 
         List<ArgumentAttribute> attributes = parser.getAttributes();
@@ -81,4 +85,55 @@ public class TagListArgumentParserTests {
 
         assertAttribute("Default attribute", "default", "default attribute's value", attributes.get(0));
     }
+
+    @Test
+    public void should_parse_a_tag_with_default_and_more_than_one_attribute() {
+        parser.parse("tag:default attribute's value[first_non_default_attribute:property;second:value of second]");
+
+        assertTrue("No error", parser.getErrors().isEmpty());
+        assertEquals("Tag name", "tag", parser.getTagName());
+
+        List<ArgumentAttribute> attributes = parser.getAttributes();
+        assertEquals("Attributes size", 3, attributes.size());
+
+        assertAttribute("Default attribute", "default", "default attribute's value", attributes.get(0));
+        assertAttribute("Attribute 1", "first_non_default_attribute", "property", attributes.get(1));
+        assertAttribute("Attribute 2", "second", "value of second", attributes.get(2));
+    }
+
+    @Test
+    public void should_parse_a_non_closed_list() {
+        parser.parse("tag[attribute:value");
+
+        assertEquals("Tag name", "tag", parser.getTagName());
+
+        List<ArgumentAttribute> attributes = parser.getAttributes();
+        assertEquals("Attributes size", 1, attributes.size());
+        assertAttribute("Attribute", "attribute", "value", attributes.get(0));
+
+        List<String> errors = parser.getErrors();
+
+        assertNotNull("List valid", errors);
+        assertEquals("List size", 1, errors.size());
+        assertEquals("Message name", "List end character not found.", errors.get(0));
+    }
+
+    @Test
+    public void should_parse_unassigned_attribute() {
+        parser.parse("tag[attribute_name value_of_attribute;second:second_value]");
+
+        assertEquals("Tag name", "tag", parser.getTagName());
+
+        List<ArgumentAttribute> attributes = parser.getAttributes();
+        assertEquals("Attributes size", 2, attributes.size());
+        assertAttribute("Attribute 0", "attribute_name value_of_attribute", "", attributes.get(0));
+        assertAttribute("Attribute 1", "second", "second_value", attributes.get(1));
+
+        List<String> errors = parser.getErrors();
+
+        assertNotNull("List valid", errors);
+        assertEquals("List size", 1, errors.size());
+        assertEquals("Message name", "Assignment not found for attribute \"attribute_name value_of_attribute\".", errors.get(0));
+    }
+
 }

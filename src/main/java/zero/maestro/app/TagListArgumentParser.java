@@ -22,9 +22,28 @@ public class TagListArgumentParser {
         attributeList = new LinkedList<ArgumentAttribute>();
     }
 
-    public void parse(String arguments) throws TagListArgumentParseException {
+    public void parse(final String arguments) {
         int indexOfListBegin = arguments.indexOf(LIST_BEGIN_CHAR);
 
+        parseTagNameAndDefaultAttributeValue(arguments, indexOfListBegin);
+
+        if (indexOfListBegin == -1)
+            return;
+
+        int indexOfListEnd = arguments.indexOf(LIST_END_CHAR);
+
+        if (indexOfListEnd == -1) {
+            addError("List end character not found.");
+
+            indexOfListEnd = arguments.length();
+        }
+
+        String listData = arguments.substring(indexOfListBegin + 1, indexOfListEnd);
+
+        parseAttributeList(listData);
+    }
+
+    private void parseTagNameAndDefaultAttributeValue(final String arguments, final int indexOfListBegin) {
         int indexOfFirstAssignment = arguments.indexOf(PROPERTY_ASSIGN_CHAR);
 
         if (indexOfListBegin == -1) {
@@ -40,16 +59,14 @@ public class TagListArgumentParser {
             return;
         }
 
-        tagName = arguments.substring(0, indexOfListBegin);
+        if ((indexOfFirstAssignment < indexOfListBegin) && (indexOfFirstAssignment > -1)) {
+            tagName = arguments.substring(0, indexOfFirstAssignment);
 
-        int indexOfListEnd = arguments.indexOf(LIST_END_CHAR);
+            String defaultAttributeValue = arguments.substring(indexOfFirstAssignment + 1, indexOfListBegin);
 
-        if (indexOfListEnd == -1)
-            addFatalError("List end character not found.");
-
-        String listData = arguments.substring(indexOfListBegin + 1, indexOfListEnd);
-
-        parseAttributeList(listData);
+            attributeList.add(new ArgumentAttribute(defaultAttributeName, defaultAttributeValue));
+        } else
+            tagName = arguments.substring(0, indexOfListBegin);
     }
 
     private void parseAttributeList(String listData) {
@@ -68,22 +85,31 @@ public class TagListArgumentParser {
 
             String propertyData = listData.substring(lastPropertyEnd + 1, propertyEnd);
 
-            int indexOfAssign = propertyData.indexOf(PROPERTY_ASSIGN_CHAR);
-
-            String attributeName = propertyData.substring(0, indexOfAssign);
-
-            String attributeValue = propertyData.substring(indexOfAssign + 1);
-
-            ArgumentAttribute attribute = new ArgumentAttribute(attributeName, attributeValue);
-
-            attributeList.add(attribute);
+            parseAttribute(propertyData);
         }
     }
 
-    private void addFatalError(String message) throws TagListArgumentParseException {
-        errors.add(message);
+    private void parseAttribute(String propertyData) {
+        int indexOfAssign = propertyData.indexOf(PROPERTY_ASSIGN_CHAR);
 
-        throw new TagListArgumentParseException(message);
+        String attributeName;
+        String attributeValue;
+
+        if (indexOfAssign == -1) {
+            addError(String.format("Assignment not found for attribute \"%s\".", propertyData));
+
+            attributeName = propertyData;
+            attributeValue = "";
+        } else {
+            attributeName = propertyData.substring(0, indexOfAssign);
+            attributeValue = propertyData.substring(indexOfAssign + 1);
+        }
+
+        attributeList.add(new ArgumentAttribute(attributeName, attributeValue));
+    }
+
+    private void addError(String message) {
+        errors.add(message);
     }
 
     public String getTagName() {
@@ -98,4 +124,7 @@ public class TagListArgumentParser {
         this.defaultAttributeName = defaultAttributeName;
     }
 
+    public List<String> getErrors() {
+        return errors;
+    }
 }
