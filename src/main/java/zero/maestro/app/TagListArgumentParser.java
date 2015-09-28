@@ -7,7 +7,8 @@ public class TagListArgumentParser {
 
     private static final Character LIST_BEGIN_CHAR = '[';
     private static final Character LIST_END_CHAR = ']';
-    private static final Character PROPERTY_ASSIGN_CHARACTER = ':';
+    private static final Character PROPERTY_ASSIGN_CHAR = ':';
+    private static final String PROPERTY_SEPARATOR_CHAR = ";";
 
     private String tagName;
 
@@ -33,24 +34,37 @@ public class TagListArgumentParser {
 
         String listData = arguments.substring(indexOfListBegin + 1, indexOfListEnd);
 
+        parseAttributeList(listData);
+    }
+
+    private void parseAttributeList(String listData) {
         attributeList = new LinkedList<ArgumentAttribute>();
 
         if (listData.isEmpty())
             return;
 
-        int indexOfPropertyAssign = listData.indexOf(PROPERTY_ASSIGN_CHARACTER);
+        int propertyEnd = -1;
 
-        String attributeName = listData.substring(0, indexOfPropertyAssign);
+        while (propertyEnd < listData.length()) {
+            int lastPropertyEnd = propertyEnd;
 
-        String attributeValue = listData.substring(indexOfPropertyAssign + 1);
+            propertyEnd = listData.indexOf(PROPERTY_SEPARATOR_CHAR, propertyEnd + 1);
 
-        ArgumentAttribute attribute = new ArgumentAttribute();
+            if (propertyEnd == -1)
+                propertyEnd = listData.length();
 
-        attribute.setName(attributeName);
+            String propertyData = listData.substring(lastPropertyEnd + 1, propertyEnd);
 
-        attribute.setValue(attributeValue);
+            int indexOfAssign = propertyData.indexOf(PROPERTY_ASSIGN_CHAR);
 
-        attributeList.add(attribute);
+            String attributeName = propertyData.substring(0, indexOfAssign);
+
+            String attributeValue = propertyData.substring(indexOfAssign + 1);
+
+            ArgumentAttribute attribute = new ArgumentAttribute(attributeName, attributeValue);
+
+            attributeList.add(attribute);
+        }
     }
 
     private void addFatalError(String message) throws TagListArgumentParseException {
