@@ -19,6 +19,8 @@ public class TagListArgumentParserTests {
     @Before
     public void before() {
         parser = new TagListArgumentParser();
+
+        parser.setDefaultAttributeName("default");
     }
 
     @Test
@@ -66,5 +68,17 @@ public class TagListArgumentParserTests {
         assertAttribute("Attribute 0", "first", "value of first", attributes.get(0));
         assertAttribute("Attribute 1", "second_attribute", "second's value", attributes.get(1));
         assertAttribute("Attribute 2", "terceiro", "valor do terceiro", attributes.get(2));
+    }
+
+    @Test
+    public void should_parse_a_tag_with_default_attribute_only() throws TagListArgumentParseException {
+        parser.parse("tag:default attribute's value");
+
+        assertEquals("Tag name", "tag", parser.getTagName());
+
+        List<ArgumentAttribute> attributes = parser.getAttributes();
+        assertEquals("Attributes size", 1, attributes.size());
+
+        assertAttribute("Default attribute", "default", "default attribute's value", attributes.get(0));
     }
 }
