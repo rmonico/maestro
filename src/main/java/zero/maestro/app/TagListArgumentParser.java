@@ -14,14 +14,29 @@ public class TagListArgumentParser {
 
     private List<ArgumentAttribute> attributeList;
     private List<String> errors;
+    private String defaultAttributeName;
 
-    public void parse(String arguments) throws TagListArgumentParseException {
+    public TagListArgumentParser() {
         errors = new LinkedList<String>();
 
+        attributeList = new LinkedList<ArgumentAttribute>();
+    }
+
+    public void parse(String arguments) throws TagListArgumentParseException {
         int indexOfListBegin = arguments.indexOf(LIST_BEGIN_CHAR);
 
+        int indexOfFirstAssignment = arguments.indexOf(PROPERTY_ASSIGN_CHAR);
+
         if (indexOfListBegin == -1) {
-            tagName = arguments;
+            if (indexOfFirstAssignment > -1) {
+                tagName = arguments.substring(0, indexOfFirstAssignment);
+
+                String defaultAttributeValue = arguments.substring(indexOfFirstAssignment + 1, arguments.length());
+
+                attributeList.add(new ArgumentAttribute(defaultAttributeName, defaultAttributeValue));
+            } else
+                tagName = arguments;
+
             return;
         }
 
@@ -38,8 +53,6 @@ public class TagListArgumentParser {
     }
 
     private void parseAttributeList(String listData) {
-        attributeList = new LinkedList<ArgumentAttribute>();
-
         if (listData.isEmpty())
             return;
 
@@ -79,6 +92,10 @@ public class TagListArgumentParser {
 
     public List<ArgumentAttribute> getAttributes() {
         return attributeList;
+    }
+
+    public void setDefaultAttributeName(String defaultAttributeName) {
+        this.defaultAttributeName = defaultAttributeName;
     }
 
 }
