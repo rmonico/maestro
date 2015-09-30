@@ -8,6 +8,11 @@ import com.j256.ormlite.table.DatabaseTable;
 @DatabaseTable(daoClass = PropertyDao.class)
 public class Property {
 
+    public static final String ID_FIELD_NAME = "id";
+    public static final String TASKTAG_FIELD_NAME = "tasktag_id";
+    public static final String ATTRIBUTE_FIELD_NAME = "attribute_id";
+    public static final String VALUE_FIELD_NAME = "value";
+
     @DatabaseField(generatedId = true)
     private int id;
 
