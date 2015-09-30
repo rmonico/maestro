@@ -2,7 +2,9 @@ package zero.maestro.model;
 
 import zero.maestro.app.dao.TaskTagDao;
 
+import com.j256.ormlite.dao.ForeignCollection;
 import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
 
 @DatabaseTable(daoClass = TaskTagDao.class)
@@ -20,6 +22,9 @@ public class TaskTag {
 
     @DatabaseField(foreign = true, foreignAutoRefresh = true)
     private Tag tag;
+
+    @ForeignCollectionField
+    private ForeignCollection<Property> properties;
 
     public int getId() {
         return id;
@@ -43,6 +48,10 @@ public class TaskTag {
 
     public void setTag(Tag tag) {
         this.tag = tag;
+    }
+
+    public ForeignCollection<Property> getProperties() {
+        return properties;
     }
 
 }
