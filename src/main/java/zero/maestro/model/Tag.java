@@ -19,7 +19,7 @@ public class Tag {
     @DatabaseField
     private String name;
 
-    @ForeignCollectionField(eager = true)
+    @ForeignCollectionField
     private ForeignCollection<Attribute> attributes;
 
     public int getId() {
