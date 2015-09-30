@@ -8,6 +8,7 @@ import static org.junit.Assert.assertTrue;
 import java.util.List;
 
 import zero.maestro.model.Attribute;
+import zero.maestro.model.Property;
 import zero.maestro.model.Tag;
 import zero.maestro.model.Task;
 
@@ -75,5 +76,13 @@ class Assert {
 
             i++;
         }
+    }
+
+    public static void assertProperty(String expectedAttributeName, int expectedTaskTagId, String expectedPropertyValue, Property actualProperty) {
+        assertNotNull(actualProperty);
+
+        assertEquals(expectedAttributeName, actualProperty.getAttribute().getName());
+        assertEquals(expectedTaskTagId, actualProperty.getTaskTag().getId());
+        assertEquals(expectedPropertyValue, actualProperty.getValue());
     }
 }
