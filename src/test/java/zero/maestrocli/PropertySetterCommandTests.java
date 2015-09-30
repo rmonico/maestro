@@ -11,7 +11,7 @@ import zero.easymvc.EasyMVCException;
 import zero.maestro.model.Property;
 import zero.utils.test.DBUnitDatasetFileNames;
 
-public class PropertySetterCommand extends MaestrocliTest {
+public class PropertySetterCommandTests extends MaestrocliTest {
 
     @Test
     @DBUnitDatasetFileNames("dbunit/PropertySetterCommand__should_create_a_property_for_existing_tasktag.xml")
