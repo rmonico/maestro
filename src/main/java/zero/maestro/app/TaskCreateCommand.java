@@ -1,11 +1,13 @@
 package zero.maestro.app;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import zero.easymvc.ArgumentsBean;
 import zero.easymvc.Bean;
 import zero.easymvc.CommandHandler;
 import zero.easymvc.Dependency;
+import zero.easymvc.EasyMVCException;
 import zero.maestro.app.dao.AttributeDao;
 import zero.maestro.app.dao.PropertyDao;
 import zero.maestro.app.dao.TagDao;
@@ -41,7 +43,7 @@ public class TaskCreateCommand {
     private Task task;
 
     @CommandHandler(path = { "task", "add" })
-    public void execute() throws SQLException {
+    public void execute() throws SQLException, EasyMVCException {
         task = new Task();
 
         task.setName(args.getTaskName());
@@ -67,12 +69,22 @@ public class TaskCreateCommand {
         return superTask;
     }
 
-    private void assignTagsToTask() throws SQLException {
+    private void assignTagsToTask() throws SQLException, EasyMVCException {
         if (args.getTags() == null)
             return;
 
-        for (String tagName : args.getTags()) {
+        TagListArgumentParser parser = new TagListArgumentParser();
+        parser.setDefaultAttributeName("default");
+
+        for (String tagData : args.getTags()) {
+            parser.parse(tagData);
+
+            String tagName = parser.getTagName();
+
             Tag tag = tagDao.getTagByName(tagName);
+
+            if (tag == null)
+                throw new EasyMVCException(String.format("Unknown tag: \"%s\".", tagName));
 
             TaskTag taskTag = new TaskTag();
 
@@ -81,21 +93,25 @@ public class TaskCreateCommand {
 
             taskTagDao.create(taskTag);
 
-            Attribute defaultAttribute = new Attribute();
+            List<ArgumentAttribute> attributes = parser.getAttributes();
 
-            defaultAttribute.setName("default");
-            defaultAttribute.setTag(tag);
+            for (ArgumentAttribute argAttribute : attributes) {
+                String attributeName = argAttribute.getName();
 
-            attributeDao.create(defaultAttribute);
+                Attribute attribute = attributeDao.getAttributeByName(tag, attributeName);
 
-            Property property = new Property();
+                if (attribute == null)
+                    throw new EasyMVCException(String.format("Unknown attribute: \"%s\" on tag \"%s\".", attributeName, tagName));
 
-            property.setAttribute(defaultAttribute);
-            property.setTaskTag(taskTag);
+                Property property = new Property();
 
-            property.setValue("Nota da tarefa");
+                property.setAttribute(attribute);
+                property.setTaskTag(taskTag);
 
-            propertyDao.create(property);
+                property.setValue(argAttribute.getValue());
+
+                propertyDao.create(property);
+            }
         }
     }
 

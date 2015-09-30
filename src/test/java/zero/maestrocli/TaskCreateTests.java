@@ -70,6 +70,7 @@ public class TaskCreateTests extends MaestrocliTest {
     }
 
     @Test
+    @DBUnitDatasetFileNames("dbunit/TaskCreateTests_should_create_a_task_with_note.xml")
     public void should_create_a_task_with_note() throws Exception {
         controller.run("task", "add", "Task with note", "--tags=note:Nota da tarefa");
 
@@ -101,5 +102,30 @@ public class TaskCreateTests extends MaestrocliTest {
         Property noteDefaultProperty = properties.iterator().next();
 
         assertEquals("Nota da tarefa", noteDefaultProperty.getValue());
+    }
+
+    @Test(expected = EasyMVCException.class)
+    public void should_throw_exception_when_try_to_create_a_task_with_non_existing_tag() throws EasyMVCException {
+        try {
+            controller.run("task", "add", "Task with note", "--tags=note:Nota da tarefa");
+        } catch (EasyMVCException e) {
+            assertEquals(EasyMVCException.class, e.getClass());
+            assertEquals("zero.easymvc.EasyMVCException: Unknown tag: \"note\".", e.getMessage());
+
+            throw e;
+        }
+    }
+
+    @Test(expected = EasyMVCException.class)
+    @DBUnitDatasetFileNames("dbunit/TaskCreateTests_should_create_a_task_with_note.xml")
+    public void should_throw_exception_when_try_to_create_a_task_with_non_existing_attribute() throws EasyMVCException {
+        try {
+            controller.run("task", "add", "Task with note", "--tags=note[attrib:Nota da tarefa]");
+        } catch (EasyMVCException e) {
+            assertEquals(EasyMVCException.class, e.getClass());
+            assertEquals("zero.easymvc.EasyMVCException: Unknown attribute: \"attrib\" on tag \"note\".", e.getMessage());
+
+            throw e;
+        }
     }
 }
