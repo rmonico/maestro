@@ -38,14 +38,20 @@ public class PropertySetterCommand {
 
         Tag tag = tagDao.getTagByName(args.getTagName());
 
+        TaskTag taskTag = taskTagDao.queryForTaskAndTagId(args.getTaskId(), tag.getId());
+
+        if (taskTag == null)
+            throw new EasyMVCException(String.format("Task #%d is not marked with tag \"%s\".", args.getTaskId(), args.getTagName()));
+
+        property.setTaskTag(taskTag);
+
         Attribute attribute = attributeDao.getForTagAndName(tag, args.getAttributeName());
+
+        if (attribute == null)
+            throw new EasyMVCException(String.format("Tag \"%s\" doesn't have attribute \"%s\".", args.getTagName(), args.getAttributeName()));
 
         property.setAttribute(attribute);
 
-        TaskTag taskTag = taskTagDao.queryForTaskAndTagId(args.getTaskId(), tag.getId());
-        property.setTaskTag(taskTag);
-
         property.setValue(args.getAttributeValue());
     }
-
 }
