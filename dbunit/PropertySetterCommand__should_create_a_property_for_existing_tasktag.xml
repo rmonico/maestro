@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"  ?>
+<!DOCTYPE dataset SYSTEM "dbunit/maestro.dtd">
+<dataset>
+	<task id="1" name="The task" />
+	<tag id="1" name="note" />
+	<tasktag id="1" task_id="1" tag_id="1" />
+	<attribute id="1" name="default" type="TEXT" tag_id="1" />
+	<property id="1" tasktag_id="1" attribute_id="1" value="Value of default property of tag note on Task #1" /> 
+</dataset>
