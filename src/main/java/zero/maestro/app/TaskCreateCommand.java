@@ -6,9 +6,13 @@ import zero.easymvc.ArgumentsBean;
 import zero.easymvc.Bean;
 import zero.easymvc.CommandHandler;
 import zero.easymvc.Dependency;
+import zero.maestro.app.dao.AttributeDao;
+import zero.maestro.app.dao.PropertyDao;
 import zero.maestro.app.dao.TagDao;
 import zero.maestro.app.dao.TaskDao;
 import zero.maestro.app.dao.TaskTagDao;
+import zero.maestro.model.Attribute;
+import zero.maestro.model.Property;
 import zero.maestro.model.Tag;
 import zero.maestro.model.Task;
 import zero.maestro.model.TaskTag;
@@ -23,6 +27,12 @@ public class TaskCreateCommand {
 
     @Dependency
     private TaskTagDao taskTagDao;
+
+    @Dependency
+    private AttributeDao attributeDao;
+
+    @Dependency
+    private PropertyDao propertyDao;
 
     @ArgumentsBean
     private TaskCreateArguments args;
@@ -70,6 +80,22 @@ public class TaskCreateCommand {
             taskTag.setTask(task);
 
             taskTagDao.create(taskTag);
+
+            Attribute defaultAttribute = new Attribute();
+
+            defaultAttribute.setName("default");
+            defaultAttribute.setTag(tag);
+
+            attributeDao.create(defaultAttribute);
+
+            Property property = new Property();
+
+            property.setAttribute(defaultAttribute);
+            property.setTaskTag(taskTag);
+
+            property.setValue("Nota da tarefa");
+
+            propertyDao.create(property);
         }
     }
 
