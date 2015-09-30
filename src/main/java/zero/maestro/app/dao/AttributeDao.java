@@ -30,4 +30,14 @@ public class AttributeDao extends AbstractDao<Attribute> {
         return queryForFirst(preparedQuery);
     }
 
+    public Attribute getForTagAndName(Tag tag, String attributeName) throws SQLException {
+        Where<Attribute, Integer> where = queryBuilder().where();
+        where.eq(Attribute.TAG_FIELD_NAME, tag.getId());
+        where.and().eq(Attribute.NAME_FIELD_NAME, attributeName);
+
+        PreparedQuery<Attribute> query = where.prepare();
+
+        return queryForFirst(query);
+    }
+
 }
