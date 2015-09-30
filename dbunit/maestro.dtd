@@ -1,4 +1,4 @@
-<!ELEMENT dataset (metainf*, task*, tag*, attribute*, property*)>
+<!ELEMENT dataset (metainf*, task*, tag*, attribute*, property*, tasktag*)>
 
 <!ELEMENT metainf (#PCDATA)>
 <!ATTLIST metainf id CDATA #REQUIRED>
@@ -25,3 +25,8 @@
 <!ATTLIST property tasktag_id CDATA #REQUIRED>
 <!ATTLIST property attribute_id CDATA #REQUIRED>
 <!ATTLIST property value CDATA #REQUIRED>
+
+<!ELEMENT tasktag (#PCDATA)>
+<!ATTLIST tasktag id CDATA #REQUIRED>
+<!ATTLIST tasktag task_id CDATA #REQUIRED>
+<!ATTLIST tasktag tag_id CDATA #REQUIRED>
