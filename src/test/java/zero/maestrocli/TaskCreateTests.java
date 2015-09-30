@@ -1,18 +1,18 @@
 package zero.maestrocli;
 
+import static org.junit.Assert.assertEquals;
+
+import java.util.LinkedList;
 import java.util.List;
 
 import org.junit.Test;
 
 import zero.easymvc.EasyMVCAssert;
 import zero.easymvc.EasyMVCException;
-import zero.maestro.app.dao.TagDao;
-import zero.maestro.app.dao.TaskTagDao;
 import zero.maestro.model.Tag;
 import zero.maestro.model.Task;
+import zero.maestro.model.TaskTag;
 import zero.utils.test.DBUnitDatasetFileNames;
-
-import com.j256.ormlite.support.ConnectionSource;
 
 public class TaskCreateTests extends MaestrocliTest {
 
@@ -42,20 +42,26 @@ public class TaskCreateTests extends MaestrocliTest {
     @Test
     @DBUnitDatasetFileNames("dbunit/TaskCreateTests__should_create_a_task_with_a_single_tag.xml")
     public void should_create_a_task_with_a_single_tag() throws Exception {
-        List<Object> beans = controller.run("task", "add", "First tagged task ever", "--tags=important");
+        controller.run("task", "add", "First tagged task ever", "--tags=important");
+
+        List<Object> beans = controller.run("task", "ls");
 
         EasyMVCAssert.assertBeanList(beans, 1);
 
-        Task task = EasyMVCAssert.assertAndGetBean(beans, 0, Task.class);
+        @SuppressWarnings("unchecked")
+        List<Task> taskList = EasyMVCAssert.assertAndGetBean(beans, 0, List.class);
+
+        assertEquals(1, taskList.size());
+
+        Task task = taskList.get(0);
 
         Assert.assertTask("First tagged task ever", null, task);
 
-        ConnectionSource connection = connectionManager.getConnection();
+        List<Tag> tagList = new LinkedList<Tag>();
 
-        TagDao tagDao = (TagDao) daoManager.getInstance(TagDao.class);
+        for (TaskTag taskTag : task.getTaskTags())
+            tagList.add(taskTag.getTag());
 
-        TaskTagDao.getInstance(connection).populateTags(tagDao, task);
-
-        Assert.assertTaskTags(new String[] { "important" }, task.getTags());
+        Assert.assertTaskTags(new String[] { "important" }, tagList);
     }
 }
