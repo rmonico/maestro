@@ -3,6 +3,7 @@ package zero.maestro.database;
 import zero.easymvc.ormlite.AbstractDatabaseVersion;
 import zero.easymvc.ormlite.MetaInfUpdater;
 import zero.maestro.model.Attribute;
+import zero.maestro.model.Property;
 import zero.maestro.model.Tag;
 import zero.maestro.model.Task;
 import zero.maestro.model.TaskTag;
@@ -25,6 +26,7 @@ public class DatabaseVersion_1 extends AbstractDatabaseVersion {
             TableUtils.createTableIfNotExists(connection, Tag.class);
             TableUtils.createTableIfNotExists(connection, Attribute.class);
             TableUtils.createTableIfNotExists(connection, TaskTag.class);
+            TableUtils.createTableIfNotExists(connection, Property.class);
         }
     }
 
