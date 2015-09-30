@@ -42,7 +42,7 @@ public class TaskCreateTests extends MaestrocliTest {
     @Test
     @DBUnitDatasetFileNames("dbunit/TaskCreateTests__should_create_a_task_with_a_single_tag.xml")
     public void should_create_a_task_with_a_single_tag() throws Exception {
-        List<Object> beans = controller.run("task", "add", "First tagged task ever", "--tags=#important");
+        List<Object> beans = controller.run("task", "add", "First tagged task ever", "--tags=important");
 
         EasyMVCAssert.assertBeanList(beans, 1);
 
@@ -56,6 +56,6 @@ public class TaskCreateTests extends MaestrocliTest {
 
         TaskTagDao.getInstance(connection).populateTags(tagDao, task);
 
-        Assert.assertTaskTags(new String[] { "#important" }, task.getTags());
+        Assert.assertTaskTags(new String[] { "important" }, task.getTags());
     }
 }
