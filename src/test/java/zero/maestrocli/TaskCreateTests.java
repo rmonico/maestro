@@ -54,8 +54,8 @@ public class TaskCreateTests extends MaestrocliTest {
 
         TagDao tagDao = (TagDao) daoManager.getInstance(TagDao.class);
 
-        List<Tag> tags = TaskTagDao.getInstance(connection).getTags(tagDao, task.getId());
+        TaskTagDao.getInstance(connection).populateTags(tagDao, task);
 
-        Assert.assertTaskTags(new String[] { "#important" }, tags);
+        Assert.assertTaskTags(new String[] { "#important" }, task.getTags());
     }
 }
