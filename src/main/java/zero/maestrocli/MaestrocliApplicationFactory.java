@@ -15,11 +15,13 @@ import zero.maestro.app.TagListCommand;
 import zero.maestro.app.TaskCreateCommand;
 import zero.maestro.app.TaskListCommand;
 import zero.maestro.app.dao.AttributeDao;
+import zero.maestro.app.dao.PropertyDao;
 import zero.maestro.app.dao.TagDao;
 import zero.maestro.app.dao.TaskDao;
 import zero.maestro.app.dao.TaskTagDao;
 import zero.maestro.database.DatabaseVersion_1;
 import zero.maestro.model.Attribute;
+import zero.maestro.model.Property;
 import zero.maestro.model.Tag;
 import zero.maestro.model.Task;
 import zero.maestro.model.TaskTag;
@@ -62,6 +64,8 @@ public class MaestrocliApplicationFactory extends ApplicationFactory {
         daoInfo.put(TagDao.class, Tag.class);
         daoInfo.put(AttributeDao.class, Attribute.class);
         daoInfo.put(TaskTagDao.class, TaskTag.class);
+        daoInfo.put(AttributeDao.class, Attribute.class);
+        daoInfo.put(PropertyDao.class, Property.class);
     }
 
     @Override
