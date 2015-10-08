@@ -2,6 +2,9 @@ package zero.maestrocli;
 
 import static org.junit.Assert.assertEquals;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintStream;
 import java.util.List;
 
 import org.junit.Test;
@@ -47,5 +50,26 @@ public class PropertySetterCommandTests extends MaestrocliTest {
 
             throw e;
         }
+    }
+
+    @Test
+    @DBUnitDatasetFileNames("dbunit/PropertySetterCommandTests__should_get_property_value_from_file_when_it_starts_with_at_character.xml")
+    public void should_get_property_value_from_file_when_it_starts_with_at_character() throws EasyMVCException, FileNotFoundException {
+        File file = new File("filename");
+
+        PrintStream p = new PrintStream(file);
+
+        p.println("long");
+        p.println("content");
+
+        p.close();
+
+        List<Object> beans = controller.run("prop", "set", "1", "note", "default", "@filename");
+
+        EasyMVCAssert.assertBeanList(beans, 1);
+
+        Property property = EasyMVCAssert.assertAndGetBean(beans, 0, Property.class);
+
+        Assert.assertProperty("default", 1, "long\ncontent", property);
     }
 }
