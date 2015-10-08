@@ -8,6 +8,7 @@ import zero.easymvc.CommandHandler;
 import zero.easymvc.Dependency;
 import zero.easymvc.EasyMVCException;
 import zero.maestro.app.dao.AttributeDao;
+import zero.maestro.app.dao.PropertyDao;
 import zero.maestro.app.dao.TagDao;
 import zero.maestro.app.dao.TaskTagDao;
 import zero.maestro.model.Attribute;
@@ -19,6 +20,9 @@ public class PropertySetterCommand {
 
     @ArgumentsBean
     private PropertySetterArguments args;
+
+    @Dependency
+    private PropertyDao dao;
 
     @Dependency
     private AttributeDao attributeDao;
@@ -53,5 +57,7 @@ public class PropertySetterCommand {
         property.setAttribute(attribute);
 
         property.setValue(args.getAttributeValue());
+
+        dao.create(property);
     }
 }
