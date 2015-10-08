@@ -1,5 +1,10 @@
 package zero.maestro.app;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.sql.SQLException;
 
 import zero.easymvc.ArgumentsBean;
@@ -56,8 +61,43 @@ public class PropertySetterCommand {
 
         property.setAttribute(attribute);
 
-        property.setValue(args.getAttributeValue());
+        try {
+            property.setValue(getAttributeValue());
+        } catch (IOException e) {
+            throw new EasyMVCException(e);
+        }
 
         dao.create(property);
+    }
+
+    private String getAttributeValue() throws IOException {
+        String attributeValue = args.getAttributeValue();
+
+        if (attributeValue.startsWith("@")) {
+            String valueFileName = attributeValue.substring(1);
+
+            File file = new File(valueFileName);
+
+            BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(file), "UTF8"));
+
+            StringBuilder value = new StringBuilder();
+
+            try {
+                String str;
+
+                while ((str = reader.readLine()) != null) {
+                    value.append(str);
+                    value.append("\n");
+                }
+
+                value.deleteCharAt(value.length() - 1);
+            } finally {
+                reader.close();
+            }
+
+            return value.toString();
+        }
+
+        return attributeValue;
     }
 }
