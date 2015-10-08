@@ -54,22 +54,26 @@ public class PropertySetterCommandTests extends MaestrocliTest {
 
     @Test
     @DBUnitDatasetFileNames("dbunit/PropertySetterCommandTests__should_get_property_value_from_file_when_it_starts_with_at_character.xml")
-    public void should_get_property_value_from_file_when_it_starts_with_at_character() throws EasyMVCException, FileNotFoundException {
+    public void should_get_property_value_from_file_when_it_starts_with_at_character() throws FileNotFoundException, EasyMVCException {
         File file = new File("filename");
 
-        PrintStream p = new PrintStream(file);
+        try {
+            PrintStream p = new PrintStream(file);
 
-        p.println("long");
-        p.println("content");
+            p.println("long");
+            p.println("content");
 
-        p.close();
+            p.close();
 
-        List<Object> beans = controller.run("prop", "set", "1", "note", "default", "@filename");
+            List<Object> beans = controller.run("prop", "set", "1", "note", "default", "@filename");
 
-        EasyMVCAssert.assertBeanList(beans, 1);
+            EasyMVCAssert.assertBeanList(beans, 1);
 
-        Property property = EasyMVCAssert.assertAndGetBean(beans, 0, Property.class);
+            Property property = EasyMVCAssert.assertAndGetBean(beans, 0, Property.class);
 
-        Assert.assertProperty("default", 1, "long\ncontent", property);
+            Assert.assertProperty("default", 1, "long\ncontent", property);
+        } finally {
+            file.delete();
+        }
     }
 }
