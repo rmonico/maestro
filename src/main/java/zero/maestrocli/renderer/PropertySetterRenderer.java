@@ -12,6 +12,13 @@ public class PropertySetterRenderer {
 
     @Renderer(path = { "prop", "set" })
     public void render() throws ListPrinterException {
+        String task = property.getTaskTag().getTask().getName();
+        String tag = property.getAttribute().getTag().getName();
+        String attribute = property.getAttribute().getName();
+        String value = property.getValue();
 
+        String message = String.format("\"%s\", \"%s\", \"%s\" created with value \"%s\".", task, tag, attribute, value);
+
+        System.out.println(message);
     }
 }
