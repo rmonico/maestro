@@ -20,7 +20,7 @@ public class AttributeCreateTests extends MaestrocliTest {
 
         List<Object> beans = controller.run("tag", "ls");
 
-        EasyMVCAssert.assertBeanList(beans, 1);
+        EasyMVCAssert.assertBeanList(beans, 2);
 
         @SuppressWarnings("unchecked")
         List<Tag> tags = EasyMVCAssert.assertAndGetBean(beans, 0, List.class);

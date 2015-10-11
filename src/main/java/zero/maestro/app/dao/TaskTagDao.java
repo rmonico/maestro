@@ -1,6 +1,7 @@
 package zero.maestro.app.dao;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import zero.easymvc.ormlite.dao.AbstractDao;
 import zero.maestro.model.TaskTag;
@@ -27,6 +28,15 @@ public class TaskTagDao extends AbstractDao<TaskTag> {
         PreparedQuery<TaskTag> query = where.prepare();
 
         return queryForFirst(query);
+    }
+
+    public List<TaskTag> queryForTagId(int tagId) throws SQLException {
+        Where<TaskTag, Integer> where = queryBuilder().where();
+        where.eq(TaskTag.TAG_FIELD_NAME, tagId);
+
+        PreparedQuery<TaskTag> query = where.prepare();
+
+        return query(query);
     }
 
 }
