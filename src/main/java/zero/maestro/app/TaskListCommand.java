@@ -3,6 +3,7 @@ package zero.maestro.app;
 import java.sql.SQLException;
 import java.util.List;
 
+import zero.easymvc.ArgumentsBean;
 import zero.easymvc.Bean;
 import zero.easymvc.CommandHandler;
 import zero.easymvc.Dependency;
@@ -13,6 +14,9 @@ public class TaskListCommand {
 
     @Dependency
     private TaskDao dao;
+
+    @ArgumentsBean
+    private TaskListArguments args;
 
     @Bean
     private List<Task> tasks;
