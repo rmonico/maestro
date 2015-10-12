@@ -73,10 +73,10 @@ public class TaskCreateCommand {
         if (args.getTags() == null)
             return;
 
-        TagListArgumentParser parser = new TagListArgumentParser();
-        parser.setDefaultAttributeName("default");
-
         for (String tagData : args.getTags()) {
+            TagListArgumentParser parser = new TagListArgumentParser();
+            parser.setDefaultAttributeName("default");
+
             parser.parse(tagData);
 
             String tagName = parser.getTagName();

@@ -3,9 +3,20 @@ package zero.maestrocli;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import java.io.File;
+import java.net.MalformedURLException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.dbunit.Assertion;
+import org.dbunit.DatabaseUnitException;
+import org.dbunit.database.DatabaseConnection;
+import org.dbunit.dataset.IDataSet;
+import org.dbunit.dataset.ITable;
+import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 import org.junit.Test;
 
 import zero.easymvc.EasyMVCAssert;
@@ -61,10 +72,7 @@ public class TaskCreateTests extends MaestrocliTest {
 
         Assert.assertTask("First tagged task ever", null, task);
 
-        List<Tag> tagList = new LinkedList<Tag>();
-
-        for (TaskTag taskTag : task.getTaskTags())
-            tagList.add(taskTag.getTag());
+        List<Tag> tagList = createTagList(task);
 
         Assert.assertTaskTags(new String[] { "important" }, tagList);
     }
@@ -128,4 +136,36 @@ public class TaskCreateTests extends MaestrocliTest {
             throw e;
         }
     }
+
+    @Test
+    @DBUnitDatasetFileNames("dbunit/TaskCreateTests__should_parse_tags_after_a_tag_with_default_attribute_only.xml")
+    public void should_parse_tags_after_a_tag_with_default_attribute_only() throws EasyMVCException, SQLException, DatabaseUnitException, MalformedURLException {
+        controller.run("task", "add", "Buggy task", "--tags=nota:valor,outra_tag");
+
+        String connectionString = connectionManager.getConnectionString();
+        Connection jdbcConnection = DriverManager.getConnection(connectionString);
+
+        DatabaseConnection connection = new DatabaseConnection(jdbcConnection);
+
+        IDataSet databaseDataSet = connection.createDataSet();
+        ITable actualTask = databaseDataSet.getTable("task");
+        ITable actualProperty = databaseDataSet.getTable("property");
+
+        IDataSet expectedDataSet = new FlatXmlDataSetBuilder().build(new File("dbunit/TaskCreateTests__should_parse_tags_after_a_tag_with_default_attribute_only__expecteddata.xml"));
+        ITable expectedTask = expectedDataSet.getTable("task");
+        ITable expectedProperty = expectedDataSet.getTable("property");
+
+        Assertion.assertEquals(expectedTask, actualTask);
+        Assertion.assertEquals(expectedProperty, actualProperty);
+    }
+
+    private List<Tag> createTagList(Task task) {
+        List<Tag> tagList = new LinkedList<Tag>();
+
+        for (TaskTag taskTag : task.getTaskTags())
+            tagList.add(taskTag.getTag());
+
+        return tagList;
+    }
+
 }
