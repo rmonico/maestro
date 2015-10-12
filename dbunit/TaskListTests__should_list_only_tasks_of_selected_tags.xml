@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"  ?>
+<!DOCTYPE dataset SYSTEM "dbunit/maestro.dtd">
+<dataset>
+	<tag id="1" name="important" />
+	<tag id="2" name="buy" />
+
+	<task id="1" name="Task which should not be listed on this test" />
+	<task id="2" name="Something important" />
+	<task id="3" name="Something import to buy" />
+	<task id="4" name="Something not import to buy" />
+
+	<tasktag id="1" task_id="2" tag_id="1" />
+	<tasktag id="2" task_id="3" tag_id="1" />
+	<tasktag id="3" task_id="3" tag_id="2" />
+	<tasktag id="4" task_id="4" tag_id="2" />
+</dataset>
