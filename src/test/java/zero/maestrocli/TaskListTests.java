@@ -64,8 +64,8 @@ public class TaskListTests extends MaestrocliTest {
     }
 
     @Test
-    @DBUnitDatasetFileNames("dbunit/TaskListTests__should_list_only_task_with_some_of_words_in_name.xml")
-    public void should_list_only_task_with_some_of_words_in_name() throws EasyMVCException {
+    @DBUnitDatasetFileNames("dbunit/TaskListTests__should_list_only_task_with_some_of_words_in_parameter.xml")
+    public void should_list_only_task_with_some_of_words_in_parameter() throws EasyMVCException {
         List<Object> beans = controller.run("task", "ls", "--with=first,Different");
 
         EasyMVCAssert.assertBeanList(beans, 1);
