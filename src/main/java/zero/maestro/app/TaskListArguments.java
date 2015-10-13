@@ -11,11 +11,14 @@ public class TaskListArguments {
     @TokenParameter(token = { "-w", "--with" }, parser = StringArrayParser.class)
     private String[] withSomeOfTheseWords;
 
-    @TokenParameter(token = { "-wa", "--with-all" }, parser = StringArrayParser.class)
+    @TokenParameter(token = { "-a", "--with-all" }, parser = StringArrayParser.class)
     private String[] withAllOfTheseWords;
 
     @TokenParameter(token = { "-i", "--ids" }, parser = StringArrayParser.class)
     private String[] ids;
+
+    @TokenParameter(token = { "-s", "--subtasks" })
+    private boolean subtasks;
 
     public String[] getTags() {
         return tags;
@@ -47,6 +50,14 @@ public class TaskListArguments {
 
     public void setIds(String[] ids) {
         this.ids = ids;
+    }
+
+    public boolean isSubtasks() {
+        return subtasks;
+    }
+
+    public void setSubtasks(boolean subtasks) {
+        this.subtasks = subtasks;
     }
 
 }

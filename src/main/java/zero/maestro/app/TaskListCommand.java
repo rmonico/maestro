@@ -41,7 +41,8 @@ public class TaskListCommand {
     public void execute() throws SQLException {
         taskBuilder = dao.queryBuilder();
 
-        taskBuilder.where().isNull(Task.SUPERTASK_FIELD_NAME);
+        if (!args.isSubtasks())
+            taskBuilder.where().isNull(Task.SUPERTASK_FIELD_NAME);
 
         applyTagsFilter();
 
