@@ -77,16 +77,20 @@ public class TaskListCommand {
 
         String[] someWordsLowercase = toLowercase(withSomeOfTheseWords);
 
-        taskLoop: for (int i = 0; i < tasks.size(); i++) {
+        taskLoop: for (int i = 0; i < tasks.size();) {
             Task task = tasks.get(i);
 
             String taskName = task.getName().toLowerCase();
 
             for (String word : someWordsLowercase)
-                if (taskName.contains(word))
+                if (taskName.contains(word)) {
+                    i++;
+
                     continue taskLoop;
+                }
 
             tasks.remove(i);
+
         }
     }
 
