@@ -59,5 +59,25 @@ public class TaskListCommand {
         PreparedQuery<Task> query = taskBuilder.prepare();
 
         tasks = dao.query(query);
+
+        String[] withSomeOfTheseWords = args.getWithSomeOfTheseWords();
+
+        if ((withSomeOfTheseWords != null) && (withSomeOfTheseWords.length > 0)) {
+
+            taskLoop: for (int i = 0; i < tasks.size(); i++) {
+                Task task = tasks.get(i);
+
+                String taskName = task.getName().toLowerCase();
+
+                for (String word : withSomeOfTheseWords) {
+                    String lowercaseWord = word.toLowerCase();
+
+                    if (taskName.contains(lowercaseWord))
+                        continue taskLoop;
+                }
+
+                tasks.remove(i);
+            }
+        }
     }
 }
