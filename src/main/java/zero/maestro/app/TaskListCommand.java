@@ -39,6 +39,18 @@ public class TaskListCommand {
     public void execute() throws SQLException {
         QueryBuilder<Task, Integer> taskBuilder = dao.queryBuilder();
 
+        applyTagsFilter(taskBuilder);
+
+        taskBuilder.groupBy(Task.ID_FIELD_NAME);
+
+        PreparedQuery<Task> query = taskBuilder.prepare();
+
+        tasks = dao.query(query);
+
+        applySomeOfTheseWordsFilter();
+    }
+
+    private void applyTagsFilter(QueryBuilder<Task, Integer> taskBuilder) throws SQLException {
         String[] tags = args.getTags();
         if (tags != null) {
             QueryBuilder<Tag, Integer> tagBuilder = tagDao.queryBuilder();
@@ -53,13 +65,9 @@ public class TaskListCommand {
 
             taskBuilder.join(taskTagBuilder);
         }
+    }
 
-        taskBuilder.groupBy(Task.ID_FIELD_NAME);
-
-        PreparedQuery<Task> query = taskBuilder.prepare();
-
-        tasks = dao.query(query);
-
+    private void applySomeOfTheseWordsFilter() {
         String[] withSomeOfTheseWords = args.getWithSomeOfTheseWords();
 
         if ((withSomeOfTheseWords != null) && (withSomeOfTheseWords.length > 0)) {
@@ -82,4 +90,5 @@ public class TaskListCommand {
             }
         }
     }
+
 }
