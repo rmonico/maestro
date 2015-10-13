@@ -11,6 +11,9 @@ public class TaskListArguments {
     @TokenParameter(token = { "-w", "--with" }, parser = StringArrayParser.class)
     private String[] withSomeOfTheseWords;
 
+    @TokenParameter(token = { "-wa", "--with-all" }, parser = StringArrayParser.class)
+    private String[] withAllOfTheseWords;
+
     public String[] getTags() {
         return tags;
     }
@@ -25,6 +28,14 @@ public class TaskListArguments {
 
     public void setWithSomeOfTheseWords(String[] withSomeOfTheseWords) {
         this.withSomeOfTheseWords = withSomeOfTheseWords;
+    }
+
+    public String[] getWithAllOfTheseWords() {
+        return withAllOfTheseWords;
+    }
+
+    public void setWithAllOfTheseWords(String[] withAllOfTheseWords) {
+        this.withAllOfTheseWords = withAllOfTheseWords;
     }
 
 }
