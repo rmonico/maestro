@@ -48,6 +48,8 @@ public class TaskListCommand {
         tasks = dao.query(query);
 
         applySomeOfTheseWordsFilter();
+
+        applyAllOfTheseWordsFilter();
     }
 
     private void applyTagsFilter(QueryBuilder<Task, Integer> taskBuilder) throws SQLException {
@@ -73,10 +75,7 @@ public class TaskListCommand {
         if ((withSomeOfTheseWords == null) || (withSomeOfTheseWords.length == 0))
             return;
 
-        String[] someWordsLowercase = new String[withSomeOfTheseWords.length];
-
-        for (int i = 0; i < withSomeOfTheseWords.length; i++)
-            someWordsLowercase[i] = withSomeOfTheseWords[i].toLowerCase();
+        String[] someWordsLowercase = toLowercase(withSomeOfTheseWords);
 
         taskLoop: for (int i = 0; i < tasks.size(); i++) {
             Task task = tasks.get(i);
@@ -89,6 +88,39 @@ public class TaskListCommand {
 
             tasks.remove(i);
         }
+    }
+
+    private void applyAllOfTheseWordsFilter() {
+        String[] withAllOfTheseWords = args.getWithAllOfTheseWords();
+
+        if ((withAllOfTheseWords == null) || (withAllOfTheseWords.length == 0))
+            return;
+
+        String[] allWordsLowercase = toLowercase(withAllOfTheseWords);
+
+        for (int i = 0; i < tasks.size(); i++) {
+            Task task = tasks.get(i);
+
+            String taskName = task.getName().toLowerCase();
+
+            for (String word : allWordsLowercase)
+                if (!taskName.contains(word)) {
+                    tasks.remove(i);
+
+                    i--;
+
+                    break;
+                }
+        }
+
+    }
+
+    private String[] toLowercase(String[] stringArray) {
+        String[] someWordsLowercase = new String[stringArray.length];
+
+        for (int i = 0; i < stringArray.length; i++)
+            someWordsLowercase[i] = stringArray[i].toLowerCase();
+        return someWordsLowercase;
     }
 
 }
