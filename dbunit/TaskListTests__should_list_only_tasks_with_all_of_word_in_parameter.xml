@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"  ?>
+<!DOCTYPE dataset SYSTEM "dbunit/maestro.dtd">
+<dataset>
+	<task id="1" name="With love from me to you" />
+	<task id="2" name="Without love" />
+	<task id="3" name="With something and nothing more" />
+</dataset>

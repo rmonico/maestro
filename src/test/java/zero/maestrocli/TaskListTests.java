@@ -79,4 +79,18 @@ public class TaskListTests extends MaestrocliTest {
         Assert.assertTask("Second task with different word", null, tasks.get(1));
         Assert.assertTask("First task with different and first words", null, tasks.get(2));
     }
+
+    @Test
+    @DBUnitDatasetFileNames("dbunit/TaskListTests__should_list_only_tasks_with_all_of_word_in_parameter.xml")
+    public void should_list_only_tasks_with_all_of_word_in_parameter() throws EasyMVCException {
+        List<Object> beans = controller.run("task", "ls", "--with-all=with,love");
+        EasyMVCAssert.assertBeanList(beans, 1);
+
+        @SuppressWarnings("unchecked")
+        List<Task> tasks = EasyMVCAssert.assertAndGetBean(beans, 0, List.class);
+
+        assertEquals(1, tasks.size());
+
+        Assert.assertTask("With love from me to you", null, tasks.get(0));
+    }
 }
