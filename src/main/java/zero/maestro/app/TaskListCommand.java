@@ -70,24 +70,24 @@ public class TaskListCommand {
     private void applySomeOfTheseWordsFilter() {
         String[] withSomeOfTheseWords = args.getWithSomeOfTheseWords();
 
-        if ((withSomeOfTheseWords != null) && (withSomeOfTheseWords.length > 0)) {
+        if ((withSomeOfTheseWords == null) || (withSomeOfTheseWords.length == 0))
+            return;
 
-            String[] someWordsLowercase = new String[withSomeOfTheseWords.length];
+        String[] someWordsLowercase = new String[withSomeOfTheseWords.length];
 
-            for (int i = 0; i < withSomeOfTheseWords.length; i++)
-                someWordsLowercase[i] = withSomeOfTheseWords[i].toLowerCase();
+        for (int i = 0; i < withSomeOfTheseWords.length; i++)
+            someWordsLowercase[i] = withSomeOfTheseWords[i].toLowerCase();
 
-            taskLoop: for (int i = 0; i < tasks.size(); i++) {
-                Task task = tasks.get(i);
+        taskLoop: for (int i = 0; i < tasks.size(); i++) {
+            Task task = tasks.get(i);
 
-                String taskName = task.getName().toLowerCase();
+            String taskName = task.getName().toLowerCase();
 
-                for (String word : someWordsLowercase)
-                    if (taskName.contains(word))
-                        continue taskLoop;
+            for (String word : someWordsLowercase)
+                if (taskName.contains(word))
+                    continue taskLoop;
 
-                tasks.remove(i);
-            }
+            tasks.remove(i);
         }
     }
 
