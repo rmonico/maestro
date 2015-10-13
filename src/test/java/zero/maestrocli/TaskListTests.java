@@ -106,6 +106,6 @@ public class TaskListTests extends MaestrocliTest {
         assertEquals(2, tasks.size());
 
         Assert.assertTask("Task #2", null, tasks.get(0));
-        Assert.assertTask("Task #3", null, tasks.get(0));
+        Assert.assertTask("Task #3", null, tasks.get(1));
     }
 }

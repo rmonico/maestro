@@ -35,11 +35,15 @@ public class TaskListCommand {
     @Bean
     private List<Task> tasks;
 
+    private QueryBuilder<Task, Integer> taskBuilder;
+
     @CommandHandler(path = { "task", "ls" })
     public void execute() throws SQLException {
-        QueryBuilder<Task, Integer> taskBuilder = dao.queryBuilder();
+        taskBuilder = dao.queryBuilder();
 
-        applyTagsFilter(taskBuilder);
+        applyTagsFilter();
+
+        applyIDsFilter();
 
         taskBuilder.groupBy(Task.ID_FIELD_NAME);
 
@@ -52,7 +56,7 @@ public class TaskListCommand {
         applyAllOfTheseWordsFilter();
     }
 
-    private void applyTagsFilter(QueryBuilder<Task, Integer> taskBuilder) throws SQLException {
+    private void applyTagsFilter() throws SQLException {
         String[] tags = args.getTags();
         if (tags != null) {
             QueryBuilder<Tag, Integer> tagBuilder = tagDao.queryBuilder();
@@ -67,6 +71,25 @@ public class TaskListCommand {
 
             taskBuilder.join(taskTagBuilder);
         }
+    }
+
+    private void applyIDsFilter() throws SQLException {
+        String[] strIDs = args.getIds();
+
+        if ((strIDs == null) || (strIDs.length == 0))
+            return;
+
+        Integer[] ids = new Integer[strIDs.length];
+
+        for (int i = 0; i < strIDs.length; i++) {
+            String strID = strIDs[i];
+
+            int id = Integer.parseInt(strID);
+
+            ids[i] = id;
+        }
+
+        taskBuilder.where().in(Task.ID_FIELD_NAME, (Object[]) ids);
     }
 
     private void applySomeOfTheseWordsFilter() {
