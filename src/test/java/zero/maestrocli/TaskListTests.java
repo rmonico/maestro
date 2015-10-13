@@ -62,4 +62,21 @@ public class TaskListTests extends MaestrocliTest {
         Assert.assertTask("Something import to buy", null, tasks.get(1));
         Assert.assertTask("Something not import to buy", null, tasks.get(2));
     }
+
+    @Test
+    @DBUnitDatasetFileNames("dbunit/TaskListTests__should_list_only_task_with_some_of_words_in_name.xml")
+    public void should_list_only_task_with_some_of_words_in_name() throws EasyMVCException {
+        List<Object> beans = controller.run("task", "ls", "--with=first,Different");
+
+        EasyMVCAssert.assertBeanList(beans, 1);
+
+        @SuppressWarnings("unchecked")
+        List<Task> tasks = EasyMVCAssert.assertAndGetBean(beans, 0, List.class);
+
+        assertEquals(3, tasks.size());
+
+        Assert.assertTask("First task", null, tasks.get(0));
+        Assert.assertTask("Second task with different word", null, tasks.get(1));
+        Assert.assertTask("First task with different and first words", null, tasks.get(2));
+    }
 }
