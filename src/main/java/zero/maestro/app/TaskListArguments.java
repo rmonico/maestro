@@ -14,6 +14,9 @@ public class TaskListArguments {
     @TokenParameter(token = { "-wa", "--with-all" }, parser = StringArrayParser.class)
     private String[] withAllOfTheseWords;
 
+    @TokenParameter(token = { "-i", "--ids" }, parser = StringArrayParser.class)
+    private String[] ids;
+
     public String[] getTags() {
         return tags;
     }
@@ -36,6 +39,14 @@ public class TaskListArguments {
 
     public void setWithAllOfTheseWords(String[] withAllOfTheseWords) {
         this.withAllOfTheseWords = withAllOfTheseWords;
+    }
+
+    public String[] getIds() {
+        return ids;
+    }
+
+    public void setIds(String[] ids) {
+        this.ids = ids;
     }
 
 }

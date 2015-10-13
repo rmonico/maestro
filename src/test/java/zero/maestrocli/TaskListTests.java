@@ -93,4 +93,19 @@ public class TaskListTests extends MaestrocliTest {
 
         Assert.assertTask("With love from me to you", null, tasks.get(0));
     }
+
+    @Test
+    @DBUnitDatasetFileNames("dbunit/TaskListTests__should_list_taks_by_id.xml")
+    public void should_list_taks_by_id() throws EasyMVCException {
+        List<Object> beans = controller.run("task", "ls", "--ids=2,3");
+        EasyMVCAssert.assertBeanList(beans, 1);
+
+        @SuppressWarnings("unchecked")
+        List<Task> tasks = EasyMVCAssert.assertAndGetBean(beans, 0, List.class);
+
+        assertEquals(2, tasks.size());
+
+        Assert.assertTask("Task #2", null, tasks.get(0));
+        Assert.assertTask("Task #3", null, tasks.get(0));
+    }
 }
