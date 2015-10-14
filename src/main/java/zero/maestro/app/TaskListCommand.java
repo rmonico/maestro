@@ -41,9 +41,6 @@ public class TaskListCommand {
     public void execute() throws SQLException {
         taskBuilder = dao.queryBuilder();
 
-        if (!args.isSubtasks())
-            taskBuilder.where().isNull(Task.SUPERTASK_FIELD_NAME);
-
         applyTagsFilter();
 
         applyIDsFilter();
@@ -79,20 +76,35 @@ public class TaskListCommand {
     private void applyIDsFilter() throws SQLException {
         String[] strIDs = args.getIds();
 
-        if ((strIDs == null) || (strIDs.length == 0))
+        boolean validIDs = (strIDs != null) && (strIDs.length > 0);
+
+        if (!validIDs && !args.isNoSubtasks())
             return;
 
-        Integer[] ids = new Integer[strIDs.length];
+        Integer[] ids = null;
+        if (validIDs) {
+            ids = new Integer[strIDs.length];
 
-        for (int i = 0; i < strIDs.length; i++) {
-            String strID = strIDs[i];
+            for (int i = 0; i < strIDs.length; i++) {
+                String strID = strIDs[i];
 
-            int id = Integer.parseInt(strID);
+                int id = Integer.parseInt(strID);
 
-            ids[i] = id;
+                ids[i] = id;
+            }
         }
 
-        taskBuilder.where().in(Task.ID_FIELD_NAME, (Object[]) ids);
+        Where<Task, Integer> where = taskBuilder.where();
+
+        if (args.isNoSubtasks()) {
+            where.isNull(Task.SUPERTASK_FIELD_NAME);
+
+            if (validIDs)
+                where.and();
+        }
+
+        if (validIDs)
+            where.in(Task.ID_FIELD_NAME, (Object[]) ids);
     }
 
     private void applySomeOfTheseWordsFilter() {
