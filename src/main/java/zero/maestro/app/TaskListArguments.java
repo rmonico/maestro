@@ -20,6 +20,9 @@ public class TaskListArguments {
     @TokenParameter(token = { "-ns", "--nosubtasks" })
     private boolean noSubtasks;
 
+    @TokenParameter(token = { "-c", "--columns" }, parser = StringArrayParser.class)
+    private String[] columns;
+
     public String[] getTags() {
         return tags;
     }
@@ -58,6 +61,14 @@ public class TaskListArguments {
 
     public void setNoSubtasks(boolean noSubtasks) {
         this.noSubtasks = noSubtasks;
+    }
+
+    public String[] getColumns() {
+        return columns;
+    }
+
+    public void setColumns(String[] columns) {
+        this.columns = columns;
     }
 
 }
