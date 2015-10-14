@@ -17,8 +17,8 @@ public class TaskListArguments {
     @TokenParameter(token = { "-i", "--ids" }, parser = StringArrayParser.class)
     private String[] ids;
 
-    @TokenParameter(token = { "-s", "--subtasks" })
-    private boolean subtasks;
+    @TokenParameter(token = { "-ns", "--nosubtasks" })
+    private boolean noSubtasks;
 
     public String[] getTags() {
         return tags;
@@ -52,12 +52,12 @@ public class TaskListArguments {
         this.ids = ids;
     }
 
-    public boolean isSubtasks() {
-        return subtasks;
+    public boolean isNoSubtasks() {
+        return noSubtasks;
     }
 
-    public void setSubtasks(boolean subtasks) {
-        this.subtasks = subtasks;
+    public void setNoSubtasks(boolean noSubtasks) {
+        this.noSubtasks = noSubtasks;
     }
 
 }
