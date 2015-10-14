@@ -35,6 +35,9 @@ public class TaskListCommand {
     @Bean
     private List<Task> tasks;
 
+    @Bean
+    private String[] columns;
+
     private QueryBuilder<Task, Integer> taskBuilder;
 
     @CommandHandler(path = { "task", "ls" })
@@ -54,6 +57,8 @@ public class TaskListCommand {
         applySomeOfTheseWordsFilter();
 
         applyAllOfTheseWordsFilter();
+
+        columns = args.getColumns();
     }
 
     private void applyTagsFilter() throws SQLException {

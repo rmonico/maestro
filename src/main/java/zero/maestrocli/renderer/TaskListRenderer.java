@@ -16,6 +16,7 @@ import zero.maestro.model.Task;
 public class TaskListRenderer {
 
     private List<Task> tasks;
+    private String[] columns;
 
     @Renderer(path = { "task", "ls" })
     public void render() throws ListPrinterException {

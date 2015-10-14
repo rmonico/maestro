@@ -18,7 +18,7 @@ public class TaskListTests extends MaestrocliTest {
     public void should_list_all_three_tasks() throws EasyMVCException {
         List<Object> beans = controller.run("task", "ls");
 
-        EasyMVCAssert.assertBeanList(beans, 1);
+        EasyMVCAssert.assertBeanList(beans, 2);
 
         @SuppressWarnings("unchecked")
         List<Task> tasks = EasyMVCAssert.assertAndGetBean(beans, 0, List.class);
@@ -35,7 +35,7 @@ public class TaskListTests extends MaestrocliTest {
     public void should_list_subtasks_by_default() throws EasyMVCException {
         List<Object> beans = controller.run("task", "ls");
 
-        EasyMVCAssert.assertBeanList(beans, 1);
+        EasyMVCAssert.assertBeanList(beans, 2);
 
         @SuppressWarnings("unchecked")
         List<Task> tasks = EasyMVCAssert.assertAndGetBean(beans, 0, List.class);
@@ -51,7 +51,7 @@ public class TaskListTests extends MaestrocliTest {
     public void should_not_list_subtasks() throws EasyMVCException {
         List<Object> beans = controller.run("task", "ls", "--nosubtasks");
 
-        EasyMVCAssert.assertBeanList(beans, 1);
+        EasyMVCAssert.assertBeanList(beans, 2);
 
         @SuppressWarnings("unchecked")
         List<Task> tasks = EasyMVCAssert.assertAndGetBean(beans, 0, List.class);
@@ -66,7 +66,7 @@ public class TaskListTests extends MaestrocliTest {
     public void should_list_only_tasks_of_selected_tags() throws EasyMVCException {
         List<Object> beans = controller.run("task", "ls", "--tags=important,buy");
 
-        EasyMVCAssert.assertBeanList(beans, 1);
+        EasyMVCAssert.assertBeanList(beans, 2);
 
         @SuppressWarnings("unchecked")
         List<Task> tasks = EasyMVCAssert.assertAndGetBean(beans, 0, List.class);
@@ -83,7 +83,7 @@ public class TaskListTests extends MaestrocliTest {
     public void should_list_only_task_with_some_of_words_in_parameter() throws EasyMVCException {
         List<Object> beans = controller.run("task", "ls", "--with=first,Different");
 
-        EasyMVCAssert.assertBeanList(beans, 1);
+        EasyMVCAssert.assertBeanList(beans, 2);
 
         @SuppressWarnings("unchecked")
         List<Task> tasks = EasyMVCAssert.assertAndGetBean(beans, 0, List.class);
@@ -99,7 +99,7 @@ public class TaskListTests extends MaestrocliTest {
     @DBUnitDatasetFileNames("dbunit/TaskListTests__should_list_only_tasks_with_all_of_word_in_parameter.xml")
     public void should_list_only_tasks_with_all_of_word_in_parameter() throws EasyMVCException {
         List<Object> beans = controller.run("task", "ls", "--with-all=with,love");
-        EasyMVCAssert.assertBeanList(beans, 1);
+        EasyMVCAssert.assertBeanList(beans, 2);
 
         @SuppressWarnings("unchecked")
         List<Task> tasks = EasyMVCAssert.assertAndGetBean(beans, 0, List.class);
@@ -113,7 +113,7 @@ public class TaskListTests extends MaestrocliTest {
     @DBUnitDatasetFileNames("dbunit/TaskListTests__should_list_taks_by_id.xml")
     public void should_list_taks_by_id() throws EasyMVCException {
         List<Object> beans = controller.run("task", "ls", "--ids=2,3");
-        EasyMVCAssert.assertBeanList(beans, 1);
+        EasyMVCAssert.assertBeanList(beans, 2);
 
         @SuppressWarnings("unchecked")
         List<Task> tasks = EasyMVCAssert.assertAndGetBean(beans, 0, List.class);
@@ -132,7 +132,7 @@ public class TaskListTests extends MaestrocliTest {
 
         String[] columns = EasyMVCAssert.assertAndGetBean(beans, 1, String[].class);
 
-        assertEquals("Length", 2, columns);
+        assertEquals("Length", 2, columns.length);
         assertEquals("id", columns[0]);
         assertEquals("name", columns[1]);
     }
