@@ -124,4 +124,16 @@ public class TaskListTests extends MaestrocliTest {
         Assert.assertTask("Task #3", null, tasks.get(1));
     }
 
+    @Test
+    public void should_pass_columns_param_to_renderer() throws EasyMVCException {
+        List<Object> beans = controller.run("task", "ls", "--columns=id,name");
+
+        EasyMVCAssert.assertBeanList(beans, 2);
+
+        String[] columns = EasyMVCAssert.assertAndGetBean(beans, 1, String[].class);
+
+        assertEquals("Length", 2, columns);
+        assertEquals("id", columns[0]);
+        assertEquals("name", columns[1]);
+    }
 }
