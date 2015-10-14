@@ -31,24 +31,9 @@ public class TaskListTests extends MaestrocliTest {
     }
 
     @Test
-    @DBUnitDatasetFileNames("dbunit/TaskListTests__should_not_list_subtasks_by_default.xml")
-    public void should_not_list_subtasks_by_default() throws EasyMVCException {
+    @DBUnitDatasetFileNames("dbunit/TaskListTests__should_list_subtasks_by_default.xml")
+    public void should_list_subtasks_by_default() throws EasyMVCException {
         List<Object> beans = controller.run("task", "ls");
-
-        EasyMVCAssert.assertBeanList(beans, 1);
-
-        @SuppressWarnings("unchecked")
-        List<Task> tasks = EasyMVCAssert.assertAndGetBean(beans, 0, List.class);
-
-        assertEquals(1, tasks.size());
-
-        Assert.assertTask("A supertask", null, tasks.get(0));
-    }
-
-    @Test
-    @DBUnitDatasetFileNames("dbunit/TaskListTests__should_not_list_subtasks_by_default.xml")
-    public void should_list_subtasks() throws EasyMVCException {
-        List<Object> beans = controller.run("task", "ls", "--subtasks");
 
         EasyMVCAssert.assertBeanList(beans, 1);
 
@@ -59,6 +44,21 @@ public class TaskListTests extends MaestrocliTest {
 
         Assert.assertTask("A supertask", null, tasks.get(0));
         Assert.assertTask("A task with supertask", "A supertask", tasks.get(1));
+    }
+
+    @Test
+    @DBUnitDatasetFileNames("dbunit/TaskListTests__should_list_subtasks_by_default.xml")
+    public void should_not_list_subtasks() throws EasyMVCException {
+        List<Object> beans = controller.run("task", "ls", "--nosubtasks");
+
+        EasyMVCAssert.assertBeanList(beans, 1);
+
+        @SuppressWarnings("unchecked")
+        List<Task> tasks = EasyMVCAssert.assertAndGetBean(beans, 0, List.class);
+
+        assertEquals(1, tasks.size());
+
+        Assert.assertTask("A supertask", null, tasks.get(0));
     }
 
     @Test
