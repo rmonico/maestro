@@ -5,14 +5,18 @@ import java.util.List;
 
 import zero.easymvc.ArgumentsBean;
 import zero.easymvc.Bean;
+import zero.easymvc.BeanParserException;
 import zero.easymvc.CommandHandler;
 import zero.easymvc.Dependency;
+import zero.easymvc.StringArrayParser;
+import zero.environment.Environment;
 import zero.maestro.app.dao.TagDao;
 import zero.maestro.app.dao.TaskDao;
 import zero.maestro.app.dao.TaskTagDao;
 import zero.maestro.model.Tag;
 import zero.maestro.model.Task;
 import zero.maestro.model.TaskTag;
+import zero.maestrocli.MaestrocliApplicationFactory;
 
 import com.j256.ormlite.stmt.PreparedQuery;
 import com.j256.ormlite.stmt.QueryBuilder;
@@ -41,7 +45,7 @@ public class TaskListCommand {
     private QueryBuilder<Task, Integer> taskBuilder;
 
     @CommandHandler(path = { "task", "ls" })
-    public void execute() throws SQLException {
+    public void execute() throws SQLException, BeanParserException {
         taskBuilder = dao.queryBuilder();
 
         applyTagsFilter();
@@ -59,6 +63,14 @@ public class TaskListCommand {
         applyAllOfTheseWordsFilter();
 
         columns = args.getColumns();
+
+        if (columns == null) {
+            StringArrayParser parser = new StringArrayParser();
+
+            String rawColumns = Environment.get().getProperty(MaestrocliApplicationFactory.TASK_LIST_COLUMNS_PROPERTY_KEY);
+
+            columns = parser.parse(rawColumns);
+        }
     }
 
     private void applyTagsFilter() throws SQLException {
