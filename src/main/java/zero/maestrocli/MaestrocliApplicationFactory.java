@@ -40,6 +40,8 @@ public class MaestrocliApplicationFactory extends ApplicationFactory {
     public static final String EXECUTABLE_MAJOR_VERSION = "0";
     public static final String EXECUTABLE_MINOR_VERSION = "1";
     public static final String EXECUTABLE_PROJECT_PHASE = "beta";
+    public static final String TASK_LIST_COLUMNS_PROPERTY_KEY = "task_list_columns";
+    private static final String TASK_LIST_COLUMNS_DEFAULT = "id,name";
 
     public MaestrocliApplicationFactory() {
         super(BASENAME);
@@ -56,6 +58,8 @@ public class MaestrocliApplicationFactory extends ApplicationFactory {
         Environment.get().setProperty(ApplicationPropertyKeys.EXECUTABLE_MAJOR_VERSION_PROPERTY_KEY, EXECUTABLE_MAJOR_VERSION);
         Environment.get().setProperty(ApplicationPropertyKeys.EXECUTABLE_MINOR_VERSION_PROPERTY_KEY, EXECUTABLE_MINOR_VERSION);
         Environment.get().setProperty(ApplicationPropertyKeys.EXECUTABLE_PROJECT_PHASE_PROPERTY_KEY, EXECUTABLE_PROJECT_PHASE);
+
+        Environment.get().setProperty(TASK_LIST_COLUMNS_PROPERTY_KEY, TASK_LIST_COLUMNS_DEFAULT);
     }
 
     @Override
