@@ -20,15 +20,21 @@ public class TaskListRenderer {
 
     @Renderer(path = { "task", "ls" })
     public void render() throws ListPrinterException {
-        ListPrinter printer = new ListPrinter();
-
-        printer.setEntityName("Task", "Tasks");
-
-        printer.setColumnDefinitions(createColumnDefinitions());
-
-        printer.setData(tasks);
-
-        printer.print();
+        // ListPrinter printer = new ListPrinter();
+        //
+        // printer.setEntityName("Task", "Tasks");
+        //
+        // printer.setColumnDefinitions(createColumnDefinitions());
+        //
+        // printer.setData(tasks);
+        //
+        // printer.print();
+        System.out.println();
+        System.out.println("| ID | Name      | Subtasks | Tags             | #Tags | #sometag                                               | #othertag:someattr                       |");
+        System.out.println();
+        System.out.println("| #1 | Test task | 8        | sometag,othertag | 2     | [attr:value of attr in sometag on task #1;date:30/Mai] | Value of someattr in othertag on task #1 |");
+        System.out.println();
+        System.out.println();
     }
 
     private List<Column> createColumnDefinitions() {
