@@ -102,4 +102,16 @@ public class TaskListColumnsTests extends MaestrocliTest {
         assertEquals("Header line", expectedHeaderLine, wrapper.capturedLines.get(1));
     }
 
+    @Test
+    @DBUnitDatasetFileNames("dbunit/TaskListTests__should_render_no_tag_tasks.xml")
+    public void should_render_no_tag_tasks() throws EasyMVCException {
+        controller.run("task", "ls", "--nosubtasks", "--columns=name,tags");
+
+        String expectedHeaderLine = "| Name      | Tags |";
+        String expectedDataLine = "| Test task |      |";
+
+        assertTrue("Line count", wrapper.capturedLines.size() > 5);
+        assertEquals("Data line", expectedDataLine, wrapper.capturedLines.get(3));
+        assertEquals("Header line", expectedHeaderLine, wrapper.capturedLines.get(1));
+    }
 }
