@@ -10,7 +10,6 @@ import zero.listprinter.IDFormatter;
 import zero.listprinter.ListPrinter;
 import zero.listprinter.ListPrinterException;
 import zero.listprinter.ReflectionFieldExtractor;
-import zero.listprinter.StringFormatter;
 import zero.maestro.model.Task;
 
 public class TaskListRenderer {
@@ -20,30 +19,33 @@ public class TaskListRenderer {
 
     @Renderer(path = { "task", "ls" })
     public void render() throws ListPrinterException {
-        // ListPrinter printer = new ListPrinter();
-        //
-        // printer.setEntityName("Task", "Tasks");
-        //
-        // printer.setColumnDefinitions(createColumnDefinitions());
-        //
-        // printer.setData(tasks);
-        //
-        // printer.print();
-        System.out.println();
-        System.out.println("| ID | Name      | Subtasks | Tags             | #Tags | #sometag                                               | #othertag:someattr                       |");
-        System.out.println();
-        System.out.println("| #1 | Test task | 8        | sometag,othertag | 2     | [attr:value of attr in sometag on task #1;date:30/Mai] | Value of someattr in othertag on task #1 |");
-        System.out.println();
-        System.out.println();
+        ListPrinter printer = new ListPrinter();
+
+        printer.setEntityName("Task", "Tasks");
+
+        printer.setColumnDefinitions(createColumnDefinitions());
+
+        printer.setData(tasks);
+
+        printer.print();
     }
 
     private List<Column> createColumnDefinitions() {
         List<Column> defs = new LinkedList<>();
 
-        defs.add(new FormattedColumn("ID", new ReflectionFieldExtractor("id"), IDFormatter.getInstance()));
-        defs.add(new FormattedColumn("Name", new ReflectionFieldExtractor("name"), StringFormatter.getInstance()));
-        defs.add(new FormattedColumn("Super task", new ReflectionFieldExtractor("superTask", new ReflectionFieldExtractor("name")), StringFormatter.getInstance()));
+        for (String columnName : columns) {
+            switch (columnName) {
+            case "id": {
+                defs.add(createIDColumn());
+                break;
+            }
+            }
+        }
 
         return defs;
+    }
+
+    private Column createIDColumn() {
+        return new FormattedColumn("ID", new ReflectionFieldExtractor("id"), IDFormatter.getInstance());
     }
 }
