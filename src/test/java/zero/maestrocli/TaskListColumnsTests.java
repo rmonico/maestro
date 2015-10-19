@@ -36,7 +36,17 @@ public class TaskListColumnsTests extends MaestrocliTest {
 
         assertTrue("Line count", wrapper.capturedLines.size() > 5);
         assertEquals("Header line", "| Name      |", wrapper.capturedLines.get(1));
-        assertEquals("Data line",   "| Test task |", wrapper.capturedLines.get(3));
+        assertEquals("Data line", "| Test task |", wrapper.capturedLines.get(3));
+    }
+
+    @Test
+    @DBUnitDatasetFileNames("dbunit/TaskListTests__should_render_every_possible_columns_for_top_tasks.xml")
+    public void should_render_subtaskcount_column_for_top_tasks() throws EasyMVCException {
+        controller.run("task", "ls", "--nosubtasks", "--columns=subtaskcount");
+
+        assertTrue("Line count", wrapper.capturedLines.size() > 5);
+        assertEquals("Header line", "| #Tasks |", wrapper.capturedLines.get(1));
+        assertEquals("Data line", "| 8      |", wrapper.capturedLines.get(3));
     }
 
 

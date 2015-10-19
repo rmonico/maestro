@@ -4,11 +4,14 @@ import java.util.LinkedList;
 import java.util.List;
 
 import zero.easymvc.Renderer;
+import zero.listprinter.CollectionSizeExtractor;
 import zero.listprinter.Column;
 import zero.listprinter.FormattedColumn;
 import zero.listprinter.IDFormatter;
+import zero.listprinter.IntegerFormatter;
 import zero.listprinter.ListPrinter;
 import zero.listprinter.ListPrinterException;
+import zero.listprinter.NoParamMethodExtractor;
 import zero.listprinter.ReflectionFieldExtractor;
 import zero.listprinter.StringFormatter;
 import zero.maestro.model.Task;
@@ -43,6 +46,12 @@ public class TaskListRenderer {
 
             case "name": {
                 defs.add(createNameColumn());
+                break;
+            }
+
+            case "subtaskcount": {
+                defs.add(createSubtaskCountColumn());
+                break;
             }
             }
         }
@@ -58,4 +67,7 @@ public class TaskListRenderer {
         return new FormattedColumn("Name", new ReflectionFieldExtractor("name"), StringFormatter.getInstance());
     }
 
+    private Column createSubtaskCountColumn() {
+        return new FormattedColumn("#Tasks", new NoParamMethodExtractor("getSubTasks", new CollectionSizeExtractor()), IntegerFormatter.getInstance());
+    }
 }
