@@ -1,6 +1,6 @@
 package zero.maestrocli.renderer;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import zero.listprinter.DataExtractor;
@@ -21,7 +21,7 @@ class PropertiesOfTagExtractor implements DataExtractor {
     public Object extract(Object data) throws ListPrinterException {
         Task task = (Task) data;
 
-        Map<String, Object> values = new HashMap<String, Object>();
+        Map<String, Object> values = new LinkedHashMap<String, Object>();
 
         TaskTag selectedTag = null;
         for (TaskTag tt : task.getTaskTags()) {
