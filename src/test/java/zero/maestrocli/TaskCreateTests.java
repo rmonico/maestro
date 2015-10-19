@@ -61,7 +61,7 @@ public class TaskCreateTests extends MaestrocliTest {
 
         List<Object> beans = controller.run("task", "ls");
 
-        EasyMVCAssert.assertBeanList(beans, 1);
+        EasyMVCAssert.assertBeanList(beans, 2);
 
         @SuppressWarnings("unchecked")
         List<Task> taskList = EasyMVCAssert.assertAndGetBean(beans, 0, List.class);
@@ -84,7 +84,7 @@ public class TaskCreateTests extends MaestrocliTest {
 
         List<Object> beans = controller.run("task", "ls");
 
-        EasyMVCAssert.assertBeanList(beans, 1);
+        EasyMVCAssert.assertBeanList(beans, 2);
 
         @SuppressWarnings("unchecked")
         List<Task> taskList = EasyMVCAssert.assertAndGetBean(beans, 0, List.class);
