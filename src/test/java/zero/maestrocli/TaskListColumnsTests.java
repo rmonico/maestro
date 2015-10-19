@@ -24,12 +24,9 @@ public class TaskListColumnsTests extends MaestrocliTest {
     public void should_render_id_column_for_top_tasks() throws EasyMVCException {
         controller.run("task", "ls", "--nosubtasks", "--columns=id");
 
-        String expectedHeaderLine = "| ID |";
-        String expectedDataLine = "| #1 |";
-
         assertTrue("Line count", wrapper.capturedLines.size() > 5);
-        assertEquals("Header line", expectedHeaderLine, wrapper.capturedLines.get(1));
-        assertEquals("Data line", expectedDataLine, wrapper.capturedLines.get(3));
+        assertEquals("Header line", "| ID |", wrapper.capturedLines.get(1));
+        assertEquals("Data line", "| #1 |", wrapper.capturedLines.get(3));
     }
 
 }
