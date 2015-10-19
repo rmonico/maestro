@@ -79,5 +79,15 @@ public class TaskListColumnsTests extends MaestrocliTest {
         assertEquals("Header line", "| #sometag                                                        |", wrapper.capturedLines.get(1));
     }
 
+    @Test
+    @DBUnitDatasetFileNames("dbunit/TaskListTests__should_render_every_possible_columns_for_top_tasks.xml")
+    public void should_render_property_column_for_top_tasks() throws EasyMVCException {
+        controller.run("task", "ls", "--nosubtasks", "--columns=property:othertag.someattr");
+
+        assertTrue("Line count", wrapper.capturedLines.size() > 5);
+        assertEquals("Data line", "| Value of someattr in othertag on 'Test task' |", wrapper.capturedLines.get(3));
+        assertEquals("Header line", "| #othertag:someattr                           |", wrapper.capturedLines.get(1));
+    }
+
 
 }
