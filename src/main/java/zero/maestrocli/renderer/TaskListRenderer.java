@@ -10,6 +10,7 @@ import zero.listprinter.IDFormatter;
 import zero.listprinter.ListPrinter;
 import zero.listprinter.ListPrinterException;
 import zero.listprinter.ReflectionFieldExtractor;
+import zero.listprinter.StringFormatter;
 import zero.maestro.model.Task;
 
 public class TaskListRenderer {
@@ -39,6 +40,10 @@ public class TaskListRenderer {
                 defs.add(createIDColumn());
                 break;
             }
+
+            case "name": {
+                defs.add(createNameColumn());
+            }
             }
         }
 
@@ -48,4 +53,9 @@ public class TaskListRenderer {
     private Column createIDColumn() {
         return new FormattedColumn("ID", new ReflectionFieldExtractor("id"), IDFormatter.getInstance());
     }
+
+    private Column createNameColumn() {
+        return new FormattedColumn("Name", new ReflectionFieldExtractor("name"), StringFormatter.getInstance());
+    }
+
 }
