@@ -26,6 +26,9 @@ public class Task {
     @ForeignCollectionField
     private ForeignCollection<TaskTag> taskTags;
 
+    @ForeignCollectionField
+    private ForeignCollection<Task> subTasks;
+
     public int getId() {
         return id;
     }
@@ -52,5 +55,9 @@ public class Task {
 
     public ForeignCollection<TaskTag> getTaskTags() {
         return taskTags;
+    }
+
+    public ForeignCollection<Task> getSubTasks() {
+        return subTasks;
     }
 }
