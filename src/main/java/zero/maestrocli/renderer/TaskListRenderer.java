@@ -17,9 +17,7 @@ import zero.listprinter.ListPrinterException;
 import zero.listprinter.NoParamMethodExtractor;
 import zero.listprinter.ReflectionFieldExtractor;
 import zero.listprinter.StringFormatter;
-import zero.maestro.model.Property;
 import zero.maestro.model.Task;
-import zero.maestro.model.TaskTag;
 
 public class TaskListRenderer {
 
@@ -120,42 +118,6 @@ public class TaskListRenderer {
 
     private Column createPropertiesOfColumn(String tagName) {
         return new FormattedColumn("#" + tagName, new PropertiesOfTagExtractor(tagName), new PropertyMapFormatter());
-    }
-
-    private static class PropertyOfTagExtractor implements DataExtractor {
-
-        private String tagName;
-        private String attributeName;
-
-        public PropertyOfTagExtractor(String tagName, String attributeName) {
-            this.tagName = tagName;
-            this.attributeName = attributeName;
-        }
-
-        @Override
-        public Object extract(Object data) throws ListPrinterException {
-            Task task = (Task) data;
-
-            TaskTag selectedTag = null;
-            for (TaskTag tt : task.getTaskTags()) {
-                if (tagName.equals(tt.getTag().getName())) {
-                    selectedTag = tt;
-
-                    break;
-                }
-            }
-
-            if (selectedTag == null)
-                return null;
-
-            for (Property property : selectedTag.getProperties()) {
-                if (attributeName.equals(property.getAttribute().getName())) {
-                    return property.getValue();
-                }
-            }
-
-            return null;
-        }
     }
 
     private Column createPropertyColumn(String parameters) {
