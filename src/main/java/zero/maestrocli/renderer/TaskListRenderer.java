@@ -40,7 +40,20 @@ public class TaskListRenderer {
     private List<Column> createColumnDefinitions() {
         List<Column> defs = new LinkedList<>();
 
-        for (String columnName : columns) {
+        for (String column : columns) {
+            int columnNameEnd = column.indexOf(':');
+
+            String columnName;
+            String parameters;
+
+            if (columnNameEnd == -1) {
+                columnName = column;
+                parameters = "";
+            } else {
+                columnName = column.substring(0, columnNameEnd);
+                parameters = column.substring(columnNameEnd + 1);
+            }
+
             switch (columnName) {
             case "id": {
                 defs.add(createIDColumn());
