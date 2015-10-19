@@ -10,4 +10,10 @@
 	<task id="7" name="Sub task #6" supertask_id="1"/>
 	<task id="8" name="Sub task #7" supertask_id="1"/>
 	<task id="9" name="Sub task #8" supertask_id="1"/>
+
+	<tag id="1" name="sometag" />
+	<tag id="2" name="othertag" />
+
+	<tasktag id="1" task_id="1" tag_id="1" />
+	<tasktag id="2" task_id="1" tag_id="2" />
 </dataset>

@@ -53,6 +53,11 @@ public class TaskListRenderer {
                 defs.add(createSubtaskCountColumn());
                 break;
             }
+
+            case "tagcount": {
+                defs.add(createTagCountColumn());
+                break;
+            }
             }
         }
 
@@ -70,4 +75,9 @@ public class TaskListRenderer {
     private Column createSubtaskCountColumn() {
         return new FormattedColumn("#Tasks", new NoParamMethodExtractor("getSubTasks", new CollectionSizeExtractor()), IntegerFormatter.getInstance());
     }
+
+    private Column createTagCountColumn() {
+        return new FormattedColumn("#Tags", new NoParamMethodExtractor("getTaskTags", new CollectionSizeExtractor()), IntegerFormatter.getInstance());
+    }
+
 }
