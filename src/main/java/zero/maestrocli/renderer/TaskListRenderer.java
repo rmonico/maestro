@@ -6,9 +6,12 @@ import java.util.List;
 import zero.easymvc.Renderer;
 import zero.listprinter.CollectionSizeExtractor;
 import zero.listprinter.Column;
+import zero.listprinter.DataExtractor;
 import zero.listprinter.FormattedColumn;
 import zero.listprinter.IDFormatter;
 import zero.listprinter.IntegerFormatter;
+import zero.listprinter.IterableConcatenator;
+import zero.listprinter.IterableFormatter;
 import zero.listprinter.ListPrinter;
 import zero.listprinter.ListPrinterException;
 import zero.listprinter.NoParamMethodExtractor;
@@ -54,6 +57,11 @@ public class TaskListRenderer {
                 break;
             }
 
+            case "tags": {
+                defs.add(createTagsColumn());
+                break;
+            }
+
             case "tagcount": {
                 defs.add(createTagCountColumn());
                 break;
@@ -74,6 +82,11 @@ public class TaskListRenderer {
 
     private Column createSubtaskCountColumn() {
         return new FormattedColumn("#Tasks", new NoParamMethodExtractor("getSubTasks", new CollectionSizeExtractor()), IntegerFormatter.getInstance());
+    }
+
+    private Column createTagsColumn() {
+        DataExtractor extractor = new NoParamMethodExtractor("getTaskTags", new IterableConcatenator(new ReflectionFieldExtractor("tag", new ReflectionFieldExtractor("name"))));
+        return new FormattedColumn("Tags", extractor, new IterableFormatter(StringFormatter.getInstance()));
     }
 
     private Column createTagCountColumn() {
