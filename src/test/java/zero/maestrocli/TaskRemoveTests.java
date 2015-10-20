@@ -31,13 +31,10 @@ public class TaskRemoveTests extends MaestrocliTest {
 
         IDataSet databaseDataSet = connection.createDataSet();
         ITable actualTask = databaseDataSet.getTable("task");
-        ITable actualProperty = databaseDataSet.getTable("property");
 
         IDataSet expectedDataSet = new FlatXmlDataSetBuilder().build(new File("dbunit/TaskRemoveTests__should_remove_a_task__expecteddata.xml"));
         ITable expectedTask = expectedDataSet.getTable("task");
-        ITable expectedProperty = expectedDataSet.getTable("property");
 
         Assertion.assertEquals(expectedTask, actualTask);
-        Assertion.assertEquals(expectedProperty, actualProperty);
     }
 }
