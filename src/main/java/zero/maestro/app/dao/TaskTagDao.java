@@ -39,4 +39,13 @@ public class TaskTagDao extends AbstractDao<TaskTag> {
         return query(query);
     }
 
+    public List<TaskTag> queryForTaskId(int taskId) throws SQLException {
+        Where<TaskTag, Integer> where = queryBuilder().where();
+        where.eq(TaskTag.TASK_FIELD_NAME, taskId);
+
+        PreparedQuery<TaskTag> query = where.prepare();
+
+        return query(query);
+    }
+
 }
