@@ -1,5 +1,7 @@
 package zero.maestro.model;
 
+import java.util.Collection;
+
 import zero.maestro.app.dao.TaskDao;
 
 import com.j256.ormlite.dao.ForeignCollection;
@@ -27,7 +29,7 @@ public class Task {
     private ForeignCollection<TaskTag> taskTags;
 
     @ForeignCollectionField
-    private ForeignCollection<Task> subTasks;
+    private Collection<Task> subTasks;
 
     public int getId() {
         return id;
@@ -57,7 +59,11 @@ public class Task {
         return taskTags;
     }
 
-    public ForeignCollection<Task> getSubTasks() {
+    public Collection<Task> getSubTasks() {
         return subTasks;
+    }
+
+    public void setSubTasks(Collection<Task> subTasks) {
+        this.subTasks = subTasks;
     }
 }

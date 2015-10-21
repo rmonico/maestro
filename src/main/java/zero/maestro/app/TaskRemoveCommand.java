@@ -1,6 +1,7 @@
 package zero.maestro.app;
 
 import java.sql.SQLException;
+import java.util.LinkedList;
 import java.util.List;
 
 import zero.easymvc.ArgumentsBean;
@@ -35,22 +36,36 @@ public class TaskRemoveCommand {
     private PropertyDao propertyDao;
 
     @Bean
-    private Task task;
+    private Task removedTask;
 
     @CommandHandler(path = { "task", "rm" })
     public void execute() throws SQLException, EasyMVCException {
-        task = dao.queryForId(args.getTaskId());
+        removedTask = dao.queryForId(args.getTaskId());
 
-        if (task == null)
+        if (removedTask == null)
             throw new EasyMVCException(String.format("No task with id #%d...", args.getTaskId()));
 
+        removeTask(removedTask);
+    }
+
+    private void removeTask(Task task) throws SQLException {
         removeProperties();
 
         List<TaskTag> taskTagQuery = taskTagDao.queryForTaskId(task.getId());
 
         taskTagDao.delete(taskTagQuery);
 
+        List<Task> removedSubtasks = new LinkedList<Task>();
+
+        for (Task subtask : task.getSubTasks()) {
+            removeTask(subtask);
+
+            removedSubtasks.add(subtask);
+        }
+
         dao.delete(task);
+
+        task.setSubTasks(removedSubtasks);
     }
 
     private void removeProperties() throws SQLException {

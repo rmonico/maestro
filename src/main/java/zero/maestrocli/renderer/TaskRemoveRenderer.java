@@ -7,11 +7,20 @@ import zero.maestro.model.Task;
 public class TaskRemoveRenderer {
 
     @Bean
-    private Task task;
+    private Task removedTask;
 
     @Renderer(path = { "task", "rm" })
     public void render() {
-        String message = String.format("Task #%d (\"%s\") removed.", task.getId(), task.getName());
+        String message = String.format("Task #%d (\"%s\") removed.", removedTask.getId(), removedTask.getName());
         System.out.println(message);
+
+        notifySubtasksRemoval();
+    }
+
+    private void notifySubtasksRemoval() {
+        for (Task subtask : removedTask.getSubTasks()) {
+            String message = String.format("  Subtask #%d (\"%s\") removed.", subtask.getId(), subtask.getName());
+            System.out.println(message);
+        }
     }
 }
