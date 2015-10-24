@@ -21,7 +21,7 @@ import zero.utils.test.DBUnitDatasetFileNames;
 
 public class TaskRemoveTests extends MaestrocliTest {
 
-    private IDataSet getDataset() throws SQLException, DatabaseUnitException {
+    private IDataSet getDBUnitDataset() throws SQLException, DatabaseUnitException {
         String connectionString = connectionManager.getConnectionString();
         Connection jdbcConnection = DriverManager.getConnection(connectionString);
 
@@ -36,7 +36,7 @@ public class TaskRemoveTests extends MaestrocliTest {
     public void should_remove_a_task() throws EasyMVCException, SQLException, DatabaseUnitException, MalformedURLException {
         controller.run("task", "rm", "1");
 
-        IDataSet databaseDataSet = getDataset();
+        IDataSet databaseDataSet = getDBUnitDataset();
         ITable actualTask = databaseDataSet.getTable("task");
 
         IDataSet expectedDataSet = new FlatXmlDataSetBuilder().build(new File("dbunit/TaskRemoveTests__should_remove_a_task__expecteddata.xml"));
@@ -50,7 +50,7 @@ public class TaskRemoveTests extends MaestrocliTest {
     public void should_remove_task_and_its_tags() throws EasyMVCException, SQLException, DatabaseUnitException, MalformedURLException {
         controller.run("task", "rm", "1");
 
-        IDataSet databaseDataSet = getDataset();
+        IDataSet databaseDataSet = getDBUnitDataset();
         ITable actualTask = databaseDataSet.getTable("task");
         ITable actualTaskTag = databaseDataSet.getTable("tasktag");
 
@@ -66,7 +66,7 @@ public class TaskRemoveTests extends MaestrocliTest {
     public void should_remove_task_and_its_tags_and_properties() throws EasyMVCException, SQLException, DatabaseUnitException, MalformedURLException {
         controller.run("task", "rm", "1");
 
-        IDataSet databaseDataSet = getDataset();
+        IDataSet databaseDataSet = getDBUnitDataset();
         ITable actualTask = databaseDataSet.getTable("task");
         ITable actualTaskTag = databaseDataSet.getTable("tasktag");
         ITable actualProperty = databaseDataSet.getTable("property");
@@ -86,7 +86,7 @@ public class TaskRemoveTests extends MaestrocliTest {
     public void should_remove_task_and_its_subtasks() throws EasyMVCException, SQLException, DatabaseUnitException, MalformedURLException {
         controller.run("task", "rm", "1");
 
-        IDataSet databaseDataSet = getDataset();
+        IDataSet databaseDataSet = getDBUnitDataset();
         ITable actualTask = databaseDataSet.getTable("task");
 
         IDataSet expectedDataSet = new FlatXmlDataSetBuilder().build(new File("dbunit/TaskRemoveTests__should_remove_task_and_its_subtasks__expecteddata.xml"));
