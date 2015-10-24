@@ -11,6 +11,9 @@ public class TaskUpArguments {
     @TokenParameter(token = { "-n", "--name" })
     private String name;
 
+    @TokenParameter(token = { "-s", "--supertaskid" })
+    private Integer supertaskID;
+
     public Integer getTaskId() {
         return taskId;
     }
@@ -25,6 +28,14 @@ public class TaskUpArguments {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Integer getSupertaskID() {
+        return supertaskID;
+    }
+
+    public void setSupertaskID(Integer supertaskID) {
+        this.supertaskID = supertaskID;
     }
 
 }
