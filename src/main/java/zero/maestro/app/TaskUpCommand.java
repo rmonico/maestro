@@ -34,11 +34,15 @@ public class TaskUpCommand {
             task.setName(args.getName());
         }
 
-        if (args.getSupertaskID() != null) {
-            Task superTask = dao.queryForId(args.getSupertaskID());
+        Integer supertaskID = args.getSupertaskID();
 
-            if (superTask == null)
-                throw new RuntimeException("Supertask id #45 not found.");
+        if (supertaskID != null) {
+            Task superTask = dao.queryForId(supertaskID);
+
+            if (superTask == null) {
+                String message = String.format("Supertask id #%d not found.", supertaskID);
+                throw new RuntimeException(message);
+            }
 
             task.setSuperTask(superTask);
         }
