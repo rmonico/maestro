@@ -38,6 +38,19 @@ public class TaskUpTests extends MaestrocliTest {
 
     @Test
     @DBUnitDatasetFileNames("dbunit/TaskUpTests__should_update_task_name.xml")
+    public void should_try_update_invalid_task() throws EasyMVCException, SQLException, DatabaseUnitException, MalformedURLException {
+        try {
+            controller.run("task", "up", "45", "--name=New task name");
+            fail("Exception expected");
+        } catch (Throwable e) {
+            assertThat(e, is(notNullValue()));
+            assertThat(e, instanceOf(EasyMVCException.class));
+            assertThat(e.getMessage(), is("java.lang.RuntimeException: Task id #45 not found."));
+        }
+    }
+
+    @Test
+    @DBUnitDatasetFileNames("dbunit/TaskUpTests__should_update_task_name.xml")
     public void should_update_supertask() throws EasyMVCException, SQLException, DatabaseUnitException, MalformedURLException {
         controller.run("task", "up", "2", "--supertaskid=1");
 
