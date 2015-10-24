@@ -39,6 +39,9 @@ public class TaskUpCommand {
         if (args.getSupertaskID() != null) {
             Task superTask = dao.queryForId(args.getSupertaskID());
 
+            if (superTask == null)
+                throw new RuntimeException("Supertask id #45 not found.");
+
             task.setSuperTask(superTask);
         }
 

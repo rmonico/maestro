@@ -58,8 +58,8 @@ public class TaskUpTests extends MaestrocliTest {
             fail("Exception expected");
         } catch (Throwable e) {
             assertThat(e, is(notNullValue()));
-            assertThat(e, instanceOf(RuntimeException.class));
-            assertThat(e.getMessage(), is("Supertask id #45 not found."));
+            assertThat(e, instanceOf(EasyMVCException.class));
+            assertThat(e.getMessage(), is("java.lang.RuntimeException: Supertask id #45 not found."));
         }
     }
 
