@@ -36,6 +36,12 @@ public class TaskUpCommand {
             task.setName(args.getName());
         }
 
+        if (args.getSupertaskID() != null) {
+            Task superTask = dao.queryForId(args.getSupertaskID());
+
+            task.setSuperTask(superTask);
+        }
+
         // TODO Check if task was changed
         dao.update(task);
     }
