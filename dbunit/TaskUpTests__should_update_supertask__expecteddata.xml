@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"  ?>
-<!DOCTYPE dataset SYSTEM "dbunit/maestro.dtd">
+<!DOCTYPE dataset SYSTEM "maestro.dtd">
 <dataset>
 	<task id="1" name="Test task #1" />
 	<task id="2" name="Test task #2" supertask_id="1" />
