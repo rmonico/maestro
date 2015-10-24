@@ -29,4 +29,19 @@ public class TaskUpTests extends MaestrocliTest {
 
         Assertion.assertEquals(expectedTask, actualTask);
     }
+
+    @Test
+    @DBUnitDatasetFileNames("dbunit/TaskUpTests__should_update_task_name.xml")
+    public void should_update_supertask() throws EasyMVCException, SQLException, DatabaseUnitException, MalformedURLException {
+        controller.run("task", "up", "2", "--supertaskid=1");
+
+        IDataSet databaseDataSet = getDBUnitDataset();
+        ITable actualTask = databaseDataSet.getTable("task");
+
+        IDataSet expectedDataSet = new FlatXmlDataSetBuilder().build(new File("dbunit/TaskUpTests__should_update_supertask__expecteddata.xml"));
+        ITable expectedTask = expectedDataSet.getTable("task");
+
+        Assertion.assertEquals(expectedTask, actualTask);
+    }
+
 }
