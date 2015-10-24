@@ -25,12 +25,10 @@ public class TaskUpCommand {
     public void execute() throws SQLException, EasyMVCException {
         Task task = dao.queryForId(args.getTaskId());
 
-        // TODO Fazer teste para isso
-        // if (task == null) {
-        // String message = String.format("Task id #%d not found.",
-        // args.getTaskId());
-        // throw new RuntimeException(message);
-        // }
+        if (task == null) {
+            String message = String.format("Task id #%d not found.", args.getTaskId());
+            throw new RuntimeException(message);
+        }
 
         if (args.getName() != null) {
             task.setName(args.getName());
@@ -48,5 +46,4 @@ public class TaskUpCommand {
         // TODO Check if task was changed
         dao.update(task);
     }
-
 }
