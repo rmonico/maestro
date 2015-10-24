@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"  ?>
+<!DOCTYPE dataset SYSTEM "maestro.dtd">
+<dataset>
+	<task id="1" name="Test task #1" />
+	<task id="2" name="Test task #2" />
+	<task id="3" name="Test task #3" />
+	<task id="4" name="Test task #4" />
+
+	<tag id="1" name="important" />
+	<tag id="2" name="note" />
+	<tag id="3" name="quick" />
+
+	<attribute id="1" name="default" type="TEXT" tag_id="2" />
+
+	<property id="1" tasktag_id="2" attribute_id="1" value="Task's #3 note" />
+</dataset>

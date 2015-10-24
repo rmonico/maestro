@@ -18,6 +18,9 @@ public class TaskUpArguments {
     @TokenParameter(token = { "-t", "--tags" }, parser = StringArrayParser.class)
     private String[] tags;
 
+    @TokenParameter(token = { "-rt", "--removetags" }, parser = StringArrayParser.class)
+    private String[] tagsToRemove;
+
     public Integer getTaskId() {
         return taskId;
     }
@@ -48,6 +51,14 @@ public class TaskUpArguments {
 
     public void setTags(String[] tags) {
         this.tags = tags;
+    }
+
+    public String[] getTagsToRemove() {
+        return tagsToRemove;
+    }
+
+    public void setTagsToRemove(String[] tagsToRemove) {
+        this.tagsToRemove = tagsToRemove;
     }
 
 }

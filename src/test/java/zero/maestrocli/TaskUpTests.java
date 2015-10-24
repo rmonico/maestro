@@ -110,4 +110,20 @@ public class TaskUpTests extends MaestrocliTest {
         Assertion.assertEquals(expectedProperty, actualProperty);
     }
 
+    @Test
+    @DBUnitDatasetFileNames("dbunit/TaskUpTests__should_update_task_name.xml")
+    public void should_remove_tags_from_task() throws EasyMVCException, SQLException, DatabaseUnitException, MalformedURLException {
+        controller.run("task", "up", "3", "--removetags=important,note");
+
+        IDataSet databaseDataSet = getDBUnitDataset();
+        ITable actualTaskTag = databaseDataSet.getTable("tasktag");
+        ITable actualProperty = databaseDataSet.getTable("property");
+
+        IDataSet expectedDataSet = new FlatXmlDataSetBuilder().build(new File("dbunit/TaskUpTests__should_remove_tags_from_task__expecteddata.xml"));
+        ITable expectedProperty = expectedDataSet.getTable("property");
+
+        assertThat(actualTaskTag.getRowCount(), is(0));
+        Assertion.assertEquals(expectedProperty, actualProperty);
+    }
+
 }
