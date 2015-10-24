@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"  ?>
-<!DOCTYPE dataset SYSTEM "dbunit/maestro.dtd">
+<!DOCTYPE dataset SYSTEM "maestro.dtd">
 <dataset>
 	<task id="1" name="Test task #1" />
 	<task id="2" name="Test task #2" />
@@ -10,4 +10,9 @@
 	<tag id="2" name="note" />
 
 	<attribute id="1" name="default" type="TEXT" tag_id="2" />
+
+	<tasktag id="1" task_id="2" tag_id="1" />
+	<tasktag id="2" task_id="2" tag_id="2" />
+
+	<property id="1" tasktag_id="2" attribute_id="1" value="Note of task" />
 </dataset>

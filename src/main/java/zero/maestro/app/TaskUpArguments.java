@@ -1,6 +1,7 @@
 package zero.maestro.app;
 
 import zero.easymvc.PositionalParameter;
+import zero.easymvc.StringArrayParser;
 import zero.easymvc.TokenParameter;
 
 public class TaskUpArguments {
@@ -13,6 +14,9 @@ public class TaskUpArguments {
 
     @TokenParameter(token = { "-s", "--supertaskid" })
     private Integer supertaskID;
+
+    @TokenParameter(token = { "-t", "--tags" }, parser = StringArrayParser.class)
+    private String[] tags;
 
     public Integer getTaskId() {
         return taskId;
@@ -36,6 +40,14 @@ public class TaskUpArguments {
 
     public void setSupertaskID(Integer supertaskID) {
         this.supertaskID = supertaskID;
+    }
+
+    public String[] getTags() {
+        return tags;
+    }
+
+    public void setTags(String[] tags) {
+        this.tags = tags;
     }
 
 }
