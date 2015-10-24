@@ -82,16 +82,13 @@ public class TaskUpTests extends MaestrocliTest {
         controller.run("task", "up", "2", "--tags=important,note:Note of task");
 
         IDataSet databaseDataSet = getDBUnitDataset();
-        ITable actualTask = databaseDataSet.getTable("task");
         ITable actualTaskTag = databaseDataSet.getTable("tasktag");
         ITable actualProperty = databaseDataSet.getTable("property");
 
         IDataSet expectedDataSet = new FlatXmlDataSetBuilder().build(new File("dbunit/TaskUpTests__should_update_task_with_new_tags_and_properties__expecteddata.xml"));
-        ITable expectedTask = expectedDataSet.getTable("task");
         ITable expectedTaskTag = expectedDataSet.getTable("tasktag");
         ITable expectedProperty = expectedDataSet.getTable("property");
 
-        Assertion.assertEquals(expectedTask, actualTask);
         Assertion.assertEquals(expectedTaskTag, actualTaskTag);
         Assertion.assertEquals(expectedProperty, actualProperty);
     }
