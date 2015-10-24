@@ -52,12 +52,15 @@ public class TagAssigner {
             if (tag == null)
                 throw new EasyMVCException(String.format("Unknown tag: \"%s\".", tagName));
 
-            TaskTag taskTag = new TaskTag();
+            TaskTag taskTag = taskTagDao.queryForTaskAndTagId(task.getId(), tag.getId());
+
+            if (taskTag == null)
+                taskTag = new TaskTag();
 
             taskTag.setTag(tag);
             taskTag.setTask(task);
 
-            taskTagDao.create(taskTag);
+            taskTagDao.createOrUpdate(taskTag);
 
             List<ArgumentAttribute> attributes = parser.getAttributes();
 
@@ -69,14 +72,17 @@ public class TagAssigner {
                 if (attribute == null)
                     throw new EasyMVCException(String.format("Unknown attribute: \"%s\" on tag \"%s\".", attributeName, tagName));
 
-                Property property = new Property();
+                Property property = propertyDao.queryForAttributeAndTaskTagId(attribute.getId(), taskTag.getId());
+
+                if (property == null)
+                    property = new Property();
 
                 property.setAttribute(attribute);
                 property.setTaskTag(taskTag);
 
                 property.setValue(argAttribute.getValue());
 
-                propertyDao.create(property);
+                propertyDao.createOrUpdate(property);
             }
         }
     }
