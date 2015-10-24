@@ -19,7 +19,7 @@ public class TaskUpTests extends MaestrocliTest {
     @Test
     @DBUnitDatasetFileNames("dbunit/TaskUpTests__should_update_task_name.xml")
     public void should_update_task_name() throws EasyMVCException, SQLException, DatabaseUnitException, MalformedURLException {
-        controller.run("task", "up", "2", "New task name");
+        controller.run("task", "up", "2", "--name=New task name");
 
         IDataSet databaseDataSet = getDBUnitDataset();
         ITable actualTask = databaseDataSet.getTable("task");
