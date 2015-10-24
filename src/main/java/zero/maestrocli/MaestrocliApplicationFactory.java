@@ -16,6 +16,7 @@ import zero.maestro.app.TagListCommand;
 import zero.maestro.app.TaskCreateCommand;
 import zero.maestro.app.TaskListCommand;
 import zero.maestro.app.TaskRemoveCommand;
+import zero.maestro.app.TaskUpCommand;
 import zero.maestro.app.dao.AttributeDao;
 import zero.maestro.app.dao.PropertyDao;
 import zero.maestro.app.dao.TagDao;
@@ -35,6 +36,7 @@ import zero.maestrocli.renderer.TagListRenderer;
 import zero.maestrocli.renderer.TaskCreateRenderer;
 import zero.maestrocli.renderer.TaskListRenderer;
 import zero.maestrocli.renderer.TaskRemoveRenderer;
+import zero.maestrocli.renderer.TaskUpRenderer;
 
 public class MaestrocliApplicationFactory extends ApplicationFactory {
 
@@ -88,6 +90,7 @@ public class MaestrocliApplicationFactory extends ApplicationFactory {
         commands.add(TaskCreateCommand.class);
         commands.add(PropertySetterCommand.class);
         commands.add(TaskRemoveCommand.class);
+        commands.add(TaskUpCommand.class);
     }
 
     @Override
@@ -102,6 +105,7 @@ public class MaestrocliApplicationFactory extends ApplicationFactory {
         renderers.add(TaskCreateRenderer.class);
         renderers.add(PropertySetterRenderer.class);
         renderers.add(TaskRemoveRenderer.class);
+        renderers.add(TaskUpRenderer.class);
     }
 
     @Override
