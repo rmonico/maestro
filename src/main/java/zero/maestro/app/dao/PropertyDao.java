@@ -5,6 +5,8 @@ import java.sql.SQLException;
 import zero.easymvc.ormlite.dao.AbstractDao;
 import zero.maestro.model.Property;
 
+import com.j256.ormlite.stmt.DeleteBuilder;
+import com.j256.ormlite.stmt.PreparedDelete;
 import com.j256.ormlite.stmt.PreparedQuery;
 import com.j256.ormlite.stmt.Where;
 import com.j256.ormlite.support.ConnectionSource;
@@ -27,6 +29,17 @@ public class PropertyDao extends AbstractDao<Property> {
         PreparedQuery<Property> query = where.prepare();
 
         return queryForFirst(query);
+    }
+
+    public void deletePropertiesForTaskTagId(int taskTagId) throws SQLException {
+        DeleteBuilder<Property, Integer> builder = deleteBuilder();
+
+        Where<Property, Integer> where = builder.where();
+        where.eq(Property.TASKTAG_FIELD_NAME, taskTagId);
+
+        PreparedDelete<Property> query = builder.prepare();
+
+        delete(query);
     }
 
 }

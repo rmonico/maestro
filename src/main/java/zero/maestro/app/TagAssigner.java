@@ -3,8 +3,6 @@ package zero.maestro.app;
 import java.sql.SQLException;
 import java.util.List;
 
-import com.j256.ormlite.support.ConnectionSource;
-
 import zero.easymvc.EasyMVCException;
 import zero.maestro.app.dao.AttributeDao;
 import zero.maestro.app.dao.PropertyDao;
@@ -15,6 +13,8 @@ import zero.maestro.model.Property;
 import zero.maestro.model.Tag;
 import zero.maestro.model.Task;
 import zero.maestro.model.TaskTag;
+
+import com.j256.ormlite.support.ConnectionSource;
 
 public class TagAssigner {
 
@@ -81,6 +81,40 @@ public class TagAssigner {
                 property.setValue(argAttribute.getValue());
 
                 propertyDao.createOrUpdate(property);
+            }
+        }
+    }
+
+    public void removeTags(String[] tagsToRemove) throws SQLException, EasyMVCException {
+        if (tagsToRemove == null)
+            return;
+
+        for (String data : tagsToRemove) {
+            // TODO Configurar o parser abaixo para devolver apenas as
+            // referências sem os valores
+            TagListArgumentParser parser = new TagListArgumentParser();
+            parser.setDefaultAttributeName("default");
+
+            parser.parse(data);
+
+            String tagName = parser.getTagName();
+
+            Tag tag = tagDao.getTagByName(tagName);
+
+            if (tag == null)
+                throw new EasyMVCException(String.format("Unknown tag: \"%s\".", tagName));
+
+            TaskTag taskTag = taskTagDao.queryForTaskAndTagId(task.getId(), tag.getId());
+
+            if (taskTag == null)
+                throw new EasyMVCException(String.format("Tag \"%s\" not found on task \"%s\".", tagName, task.getName()));
+
+            List<ArgumentAttribute> attributes = parser.getAttributes();
+
+            if (attributes.isEmpty()) {
+                propertyDao.deletePropertiesForTaskTagId(taskTag.getId());
+
+                taskTagDao.delete(taskTag);
             }
         }
     }

@@ -59,6 +59,6 @@ public class TaskUpCommand {
 
         assigner.assignTagsToTask(args.getTags());
 
-        assigner.assignTagsToTask();
+        assigner.removeTags(args.getTagsToRemove());
     }
 }
