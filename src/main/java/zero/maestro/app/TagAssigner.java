@@ -3,6 +3,8 @@ package zero.maestro.app;
 import java.sql.SQLException;
 import java.util.List;
 
+import com.j256.ormlite.support.ConnectionSource;
+
 import zero.easymvc.EasyMVCException;
 import zero.maestro.app.dao.AttributeDao;
 import zero.maestro.app.dao.PropertyDao;
@@ -16,34 +18,30 @@ import zero.maestro.model.TaskTag;
 
 public class TagAssigner {
 
-    private String[] tagData;
     private Task task;
     private TagDao tagDao;
     private TaskTagDao taskTagDao;
     private AttributeDao attributeDao;
     private PropertyDao propertyDao;
 
-    public TagAssigner(Task task, String[] tagData) {
+    public TagAssigner(Task task, ConnectionSource connection) throws SQLException {
         this.task = task;
-        this.tagData = tagData;
+
+        this.tagDao = TagDao.getInstance(connection);
+        this.taskTagDao = TaskTagDao.getInstance(connection);
+        this.attributeDao = AttributeDao.getInstance(connection);
+        this.propertyDao = PropertyDao.getInstance(connection);
     }
 
-    public void setDaos(TagDao tagDao, TaskTagDao taskTagDao, AttributeDao attributeDao, PropertyDao propertyDao) {
-        this.tagDao = tagDao;
-        this.taskTagDao = taskTagDao;
-        this.attributeDao = attributeDao;
-        this.propertyDao = propertyDao;
-    }
-
-    public void assignTagsToTask() throws SQLException, EasyMVCException {
+    public void assignTagsToTask(String[] tagData) throws SQLException, EasyMVCException {
         if (tagData == null)
             return;
 
-        for (String tagData : tagData) {
+        for (String data : tagData) {
             TagListArgumentParser parser = new TagListArgumentParser();
             parser.setDefaultAttributeName("default");
 
-            parser.parse(tagData);
+            parser.parse(data);
 
             String tagName = parser.getTagName();
 

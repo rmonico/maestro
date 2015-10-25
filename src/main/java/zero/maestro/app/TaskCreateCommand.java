@@ -7,12 +7,10 @@ import zero.easymvc.Bean;
 import zero.easymvc.CommandHandler;
 import zero.easymvc.Dependency;
 import zero.easymvc.EasyMVCException;
-import zero.maestro.app.dao.AttributeDao;
-import zero.maestro.app.dao.PropertyDao;
-import zero.maestro.app.dao.TagDao;
 import zero.maestro.app.dao.TaskDao;
-import zero.maestro.app.dao.TaskTagDao;
 import zero.maestro.model.Task;
+
+import com.j256.ormlite.support.ConnectionSource;
 
 public class TaskCreateCommand {
 
@@ -20,16 +18,7 @@ public class TaskCreateCommand {
     private TaskDao dao;
 
     @Dependency
-    private TagDao tagDao;
-
-    @Dependency
-    private TaskTagDao taskTagDao;
-
-    @Dependency
-    private AttributeDao attributeDao;
-
-    @Dependency
-    private PropertyDao propertyDao;
+    private ConnectionSource connection;
 
     @ArgumentsBean
     private TaskCreateArguments args;
@@ -50,11 +39,9 @@ public class TaskCreateCommand {
 
         dao.create(task);
 
-        TagAssigner assigner = new TagAssigner(task, args.getTags());
+        TagAssigner assigner = new TagAssigner(task, connection);
 
-        assigner.setDaos(tagDao, taskTagDao, attributeDao, propertyDao);
-
-        assigner.assignTagsToTask();
+        assigner.assignTagsToTask(args.getTags());
     }
 
     private Task getSuperTask() throws SQLException {

@@ -7,12 +7,10 @@ import zero.easymvc.Bean;
 import zero.easymvc.CommandHandler;
 import zero.easymvc.Dependency;
 import zero.easymvc.EasyMVCException;
-import zero.maestro.app.dao.AttributeDao;
-import zero.maestro.app.dao.PropertyDao;
-import zero.maestro.app.dao.TagDao;
 import zero.maestro.app.dao.TaskDao;
-import zero.maestro.app.dao.TaskTagDao;
 import zero.maestro.model.Task;
+
+import com.j256.ormlite.support.ConnectionSource;
 
 public class TaskUpCommand {
 
@@ -26,16 +24,7 @@ public class TaskUpCommand {
     private TaskDao dao;
 
     @Dependency
-    private TagDao tagDao;
-
-    @Dependency
-    private TaskTagDao tasktagDao;
-
-    @Dependency
-    private AttributeDao attributeDao;
-
-    @Dependency
-    private PropertyDao propertyDao;
+    private ConnectionSource connection;
 
     @CommandHandler(path = { "task", "up" })
     public void execute() throws SQLException, EasyMVCException {
@@ -66,9 +55,9 @@ public class TaskUpCommand {
         // TODO Check if task was changed
         dao.update(task);
 
-        TagAssigner assigner = new TagAssigner(task, args.getTags());
+        TagAssigner assigner = new TagAssigner(task, connection);
 
-        assigner.setDaos(tagDao, tasktagDao, attributeDao, propertyDao);
+        assigner.assignTagsToTask(args.getTags());
 
         assigner.assignTagsToTask();
     }
