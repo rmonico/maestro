@@ -4,7 +4,6 @@ import java.sql.SQLException;
 
 import zero.easymvc.ormlite.dao.AbstractDao;
 import zero.maestro.model.Attribute;
-import zero.maestro.model.Tag;
 
 import com.j256.ormlite.stmt.PreparedQuery;
 import com.j256.ormlite.stmt.Where;
@@ -20,9 +19,9 @@ public class AttributeDao extends AbstractDao<Attribute> {
         return (AttributeDao) AbstractDao.getInstance(connection, Attribute.class);
     }
 
-    public Attribute queryForTagAndName(Tag tag, String attributeName) throws SQLException {
+    public Attribute queryForTagAndName(int tagId, String attributeName) throws SQLException {
         Where<Attribute, Integer> where = queryBuilder().where();
-        where.eq(Attribute.TAG_FIELD_NAME, tag.getId());
+        where.eq(Attribute.TAG_FIELD_NAME, tagId);
         where.and().eq(Attribute.NAME_FIELD_NAME, attributeName);
 
         PreparedQuery<Attribute> preparedQuery = where.prepare();
