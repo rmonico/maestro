@@ -38,7 +38,7 @@ public class TagAssigner {
             return;
 
         for (String data : tagData) {
-            TagListArgumentParser parser = new TagListArgumentParser();
+            PropertyListParser parser = new PropertyListParser();
             parser.setDefaultAttributeName("default");
 
             parser.parse(data);
@@ -92,7 +92,7 @@ public class TagAssigner {
         for (String data : tagsToRemove) {
             // TODO Configurar o parser abaixo para devolver apenas as
             // referências sem os valores
-            TagListArgumentParser parser = new TagListArgumentParser();
+            PropertyListParser parser = new PropertyListParser();
             parser.setDefaultAttributeName("default");
 
             parser.parse(data);

@@ -3,7 +3,7 @@ package zero.maestro.app;
 import java.util.LinkedList;
 import java.util.List;
 
-public class TagListArgumentParser {
+public class PropertyListParser {
 
     private static final Character LIST_BEGIN_CHAR = '[';
     private static final Character LIST_END_CHAR = ']';
@@ -16,7 +16,7 @@ public class TagListArgumentParser {
     private List<String> errors;
     private String defaultAttributeName;
 
-    public TagListArgumentParser() {
+    public PropertyListParser() {
         errors = new LinkedList<String>();
 
         attributeList = new LinkedList<ArgumentAttribute>();

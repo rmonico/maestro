@@ -10,15 +10,15 @@ import org.junit.Before;
 import org.junit.Test;
 
 import zero.maestro.app.ArgumentAttribute;
-import zero.maestro.app.TagListArgumentParser;
+import zero.maestro.app.PropertyListParser;
 
-public class TagListArgumentParserTests {
+public class PropertyListParserTests {
 
-    TagListArgumentParser parser;
+    PropertyListParser parser;
 
     @Before
     public void before() {
-        parser = new TagListArgumentParser();
+        parser = new PropertyListParser();
 
         parser.setDefaultAttributeName("default");
     }
