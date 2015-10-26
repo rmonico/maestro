@@ -1,5 +1,6 @@
 package zero.maestro.app;
 
+import java.io.IOException;
 import java.sql.SQLException;
 
 import zero.easymvc.ArgumentsBean;
@@ -27,7 +28,7 @@ public class TaskUpCommand {
     private ConnectionSource connection;
 
     @CommandHandler(path = { "task", "up" })
-    public void execute() throws SQLException, EasyMVCException {
+    public void execute() throws SQLException, EasyMVCException, IOException {
         Task task = dao.queryForId(args.getTaskId());
 
         if (task == null) {

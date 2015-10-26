@@ -1,5 +1,6 @@
 package zero.maestro.app;
 
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -22,7 +23,7 @@ public class PropertyListParser {
         attributeList = new LinkedList<ArgumentAttribute>();
     }
 
-    public void parse(final String arguments) {
+    public void parse(final String arguments) throws IOException {
         int indexOfListBegin = arguments.indexOf(LIST_BEGIN_CHAR);
 
         parseTagNameAndDefaultAttributeValue(arguments, indexOfListBegin);
@@ -43,7 +44,7 @@ public class PropertyListParser {
         parseAttributeList(listData);
     }
 
-    private void parseTagNameAndDefaultAttributeValue(final String arguments, final int indexOfListBegin) {
+    private void parseTagNameAndDefaultAttributeValue(final String arguments, final int indexOfListBegin) throws IOException {
         int indexOfFirstAssignment = arguments.indexOf(PROPERTY_ASSIGN_CHAR);
 
         if (indexOfListBegin == -1) {
@@ -69,7 +70,7 @@ public class PropertyListParser {
             tagName = arguments.substring(0, indexOfListBegin);
     }
 
-    private void parseAttributeList(String listData) {
+    private void parseAttributeList(String listData) throws IOException {
         if (listData.isEmpty())
             return;
 
@@ -89,7 +90,7 @@ public class PropertyListParser {
         }
     }
 
-    private void parseAttribute(String propertyData) {
+    private void parseAttribute(String propertyData) throws IOException {
         int indexOfAssign = propertyData.indexOf(PROPERTY_ASSIGN_CHAR);
 
         String attributeName;

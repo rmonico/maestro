@@ -1,5 +1,6 @@
 package zero.maestro.app;
 
+import java.io.IOException;
 import java.sql.SQLException;
 
 import zero.easymvc.ArgumentsBean;
@@ -27,7 +28,7 @@ public class TaskCreateCommand {
     private Task task;
 
     @CommandHandler(path = { "task", "add" })
-    public void execute() throws SQLException, EasyMVCException {
+    public void execute() throws SQLException, EasyMVCException, IOException {
         task = new Task();
 
         task.setName(args.getTaskName());

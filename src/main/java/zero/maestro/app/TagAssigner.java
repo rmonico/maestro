@@ -1,5 +1,6 @@
 package zero.maestro.app;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -34,7 +35,7 @@ public class TagAssigner {
         this.propertyDao = PropertyDao.getInstance(connection);
     }
 
-    public void assignTagsToTask(String[] tagData) throws SQLException, EasyMVCException {
+    public void assignTagsToTask(String[] tagData) throws SQLException, EasyMVCException, IOException {
         if (tagData == null)
             return;
 

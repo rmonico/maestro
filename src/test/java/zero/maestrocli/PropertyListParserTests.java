@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.junit.Before;
@@ -24,14 +25,14 @@ public class PropertyListParserTests {
     }
 
     @Test
-    public void should_parse_a_single_tag() {
+    public void should_parse_a_single_tag() throws IOException {
         parser.parse("the_tag");
 
         assertEquals("the_tag", parser.getTagName());
     }
 
     @Test
-    public void should_parse_a_tag_with_empty_attribute_list() {
+    public void should_parse_a_tag_with_empty_attribute_list() throws IOException {
         parser.parse("tag[]");
 
         assertTrue("No error", parser.getErrors().isEmpty());
@@ -47,7 +48,7 @@ public class PropertyListParserTests {
     }
 
     @Test
-    public void should_parse_a_tag_with_one_attribute() {
+    public void should_parse_a_tag_with_one_attribute() throws IOException {
         parser.parse("tag[attribute:value]");
 
         assertTrue("No error", parser.getErrors().isEmpty());
@@ -59,7 +60,7 @@ public class PropertyListParserTests {
     }
 
     @Test
-    public void should_parse_a_tag_with_more_than_one_attribute() {
+    public void should_parse_a_tag_with_more_than_one_attribute() throws IOException {
         parser.parse("tag[first:value of first;second_attribute:second's value;terceiro:valor do terceiro]");
 
         assertTrue("No error", parser.getErrors().isEmpty());
@@ -74,7 +75,7 @@ public class PropertyListParserTests {
     }
 
     @Test
-    public void should_parse_a_tag_with_default_attribute_only() {
+    public void should_parse_a_tag_with_default_attribute_only() throws IOException {
         parser.parse("tag:default attribute's value");
 
         assertTrue("No error", parser.getErrors().isEmpty());
@@ -87,7 +88,7 @@ public class PropertyListParserTests {
     }
 
     @Test
-    public void should_parse_a_tag_with_default_and_more_than_one_attribute() {
+    public void should_parse_a_tag_with_default_and_more_than_one_attribute() throws IOException {
         parser.parse("tag:default attribute's value[first_non_default_attribute:property;second:value of second]");
 
         assertTrue("No error", parser.getErrors().isEmpty());
@@ -102,7 +103,7 @@ public class PropertyListParserTests {
     }
 
     @Test
-    public void should_parse_a_non_closed_list() {
+    public void should_parse_a_non_closed_list() throws IOException {
         parser.parse("tag[attribute:value");
 
         assertEquals("Tag name", "tag", parser.getTagName());
@@ -119,7 +120,7 @@ public class PropertyListParserTests {
     }
 
     @Test
-    public void should_parse_unassigned_attribute() {
+    public void should_parse_unassigned_attribute() throws IOException {
         parser.parse("tag[attribute_name value_of_attribute;second:second_value]");
 
         assertEquals("Tag name", "tag", parser.getTagName());

@@ -19,5 +19,6 @@
 
 	<property id="1" tasktag_id="2" attribute_id="1" value="Task's #3 note" />
 	<property id="2" tasktag_id="2" attribute_id="2" value="2015-10-22 10:54:55.718" />
-	<property id="3" tasktag_id="3" attribute_id="1" value="Note\nfrom\nfile" />
+	<!-- Maybe this break in Windows. Replace &#10; with &#13;&#10; (but it will break tests in Linux/MaxOS) -->
+	<property id="3" tasktag_id="3" attribute_id="1" value="Note&#10;from&#10;file&#10;" />
 </dataset>

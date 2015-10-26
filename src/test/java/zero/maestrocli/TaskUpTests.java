@@ -153,7 +153,7 @@ public class TaskUpTests extends MaestrocliTest {
     @Test
     @DBUnitDatasetFileNames("dbunit/TaskUpTests__should_update_task_name.xml")
     public void should_get_property_value_from_file() throws EasyMVCException, FileNotFoundException, SQLException, DatabaseUnitException, MalformedURLException {
-        File file = new File("filename");
+        File file = new File("notefile");
 
         try {
             PrintStream p = new PrintStream(file);
