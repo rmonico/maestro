@@ -85,7 +85,7 @@ public class TagAssigner {
     }
 
     private Tag getTag(String tagName) throws SQLException, EasyMVCException {
-        Tag tag = tagDao.getTagByName(tagName);
+        Tag tag = tagDao.queryForName(tagName);
 
         if (tag == null)
             throw new EasyMVCException(String.format("Unknown tag: \"%s\".", tagName));

@@ -24,7 +24,7 @@ public class AttributeListCommand {
     public void execute() throws SQLException {
         String tagName = args.getTagName();
 
-        tag = dao.getTagByName(tagName);
+        tag = dao.queryForName(tagName);
     }
 
 }

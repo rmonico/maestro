@@ -18,7 +18,7 @@ public class TagDao extends AbstractDao<Tag> {
         return (TagDao) AbstractDao.getInstance(connection, Tag.class);
     }
 
-    public Tag getTagByName(String tagName) throws SQLException {
+    public Tag queryForName(String tagName) throws SQLException {
         List<Tag> tags = queryForEq(Tag.NAME_FIELD_NAME, tagName);
 
         if (tags.isEmpty())

@@ -46,7 +46,7 @@ public class AttributeCreateCommand {
     private Tag getTag() throws SQLException {
         String tagName = arguments.getTagName();
 
-        Tag tag = tagDao.getTagByName(tagName);
+        Tag tag = tagDao.queryForName(tagName);
 
         if (tag == null)
             throw new RuntimeException(String.format("Tag unknown: \"%s\"", tagName));
