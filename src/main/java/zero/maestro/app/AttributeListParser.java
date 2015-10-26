@@ -14,27 +14,42 @@ public class AttributeListParser {
     // private LinkedList<String> errors;
 
     public void parse(final String arguments) {
-        int indexOfListBegin = arguments.indexOf(LIST_BEGIN);
-
         attributes = new LinkedList<String>();
 
+        int indexOfListBegin = arguments.indexOf(LIST_BEGIN);
+
+        if (parseTagName(arguments, indexOfListBegin))
+            return;
+
+        String attributeList = parseRawAttributeList(arguments, indexOfListBegin);
+
+        if (attributeList.isEmpty())
+            return;
+
+        parseAttributeList(attributeList);
+    }
+
+    private boolean parseTagName(final String arguments, int indexOfListBegin) {
         if (indexOfListBegin == -1) {
             tagName = arguments;
-            return;
+            return true;
         }
 
         tagName = arguments.substring(0, indexOfListBegin);
 
+        return false;
+    }
+
+    private String parseRawAttributeList(final String arguments, int indexOfListBegin) {
         int indexOfListEnd = arguments.indexOf(LIST_END);
 
         if (indexOfListEnd == -1)
             indexOfListEnd = arguments.length();
 
-        String attributeList = arguments.substring(indexOfListBegin + 1, indexOfListEnd);
+        return arguments.substring(indexOfListBegin + 1, indexOfListEnd);
+    }
 
-        if (attributeList.isEmpty())
-            return;
-
+    private void parseAttributeList(String attributeList) {
         int attributeEnd = -1;
 
         while (attributeEnd < attributeList.length()) {
