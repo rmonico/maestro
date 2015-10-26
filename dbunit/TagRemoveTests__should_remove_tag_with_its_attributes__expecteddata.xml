@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"  ?>
+<!DOCTYPE dataset SYSTEM "maestro.dtd">
+<dataset>
+	<tag id="1" name="first_tag" />
+	<tag id="2" name="no_attribute_tag" />
+
+</dataset>
