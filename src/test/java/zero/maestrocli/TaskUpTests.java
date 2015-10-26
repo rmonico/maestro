@@ -7,6 +7,8 @@ import static org.hamcrest.core.IsNull.notNullValue;
 import static org.junit.Assert.fail;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintStream;
 import java.net.MalformedURLException;
 import java.sql.SQLException;
 
@@ -146,5 +148,37 @@ public class TaskUpTests extends MaestrocliTest {
         ITable actualProperty = databaseDataSet.getTable("property");
 
         assertThat(actualProperty.getRowCount(), is(0));
+    }
+
+    @Test
+    @DBUnitDatasetFileNames("dbunit/TaskUpTests__should_update_task_name.xml")
+    public void should_get_property_value_from_file() throws EasyMVCException, FileNotFoundException, SQLException, DatabaseUnitException, MalformedURLException {
+        File file = new File("filename");
+
+        try {
+            PrintStream p = new PrintStream(file);
+
+            p.println("Note");
+            p.println("from");
+            p.println("file");
+
+            p.close();
+
+            controller.run("task", "up", "1", "--tags=note:@notefile");
+
+            IDataSet databaseDataSet = getDBUnitDataset();
+            ITable actualTaskTag = databaseDataSet.getTable("tasktag");
+            ITable actualProperty = databaseDataSet.getTable("property");
+
+            IDataSet expectedDataSet = new FlatXmlDataSetBuilder().build(new File("dbunit/TaskUpTests__should_get_property_value_from_file__expecteddata.xml"));
+            ITable expectedTaskTag = expectedDataSet.getTable("tasktag");
+            ITable expectedProperty = expectedDataSet.getTable("property");
+
+            Assertion.assertEquals(expectedTaskTag, actualTaskTag);
+            Assertion.assertEquals(expectedProperty, actualProperty);
+        } finally {
+            file.delete();
+        }
+
     }
 }
