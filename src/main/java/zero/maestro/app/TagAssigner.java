@@ -64,7 +64,7 @@ public class TagAssigner {
             for (ArgumentAttribute argAttribute : attributes) {
                 String attributeName = argAttribute.getName();
 
-                Attribute attribute = attributeDao.getAttributeByName(tag, attributeName);
+                Attribute attribute = attributeDao.queryForTagAndName(tag, attributeName);
 
                 if (attribute == null)
                     throw new EasyMVCException(String.format("Unknown attribute: \"%s\" on tag \"%s\".", attributeName, tagName));
@@ -121,7 +121,7 @@ public class TagAssigner {
                 propertyDao.deletePropertiesForTaskTagId(taskTag.getId());
             } else {
                 for (String attributeName : attributes) {
-                    Attribute attribute = attributeDao.getAttributeByName(tag, attributeName);
+                    Attribute attribute = attributeDao.queryForTagAndName(tag, attributeName);
 
                     if (attribute == null)
                         throw new EasyMVCException(String.format("Unknown attribute: \"%s\" on tag \"%s\".", attributeName, tagName));

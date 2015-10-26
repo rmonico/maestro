@@ -20,7 +20,7 @@ public class AttributeDao extends AbstractDao<Attribute> {
         return (AttributeDao) AbstractDao.getInstance(connection, Attribute.class);
     }
 
-    public Attribute getAttributeByName(Tag tag, String attributeName) throws SQLException {
+    public Attribute queryForTagAndName(Tag tag, String attributeName) throws SQLException {
         Where<Attribute, Integer> where = queryBuilder().where();
         where.eq(Attribute.TAG_FIELD_NAME, tag.getId());
         where.and().eq(Attribute.NAME_FIELD_NAME, attributeName);
