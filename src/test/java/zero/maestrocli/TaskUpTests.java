@@ -139,7 +139,7 @@ public class TaskUpTests extends MaestrocliTest {
 
     @Test
     @DBUnitDatasetFileNames("dbunit/TaskUpTests__should_update_task_name.xml")
-    public void should_remove_remove_all_attributes_but_tag() throws EasyMVCException, SQLException, DatabaseUnitException, MalformedURLException {
+    public void should_remove_remove_all_attributes_but_tag() throws EasyMVCException, SQLException, DatabaseUnitException {
         controller.run("task", "up", "3", "--removetags=note[*]");
 
         IDataSet databaseDataSet = getDBUnitDataset();
