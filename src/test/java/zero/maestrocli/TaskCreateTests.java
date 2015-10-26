@@ -77,6 +77,15 @@ public class TaskCreateTests extends MaestrocliTest {
         Assert.assertTaskTags(new String[] { "important" }, tagList);
     }
 
+    private List<Tag> createTagList(Task task) {
+        List<Tag> tagList = new LinkedList<Tag>();
+
+        for (TaskTag taskTag : task.getTaskTags())
+            tagList.add(taskTag.getTag());
+
+        return tagList;
+    }
+
     @Test
     @DBUnitDatasetFileNames("dbunit/TaskCreateTests_should_create_a_task_with_note.xml")
     public void should_create_a_task_with_note() throws Exception {
@@ -157,15 +166,6 @@ public class TaskCreateTests extends MaestrocliTest {
 
         Assertion.assertEquals(expectedTask, actualTask);
         Assertion.assertEquals(expectedProperty, actualProperty);
-    }
-
-    private List<Tag> createTagList(Task task) {
-        List<Tag> tagList = new LinkedList<Tag>();
-
-        for (TaskTag taskTag : task.getTaskTags())
-            tagList.add(taskTag.getTag());
-
-        return tagList;
     }
 
 }
