@@ -1,13 +1,16 @@
 package zero.maestro.app;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import zero.easymvc.ArgumentsBean;
 import zero.easymvc.Bean;
 import zero.easymvc.CommandHandler;
 import zero.easymvc.Dependency;
 import zero.easymvc.EasyMVCException;
+import zero.maestro.app.dao.AttributeDao;
 import zero.maestro.app.dao.TagDao;
+import zero.maestro.model.Attribute;
 import zero.maestro.model.Tag;
 
 public class TagRemoveCommand {
@@ -18,8 +21,14 @@ public class TagRemoveCommand {
     @Dependency
     private TagDao dao;
 
+    @Dependency
+    private AttributeDao attributeDao;
+
     @Bean
     private Tag removedTag;
+
+    @Bean
+    private List<Attribute> attributes;
 
     @CommandHandler(path = { "tag", "rm" })
     public void execute() throws SQLException, EasyMVCException {
@@ -31,6 +40,12 @@ public class TagRemoveCommand {
         // args.getTagName());
         // throw new EasyMVCException(message);
         // }
+
+        int tagId = removedTag.getId();
+
+        attributes = attributeDao.queryForTag(tagId);
+
+        attributeDao.deleteForTag(tagId);
 
         dao.delete(removedTag);
     }
