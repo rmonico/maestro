@@ -18,6 +18,7 @@ import com.j256.ormlite.support.ConnectionSource;
 
 public class TagAssigner {
 
+    private static final String ALL_PROPERTIES_NAME = "*";
     private Task task;
     private TagDao tagDao;
     private TaskTagDao taskTagDao;
@@ -90,10 +91,7 @@ public class TagAssigner {
             return;
 
         for (String data : tagsToRemove) {
-            // TODO Configurar o parser abaixo para devolver apenas as
-            // referências sem os valores
-            PropertyListParser parser = new PropertyListParser();
-            parser.setDefaultAttributeName("default");
+            AttributeListParser parser = new AttributeListParser();
 
             parser.parse(data);
 
@@ -109,13 +107,37 @@ public class TagAssigner {
             if (taskTag == null)
                 throw new EasyMVCException(String.format("Tag \"%s\" not found on task \"%s\".", tagName, task.getName()));
 
-            List<ArgumentAttribute> attributes = parser.getAttributes();
+            List<String> attributes = parser.getAttributes();
 
             if (attributes.isEmpty()) {
                 propertyDao.deletePropertiesForTaskTagId(taskTag.getId());
 
                 taskTagDao.delete(taskTag);
+            } else if (shouldRemoveAllPropertiesFromTaskTag(attributes)) {
+                propertyDao.deletePropertiesForTaskTagId(taskTag.getId());
+            } else {
+                for (String attributeName : attributes) {
+                    Attribute attribute = attributeDao.getAttributeByName(tag, attributeName);
+
+                    if (attribute == null)
+                        throw new EasyMVCException(String.format("Unknown attribute: \"%s\" on tag \"%s\".", attributeName, tagName));
+
+                    Property property = propertyDao.queryForAttributeAndTaskTagId(attribute.getId(), taskTag.getId());
+
+                    if (property == null)
+                        throw new EasyMVCException(String.format("Unknown property: \"%s\" on tag \"%s\" of task #%d.", attributeName, tagName, task.getId()));
+
+                    propertyDao.delete(property);
+                }
             }
         }
+    }
+
+    private boolean shouldRemoveAllPropertiesFromTaskTag(List<String> attributes) {
+        if (attributes.size() > 0)
+            if (ALL_PROPERTIES_NAME.equals(attributes.get(0)))
+                return true;
+
+        return false;
     }
 }
