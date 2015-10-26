@@ -11,10 +11,12 @@
     <tag id="3" name="quick" />
 
     <attribute id="1" name="default" type="TEXT" tag_id="2" />
+    <attribute id="2" name="creation" type="TEXT" tag_id="2" />
 
     <tasktag id="1" task_id="3" tag_id="1" />
     <tasktag id="2" task_id="3" tag_id="2" />
     <tasktag id="3" task_id="3" tag_id="3" />
 
     <property id="1" tasktag_id="2" attribute_id="1" value="New note on task #3" />
+    <property id="2" tasktag_id="2" attribute_id="2" value="2015-10-22 10:54:55.718" />
 </dataset>
