@@ -46,10 +46,7 @@ public class TagAssigner {
 
             String tagName = parser.getTagName();
 
-            Tag tag = tagDao.getTagByName(tagName);
-
-            if (tag == null)
-                throw new EasyMVCException(String.format("Unknown tag: \"%s\".", tagName));
+            Tag tag = getTag(tagName);
 
             TaskTag taskTag = taskTagDao.queryForTaskAndTagId(task.getId(), tag.getId());
 
@@ -86,6 +83,15 @@ public class TagAssigner {
         }
     }
 
+    private Tag getTag(String tagName) throws SQLException, EasyMVCException {
+        Tag tag = tagDao.getTagByName(tagName);
+
+        if (tag == null)
+            throw new EasyMVCException(String.format("Unknown tag: \"%s\".", tagName));
+
+        return tag;
+    }
+
     public void removeTags(String[] tagsToRemove) throws SQLException, EasyMVCException {
         if (tagsToRemove == null)
             return;
@@ -97,10 +103,7 @@ public class TagAssigner {
 
             String tagName = parser.getTagName();
 
-            Tag tag = tagDao.getTagByName(tagName);
-
-            if (tag == null)
-                throw new EasyMVCException(String.format("Unknown tag: \"%s\".", tagName));
+            Tag tag = getTag(tagName);
 
             TaskTag taskTag = taskTagDao.queryForTaskAndTagId(task.getId(), tag.getId());
 
