@@ -51,7 +51,7 @@ public class TaskRemoveCommand {
     private void removeTask(Task task) throws SQLException {
         removeProperties();
 
-        List<TaskTag> taskTagQuery = taskTagDao.queryForTaskId(task.getId());
+        List<TaskTag> taskTagQuery = taskTagDao.queryForTask(task.getId());
 
         taskTagDao.delete(taskTagQuery);
 

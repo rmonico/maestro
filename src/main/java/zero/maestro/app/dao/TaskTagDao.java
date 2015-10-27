@@ -20,7 +20,7 @@ public class TaskTagDao extends AbstractDao<TaskTag> {
         return (TaskTagDao) AbstractDao.getInstance(connection, TaskTag.class);
     }
 
-    public TaskTag queryForTaskAndTagId(int taskId, int tagId) throws SQLException {
+    public TaskTag queryForTaskAndTag(int taskId, int tagId) throws SQLException {
         Where<TaskTag, Integer> where = queryBuilder().where();
         where.eq(TaskTag.TAG_FIELD_NAME, tagId);
         where.and().eq(TaskTag.TASK_FIELD_NAME, taskId);
@@ -30,7 +30,7 @@ public class TaskTagDao extends AbstractDao<TaskTag> {
         return queryForFirst(query);
     }
 
-    public List<TaskTag> queryForTagId(int tagId) throws SQLException {
+    public List<TaskTag> queryForTag(int tagId) throws SQLException {
         Where<TaskTag, Integer> where = queryBuilder().where();
         where.eq(TaskTag.TAG_FIELD_NAME, tagId);
 
@@ -39,7 +39,7 @@ public class TaskTagDao extends AbstractDao<TaskTag> {
         return query(query);
     }
 
-    public List<TaskTag> queryForTaskId(int taskId) throws SQLException {
+    public List<TaskTag> queryForTask(int taskId) throws SQLException {
         Where<TaskTag, Integer> where = queryBuilder().where();
         where.eq(TaskTag.TASK_FIELD_NAME, taskId);
 

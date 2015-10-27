@@ -49,7 +49,7 @@ public class TagAssigner {
 
             Tag tag = getTag(tagName);
 
-            TaskTag taskTag = taskTagDao.queryForTaskAndTagId(task.getId(), tag.getId());
+            TaskTag taskTag = taskTagDao.queryForTaskAndTag(task.getId(), tag.getId());
 
             if (taskTag == null)
                 taskTag = new TaskTag();
@@ -106,7 +106,7 @@ public class TagAssigner {
 
             Tag tag = getTag(tagName);
 
-            TaskTag taskTag = taskTagDao.queryForTaskAndTagId(task.getId(), tag.getId());
+            TaskTag taskTag = taskTagDao.queryForTaskAndTag(task.getId(), tag.getId());
 
             if (taskTag == null)
                 throw new EasyMVCException(String.format("Tag \"%s\" not found on task \"%s\".", tagName, task.getName()));

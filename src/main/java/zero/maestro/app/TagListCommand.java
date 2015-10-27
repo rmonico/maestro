@@ -34,7 +34,7 @@ public class TagListCommand {
         taskCount = new HashMap<>();
 
         for (Tag tag : tags) {
-            List<TaskTag> tasks = taskTagDao.queryForTagId(tag.getId());
+            List<TaskTag> tasks = taskTagDao.queryForTag(tag.getId());
 
             taskCount.put(tag, tasks.size());
         }
