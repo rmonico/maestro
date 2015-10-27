@@ -46,12 +46,10 @@ public class TagRemoveCommand {
     public void execute() throws SQLException, EasyMVCException {
         removedTag = dao.queryForName(args.getTagName());
 
-        // TODO Test
-        // if (tag == null) {
-        // String message = String.format("Unknown tag: \"%s\"",
-        // args.getTagName());
-        // throw new EasyMVCException(message);
-        // }
+        if (removedTag == null) {
+            String message = String.format("Unknown tag: \"%s\".", args.getTagName());
+            throw new EasyMVCException(message);
+        }
 
         int tagId = removedTag.getId();
 
