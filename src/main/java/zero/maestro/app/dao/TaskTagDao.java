@@ -6,6 +6,8 @@ import java.util.List;
 import zero.easymvc.ormlite.dao.AbstractDao;
 import zero.maestro.model.TaskTag;
 
+import com.j256.ormlite.stmt.DeleteBuilder;
+import com.j256.ormlite.stmt.PreparedDelete;
 import com.j256.ormlite.stmt.PreparedQuery;
 import com.j256.ormlite.stmt.Where;
 import com.j256.ormlite.support.ConnectionSource;
@@ -46,6 +48,16 @@ public class TaskTagDao extends AbstractDao<TaskTag> {
         PreparedQuery<TaskTag> query = where.prepare();
 
         return query(query);
+    }
+
+    public void deleteForTag(int tagId) throws SQLException {
+        DeleteBuilder<TaskTag, Integer> builder = deleteBuilder();
+        Where<TaskTag, Integer> where = builder.where();
+        where.eq(TaskTag.TAG_FIELD_NAME, tagId);
+
+        PreparedDelete<TaskTag> query = builder.prepare();
+
+        delete(query);
     }
 
 }

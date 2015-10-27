@@ -63,7 +63,7 @@ public class TagRemoveTests extends MaestrocliTest {
         Assertion.assertEquals(expectedTag, actualTag);
         Assertion.assertEquals(expectedAttribute, actualAttribute);
 
-        assertThat("Line count", sysoutWrapper.capturedLines.size(), greaterThanOrEqualTo(1));
+        assertThat("Line count", sysoutWrapper.capturedLines.size(), greaterThanOrEqualTo(3));
         assertThat("Line #0", sysoutWrapper.capturedLines.get(0), is("Tag \"tag_with_attributes\" removed."));
         assertThat("Line #1", sysoutWrapper.capturedLines.get(1), is("Attribute \"attr1\" (type TEXT) removed."));
         assertThat("Line #2", sysoutWrapper.capturedLines.get(2), is("Attribute \"another_attribute\" (type INTEGER) removed."));
