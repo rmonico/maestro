@@ -1,25 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"  ?>
-<!DOCTYPE dataset SYSTEM "dbunit/maestro.dtd">
+<!DOCTYPE dataset SYSTEM "maestro.dtd">
 <dataset>
 	<tag id="1" name="first_tag" />
 	<tag id="2" name="no_attribute_tag" />
 	<tag id="3" name="tag_with_attributes" />
 	<tag id="4" name="tag_with_tasks" />
-	<tag id="5" name="tag_with_tasks_attributes_and_properties" />
 
 	<attribute id="1" name="attr1" type="TEXT" tag_id="3" />
 	<attribute id="2" name="another_attribute" type="INTEGER" tag_id="3" />
-	<attribute id="3" name="default" type="TEXT" tag_id="5" />
-	<attribute id="4" name="creation" type="TEXT" tag_id="5" />
 
 	<task id="1" name="A task" />
 	<task id="2" name="Another task" />
 
 	<tasktag id="1" task_id="1" tag_id="4" />
 	<tasktag id="2" task_id="2" tag_id="4" />
-	<tasktag id="3" task_id="1" tag_id="5" />
-	<tasktag id="4" task_id="2" tag_id="5" />
-
-	<property id="1" tasktag_id="3" attribute_id="3" value="Default" />
-	<property id="2" tasktag_id="4" attribute_id="4" value="2015-10-27 04:14" />
 </dataset>
