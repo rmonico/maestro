@@ -3,6 +3,9 @@ package zero.maestrocli;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 import static org.hamcrest.core.Is.is;
+import static org.hamcrest.core.IsInstanceOf.instanceOf;
+import static org.hamcrest.core.IsNull.notNullValue;
+import static org.junit.Assert.fail;
 
 import java.io.File;
 import java.net.MalformedURLException;
@@ -117,5 +120,21 @@ public class TagRemoveTests extends MaestrocliTest {
         assertThat("Line #2", sysoutWrapper.capturedLines.get(2), is("Task \"Another task\" unmarked."));
         assertThat("Line #3", sysoutWrapper.capturedLines.get(3), is("Attribute \"default\" (type TEXT) removed."));
         assertThat("Line #4", sysoutWrapper.capturedLines.get(4), is("Attribute \"creation\" (type TEXT) removed."));
+    }
+
+    @Test
+    @DBUnitDatasetFileNames("dbunit/TagRemoveTests__base_data.xml")
+    public void should_throw_exception_when_try_to_remove_unexisting_tag() {
+        try {
+            controller.run("tag", "rm", "unexisting_tag");
+
+            fail("Exception not throw!");
+        } catch (EasyMVCException e) {
+            Throwable cause = e.getCause();
+
+            assertThat("Cause not null", cause, is(notNullValue()));
+            assertThat("Exception class", cause, instanceOf(EasyMVCException.class));
+            assertThat("Message", cause.getMessage(), is("Unknown tag: \"unexisting_tag\"."));
+        }
     }
 }
