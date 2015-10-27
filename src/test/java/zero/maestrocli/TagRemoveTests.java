@@ -85,8 +85,8 @@ public class TagRemoveTests extends MaestrocliTest {
         Assertion.assertEquals(expectedTag, actualTag);
         Assertion.assertEquals(expectedTaskTag, actualTaskTag);
 
-        assertThat("Line count", sysoutWrapper.capturedLines.size(), greaterThanOrEqualTo(1));
-        assertThat("Line #0", sysoutWrapper.capturedLines.get(0), is("Tag \"tag_with_attributes\" removed."));
+        assertThat("Line count", sysoutWrapper.capturedLines.size(), greaterThanOrEqualTo(3));
+        assertThat("Line #0", sysoutWrapper.capturedLines.get(0), is("Tag \"tag_with_tasks\" removed."));
         assertThat("Line #1", sysoutWrapper.capturedLines.get(1), is("Task \"A task\" unmarked."));
         assertThat("Line #2", sysoutWrapper.capturedLines.get(2), is("Task \"Another task\" unmarked."));
     }
