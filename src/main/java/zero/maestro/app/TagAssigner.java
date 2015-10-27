@@ -69,7 +69,7 @@ public class TagAssigner {
                 if (attribute == null)
                     throw new EasyMVCException(String.format("Unknown attribute: \"%s\" on tag \"%s\".", attributeName, tagName));
 
-                Property property = propertyDao.queryForAttributeAndTaskTagId(attribute.getId(), taskTag.getId());
+                Property property = propertyDao.queryForAttributeAndTaskTag(attribute.getId(), taskTag.getId());
 
                 if (property == null)
                     property = new Property();
@@ -114,11 +114,11 @@ public class TagAssigner {
             List<String> attributes = parser.getAttributes();
 
             if (attributes.isEmpty()) {
-                propertyDao.deletePropertiesForTaskTagId(taskTag.getId());
+                propertyDao.deletePropertiesForTaskTag(taskTag.getId());
 
                 taskTagDao.delete(taskTag);
             } else if (shouldRemoveAllPropertiesFromTaskTag(attributes)) {
-                propertyDao.deletePropertiesForTaskTagId(taskTag.getId());
+                propertyDao.deletePropertiesForTaskTag(taskTag.getId());
             } else {
                 for (String attributeName : attributes) {
                     Attribute attribute = attributeDao.queryForTagAndName(tag.getId(), attributeName);
@@ -126,7 +126,7 @@ public class TagAssigner {
                     if (attribute == null)
                         throw new EasyMVCException(String.format("Unknown attribute: \"%s\" on tag \"%s\".", attributeName, tagName));
 
-                    Property property = propertyDao.queryForAttributeAndTaskTagId(attribute.getId(), taskTag.getId());
+                    Property property = propertyDao.queryForAttributeAndTaskTag(attribute.getId(), taskTag.getId());
 
                     if (property == null)
                         throw new EasyMVCException(String.format("Unknown property: \"%s\" on tag \"%s\" of task #%d.", attributeName, tagName, task.getId()));

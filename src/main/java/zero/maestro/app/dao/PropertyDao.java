@@ -21,7 +21,7 @@ public class PropertyDao extends AbstractDao<Property> {
         return (PropertyDao) AbstractDao.getInstance(connection, Property.class);
     }
 
-    public Property queryForAttributeAndTaskTagId(int attributeId, int taskTagId) throws SQLException {
+    public Property queryForAttributeAndTaskTag(int attributeId, int taskTagId) throws SQLException {
         Where<Property, Integer> where = queryBuilder().where();
         where.eq(Property.ATTRIBUTE_FIELD_NAME, attributeId);
         where.and().eq(Property.TASKTAG_FIELD_NAME, taskTagId);
@@ -31,7 +31,7 @@ public class PropertyDao extends AbstractDao<Property> {
         return queryForFirst(query);
     }
 
-    public void deletePropertiesForTaskTagId(int taskTagId) throws SQLException {
+    public void deletePropertiesForTaskTag(int taskTagId) throws SQLException {
         DeleteBuilder<Property, Integer> builder = deleteBuilder();
 
         Where<Property, Integer> where = builder.where();
