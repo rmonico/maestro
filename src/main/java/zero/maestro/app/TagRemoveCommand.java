@@ -9,6 +9,7 @@ import zero.easymvc.CommandHandler;
 import zero.easymvc.Dependency;
 import zero.easymvc.EasyMVCException;
 import zero.maestro.app.dao.AttributeDao;
+import zero.maestro.app.dao.PropertyDao;
 import zero.maestro.app.dao.TagDao;
 import zero.maestro.app.dao.TaskTagDao;
 import zero.maestro.model.Attribute;
@@ -28,6 +29,9 @@ public class TagRemoveCommand {
 
     @Dependency
     private TaskTagDao taskTagDao;
+
+    @Dependency
+    private PropertyDao propertyDao;
 
     @Bean
     private Tag removedTag;
@@ -54,6 +58,8 @@ public class TagRemoveCommand {
         attributes = attributeDao.queryForTag(tagId);
 
         attributeDao.deleteForTag(tagId);
+
+        propertyDao.deleteForTag(tagId);
 
         taskTags = taskTagDao.queryForTag(tagId);
 
