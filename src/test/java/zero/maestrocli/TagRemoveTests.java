@@ -69,15 +69,31 @@ public class TagRemoveTests extends MaestrocliTest {
         assertThat("Line #2", sysoutWrapper.capturedLines.get(2), is("Attribute \"another_attribute\" (type INTEGER) removed."));
     }
 
-    @Ignore
     @Test
-    public void should_remove_tag_and_related_tasktags() {
+    @DBUnitDatasetFileNames("dbunit/TagRemoveTests__base_data.xml")
+    public void should_remove_tag_and_related_tasktags() throws EasyMVCException, SQLException, DatabaseUnitException, MalformedURLException {
+        controller.run("tag", "rm", "tag_with_tasks");
 
+        IDataSet databaseDataSet = getDBUnitDataset();
+        ITable actualTag = databaseDataSet.getTable("tag");
+        ITable actualTaskTag = databaseDataSet.getTable("tasktag");
+
+        IDataSet expectedDataSet = new FlatXmlDataSetBuilder().build(new File("dbunit/TagRemoveTests__should_remove_tag_and_related_tasktags__expecteddata.xml"));
+        ITable expectedTag = expectedDataSet.getTable("tag");
+        ITable expectedTaskTag = expectedDataSet.getTable("tasktag");
+
+        Assertion.assertEquals(expectedTag, actualTag);
+        Assertion.assertEquals(expectedTaskTag, actualTaskTag);
+
+        assertThat("Line count", sysoutWrapper.capturedLines.size(), greaterThanOrEqualTo(1));
+        assertThat("Line #0", sysoutWrapper.capturedLines.get(0), is("Tag \"tag_with_attributes\" removed."));
+        assertThat("Line #1", sysoutWrapper.capturedLines.get(1), is("Task \"A task\" unmarked."));
+        assertThat("Line #2", sysoutWrapper.capturedLines.get(2), is("Task \"Another task\" unmarked."));
     }
 
     @Ignore
     @Test
-    public void should_remove_tag_its_attributes_and_related_tasktags() {
+    public void should_remove_tag_its_attributes_related_tasktags_and_properties() {
 
     }
 }
