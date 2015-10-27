@@ -3,5 +3,9 @@
 <dataset>
 	<tag id="1" name="first_tag" />
 	<tag id="2" name="no_attribute_tag" />
+	<tag id="4" name="tag_with_tasks" />
+	<tag id="5" name="tag_with_tasks_attributes_and_properties" />
 
+	<attribute id="3" name="default" type="TEXT" tag_id="5" />
+	<attribute id="4" name="creation" type="TEXT" tag_id="5" />
 </dataset>

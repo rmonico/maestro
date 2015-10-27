@@ -54,13 +54,14 @@ public class TagRemoveTests extends MaestrocliTest {
 
         IDataSet databaseDataSet = getDBUnitDataset();
         ITable actualTag = databaseDataSet.getTable("tag");
-        ITable actualAttributes = databaseDataSet.getTable("attribute");
+        ITable actualAttribute = databaseDataSet.getTable("attribute");
 
         IDataSet expectedDataSet = new FlatXmlDataSetBuilder().build(new File("dbunit/TagRemoveTests__should_remove_tag_with_its_attributes__expecteddata.xml"));
         ITable expectedTag = expectedDataSet.getTable("tag");
+        ITable expectedAttribute = expectedDataSet.getTable("attribute");
 
         Assertion.assertEquals(expectedTag, actualTag);
-        assertThat("Attribute table", actualAttributes.getRowCount(), is(0));
+        Assertion.assertEquals(expectedAttribute, actualAttribute);
 
         assertThat("Line count", sysoutWrapper.capturedLines.size(), greaterThanOrEqualTo(1));
         assertThat("Line #0", sysoutWrapper.capturedLines.get(0), is("Tag \"tag_with_attributes\" removed."));
