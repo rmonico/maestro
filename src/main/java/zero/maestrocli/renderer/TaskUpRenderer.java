@@ -43,7 +43,7 @@ public class TaskUpRenderer {
     }
 
     private void showTagsChange() {
-        if (args.getTags() == null)
+        if (isTagsChanged())
             return;
 
         StringBuilder oldTags = formatTags(oldTask);
@@ -53,18 +53,23 @@ public class TaskUpRenderer {
         System.out.println(message);
     }
 
-    private StringBuilder formatTags(Task task) {
-        if (task.getTaskTags().isEmpty())
-            return new StringBuilder("<none>");
+    private boolean isTagsChanged() {
+        return (args.getTags() == null) && (args.getTagsToRemove() == null);
+    }
 
-        StringBuilder formatted = new StringBuilder("[");
+    private StringBuilder formatTags(Task task) {
+        StringBuilder formatted = new StringBuilder();
 
         for (TaskTag taskTag : task.getTaskTags()) {
             formatted.append(taskTag.getTag().getName());
             formatted.append(",");
         }
 
-        formatted.delete(formatted.length() - 1, formatted.length());
+        if (formatted.length() > 0)
+            formatted.delete(formatted.length() - 1, formatted.length());
+
+        formatted.insert(0, "[");
+
         formatted.append("]");
 
         return formatted;
