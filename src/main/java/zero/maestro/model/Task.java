@@ -1,10 +1,10 @@
 package zero.maestro.model;
 
 import java.util.Collection;
+import java.util.LinkedList;
 
 import zero.maestro.app.dao.TaskDao;
 
-import com.j256.ormlite.dao.ForeignCollection;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
@@ -26,10 +26,21 @@ public class Task {
     private Task superTask;
 
     @ForeignCollectionField
-    private ForeignCollection<TaskTag> taskTags;
+    private Collection<TaskTag> taskTags;
 
     @ForeignCollectionField
     private Collection<Task> subTasks;
+
+    public Task() {
+    }
+
+    public Task(Task cloned) {
+        this.id = cloned.id;
+        this.name = cloned.name;
+        this.superTask = cloned.superTask;
+        this.taskTags = new LinkedList<>(cloned.taskTags);
+        this.subTasks = new LinkedList<>(cloned.subTasks);
+    }
 
     public int getId() {
         return id;
@@ -55,7 +66,7 @@ public class Task {
         this.superTask = superTask;
     }
 
-    public ForeignCollection<TaskTag> getTaskTags() {
+    public Collection<TaskTag> getTaskTags() {
         return taskTags;
     }
 

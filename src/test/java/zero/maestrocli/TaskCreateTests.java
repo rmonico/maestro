@@ -8,6 +8,7 @@ import java.net.MalformedURLException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -104,7 +105,7 @@ public class TaskCreateTests extends MaestrocliTest {
 
         Assert.assertTask("Task with note", null, task);
 
-        ForeignCollection<TaskTag> taskTags = task.getTaskTags();
+        Collection<TaskTag> taskTags = task.getTaskTags();
 
         assertNotNull(taskTags);
         assertEquals(1, taskTags.size());

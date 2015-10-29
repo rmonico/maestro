@@ -16,13 +16,14 @@ import com.j256.ormlite.support.ConnectionSource;
 public class TaskUpCommand {
 
     @ArgumentsBean
+    @Bean
     private TaskUpArguments args;
 
     @Bean
     private Task task;
 
     @Bean
-    private String oldTaskName;
+    private Task oldTask;
 
     @Dependency
     private TaskDao dao;
@@ -39,8 +40,9 @@ public class TaskUpCommand {
             throw new RuntimeException(message);
         }
 
+        oldTask = new Task(task);
+
         if (args.getName() != null) {
-            oldTaskName = task.getName();
             task.setName(args.getName());
         }
 
