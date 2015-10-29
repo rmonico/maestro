@@ -21,6 +21,9 @@ public class TaskUpCommand {
     @Bean
     private Task task;
 
+    @Bean
+    private String oldTaskName;
+
     @Dependency
     private TaskDao dao;
 
@@ -29,7 +32,7 @@ public class TaskUpCommand {
 
     @CommandHandler(path = { "task", "up" })
     public void execute() throws SQLException, EasyMVCException, IOException {
-        Task task = dao.queryForId(args.getTaskId());
+        task = dao.queryForId(args.getTaskId());
 
         if (task == null) {
             String message = String.format("Task id #%d not found.", args.getTaskId());
@@ -37,6 +40,7 @@ public class TaskUpCommand {
         }
 
         if (args.getName() != null) {
+            oldTaskName = task.getName();
             task.setName(args.getName());
         }
 
