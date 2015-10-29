@@ -1,6 +1,7 @@
 package zero.maestrocli;
 
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsInstanceOf.instanceOf;
 import static org.hamcrest.core.IsNull.notNullValue;
@@ -45,6 +46,10 @@ public class TaskUpTests extends MaestrocliTest {
         ITable expectedTask = expectedDataSet.getTable("task");
 
         Assertion.assertEquals(expectedTask, actualTask);
+
+        assertThat("Line count", sysoutWrapper.capturedLines.size(), greaterThanOrEqualTo(2));
+        assertThat("Line #0", sysoutWrapper.capturedLines.get(0), is("Task #2:"));
+        assertThat("Line #1", sysoutWrapper.capturedLines.get(1), is("Name: \"Test task #2\" -> \"New task name\""));
     }
 
     @Test
