@@ -77,6 +77,10 @@ public class TaskUpTests extends MaestrocliTest {
         ITable expectedTask = expectedDataSet.getTable("task");
 
         Assertion.assertEquals(expectedTask, actualTask);
+
+        assertThat("Line count", sysoutWrapper.capturedLines.size(), greaterThanOrEqualTo(2));
+        assertThat("Line #0", sysoutWrapper.capturedLines.get(0), is("Task #2:"));
+        assertThat("Line #1", sysoutWrapper.capturedLines.get(1), is("Supertask: <none> -> \"Test task #1\""));
     }
 
     @Test
