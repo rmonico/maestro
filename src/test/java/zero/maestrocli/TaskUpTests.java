@@ -167,6 +167,10 @@ public class TaskUpTests extends MaestrocliTest {
         ITable expectedProperty = expectedDataSet.getTable("property");
 
         Assertion.assertEquals(expectedProperty, actualProperty);
+
+        assertThat("Line count", sysoutWrapper.capturedLines.size(), greaterThanOrEqualTo(2));
+        assertThat("Line #0", sysoutWrapper.capturedLines.get(0), is("Task #3:"));
+        assertThat("Line #1", sysoutWrapper.capturedLines.get(1), is("Tags: [important,note] -> [important,note] (property changed?)"));
     }
 
     @Test
