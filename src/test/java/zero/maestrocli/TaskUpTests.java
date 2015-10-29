@@ -149,6 +149,10 @@ public class TaskUpTests extends MaestrocliTest {
 
         assertThat(actualTaskTag.getRowCount(), is(0));
         assertThat(actualProperty.getRowCount(), is(0));
+
+        assertThat("Line count", sysoutWrapper.capturedLines.size(), greaterThanOrEqualTo(2));
+        assertThat("Line #0", sysoutWrapper.capturedLines.get(0), is("Task #3:"));
+        assertThat("Line #1", sysoutWrapper.capturedLines.get(1), is("Tags: [important,note] -> []"));
     }
 
     @Test
