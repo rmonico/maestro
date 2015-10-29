@@ -17,12 +17,21 @@ import org.dbunit.DatabaseUnitException;
 import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.ITable;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
+import org.junit.Before;
 import org.junit.Test;
 
 import zero.easymvc.EasyMVCException;
 import zero.utils.test.DBUnitDatasetFileNames;
 
 public class TaskUpTests extends MaestrocliTest {
+
+    private SysoutWrapper sysoutWrapper;
+
+    @Before
+    public void setup() {
+        sysoutWrapper = new SysoutWrapper();
+        System.setOut(sysoutWrapper);
+    }
 
     @Test
     @DBUnitDatasetFileNames("dbunit/TaskUpTests__should_update_task_name.xml")
