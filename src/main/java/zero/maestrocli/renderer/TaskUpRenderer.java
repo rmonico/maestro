@@ -3,6 +3,7 @@ package zero.maestrocli.renderer;
 import zero.easymvc.Renderer;
 import zero.maestro.app.TaskUpArguments;
 import zero.maestro.model.Task;
+import zero.maestro.model.TaskTag;
 
 public class TaskUpRenderer {
 
@@ -14,22 +15,62 @@ public class TaskUpRenderer {
     public void render() {
         System.out.println(String.format("Task #%d:", task.getId()));
 
-        if (args.getName() != null) {
-            String message = String.format("Name: \"%s\" -> \"%s\"", oldTask.getName(), task.getName());
-            System.out.println(message);
-        }
+        showNameChange();
 
-        if (args.getSupertaskID() != null) {
-            StringBuilder oldSuperTaskName = getSuperTaskNameOrNone(oldTask);
+        showSupertaskChange();
 
-            StringBuilder superTaskName = getSuperTaskNameOrNone(task);
-
-            String message = String.format("Supertask: %s -> %s", oldSuperTaskName, superTaskName);
-            System.out.println(message);
-        }
+        showTagsChange();
     }
 
-    private StringBuilder getSuperTaskNameOrNone(Task task) {
+    private void showNameChange() {
+        if (args.getName() == null)
+            return;
+
+        String message = String.format("Name: \"%s\" -> \"%s\"", oldTask.getName(), task.getName());
+        System.out.println(message);
+    }
+
+    private void showSupertaskChange() {
+        if (args.getSupertaskID() == null)
+            return;
+
+        StringBuilder oldSuperTaskName = formatSuperTaskName(oldTask);
+
+        StringBuilder superTaskName = formatSuperTaskName(task);
+
+        String message = String.format("Supertask: %s -> %s", oldSuperTaskName, superTaskName);
+        System.out.println(message);
+    }
+
+    private void showTagsChange() {
+        if (args.getTags() == null)
+            return;
+
+        StringBuilder oldTags = formatTags(oldTask);
+        StringBuilder tags = formatTags(task);
+
+        String message = String.format("Tags: %s -> %s", oldTags, tags);
+        System.out.println(message);
+    }
+
+    private StringBuilder formatTags(Task task) {
+        if (task.getTaskTags().isEmpty())
+            return new StringBuilder("<none>");
+
+        StringBuilder formatted = new StringBuilder("[");
+
+        for (TaskTag taskTag : task.getTaskTags()) {
+            formatted.append(taskTag.getTag().getName());
+            formatted.append(",");
+        }
+
+        formatted.delete(formatted.length() - 1, formatted.length());
+        formatted.append("]");
+
+        return formatted;
+    }
+
+    private StringBuilder formatSuperTaskName(Task task) {
         Task superTask = task.getSuperTask();
 
         if (superTask != null) {
