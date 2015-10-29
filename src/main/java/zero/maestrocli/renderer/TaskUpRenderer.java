@@ -49,7 +49,14 @@ public class TaskUpRenderer {
         StringBuilder oldTags = formatTags(oldTask);
         StringBuilder tags = formatTags(task);
 
-        String message = String.format("Tags: %s -> %s", oldTags, tags);
+        String note;
+
+        if (oldTags.toString().equals(tags.toString()))
+            note = " (property changed?)";
+        else
+            note = "";
+
+        String message = String.format("Tags: %s -> %s%s", oldTags, tags, note);
         System.out.println(message);
     }
 
