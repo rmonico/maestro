@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"  ?>
 <!DOCTYPE dataset SYSTEM "dbunit/maestro.dtd">
 <dataset>
-	<task id="1" name="A supertask" />
-	<task id="2" name="A task with supertask" supertask_id="1" />
+	<task id="1" name="Parent task" />
+	<task id="2" name="Sister task" supertask_id="1" />
+	<task id="3" name="Sister sub task" supertask_id="2" />
+	<task id="4" name="The task" supertask_id="1" />
+	<task id="5" name="Sub task" supertask_id="4" />
+	<task id="6" name="Sub sub task" supertask_id="5" />
 </dataset>

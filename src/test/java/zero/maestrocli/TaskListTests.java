@@ -40,10 +40,14 @@ public class TaskListTests extends MaestrocliTest {
         @SuppressWarnings("unchecked")
         List<Task> tasks = EasyMVCAssert.assertAndGetBean(beans, 0, List.class);
 
-        assertEquals(2, tasks.size());
+        assertEquals(6, tasks.size());
 
-        Assert.assertTask("A supertask", null, tasks.get(0));
-        Assert.assertTask("A task with supertask", "A supertask", tasks.get(1));
+        Assert.assertTask("Parent task", null, tasks.get(0));
+        Assert.assertTask("Sister task", "Parent task", tasks.get(1));
+        Assert.assertTask("Sister sub task", "Sister task", tasks.get(2));
+        Assert.assertTask("The task", "Parent task", tasks.get(3));
+        Assert.assertTask("Sub task", "The task", tasks.get(4));
+        Assert.assertTask("Sub sub task", "Sub task", tasks.get(5));
     }
 
     @Test
@@ -58,7 +62,7 @@ public class TaskListTests extends MaestrocliTest {
 
         assertEquals(1, tasks.size());
 
-        Assert.assertTask("A supertask", null, tasks.get(0));
+        Assert.assertTask("Parent task", null, tasks.get(0));
     }
 
     @Test
