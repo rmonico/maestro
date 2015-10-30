@@ -1,5 +1,8 @@
 package zero.maestrocli;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.greaterThanOrEqualTo;
+import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -67,6 +70,17 @@ public class TaskListColumnsTests extends MaestrocliTest {
         assertTrue("Line count", wrapper.capturedLines.size() > 5);
         assertEquals("Header line", "| Name      |", wrapper.capturedLines.get(1));
         assertEquals("Data line", "| Test task |", wrapper.capturedLines.get(3));
+    }
+
+    @Test
+    @DBUnitDatasetFileNames("dbunit/TaskListTests__should_render_every_possible_columns_for_top_tasks.xml")
+    public void should_render_supertask_column() throws EasyMVCException {
+        controller.run("task", "ls", "--columns=supertask");
+
+        assertThat("Line count", wrapper.capturedLines.size(), greaterThanOrEqualTo(13));
+        assertThat("Header line", wrapper.capturedLines.get(1), is("| Supertask |"));
+        assertThat("Data line #1", wrapper.capturedLines.get(3), is("| <null>    |"));
+        assertThat("Data line #2", wrapper.capturedLines.get(4), is("| Test task |"));
     }
 
     @Test
