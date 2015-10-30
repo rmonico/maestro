@@ -65,6 +65,11 @@ public class TaskListRenderer {
                 break;
             }
 
+            case "supertask": {
+                defs.add(createSupertaskColumn());
+                break;
+            }
+
             case "subtaskcount": {
                 defs.add(createSubtaskCountColumn());
                 break;
@@ -101,6 +106,10 @@ public class TaskListRenderer {
 
     private Column createNameColumn() {
         return new FormattedColumn("Name", new ReflectionFieldExtractor("name"), StringFormatter.getInstance());
+    }
+
+    private Column createSupertaskColumn() {
+        return new FormattedColumn("Supertask", new ReflectionFieldExtractor("superTask", new ReflectionFieldExtractor("name")), StringFormatter.getInstance());
     }
 
     private Column createSubtaskCountColumn() {
