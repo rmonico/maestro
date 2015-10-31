@@ -54,6 +54,8 @@ public class TaskListCommand {
 
         taskBuilder.groupBy(Task.ID_FIELD_NAME);
 
+        taskBuilder.orderBy(Task.ID_FIELD_NAME, false);
+
         PreparedQuery<Task> query = taskBuilder.prepare();
 
         tasks = dao.query(query);
