@@ -1,6 +1,6 @@
 package zero.maestrocli;
 
-import static org.junit.Assert.assertEquals;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.util.List;
 
@@ -23,7 +23,7 @@ public class TaskListTests extends MaestrocliTest {
         @SuppressWarnings("unchecked")
         List<Task> tasks = EasyMVCAssert.assertAndGetBean(beans, 0, List.class);
 
-        assertEquals(3, tasks.size());
+        assertThat("Task count", tasks.size(), is(3));
 
         Assert.assertTask("First task ever", null, tasks.get(0));
         Assert.assertTask("Second task", null, tasks.get(1));
@@ -40,7 +40,7 @@ public class TaskListTests extends MaestrocliTest {
         @SuppressWarnings("unchecked")
         List<Task> tasks = EasyMVCAssert.assertAndGetBean(beans, 0, List.class);
 
-        assertEquals(6, tasks.size());
+        assertThat("Task count", tasks.size(), is(6));
 
         Assert.assertTask("Parent task", null, tasks.get(0));
         Assert.assertTask("Sister task", "Parent task", tasks.get(1));
@@ -60,7 +60,7 @@ public class TaskListTests extends MaestrocliTest {
         @SuppressWarnings("unchecked")
         List<Task> tasks = EasyMVCAssert.assertAndGetBean(beans, 0, List.class);
 
-        assertEquals(1, tasks.size());
+        assertThat("Task count", tasks.size(), is(1));
 
         Assert.assertTask("Parent task", null, tasks.get(0));
     }
@@ -75,7 +75,7 @@ public class TaskListTests extends MaestrocliTest {
         @SuppressWarnings("unchecked")
         List<Task> tasks = EasyMVCAssert.assertAndGetBean(beans, 0, List.class);
 
-        assertEquals(3, tasks.size());
+        assertThat("Task count", tasks.size(), is(3));
 
         Assert.assertTask("Something important", null, tasks.get(0));
         Assert.assertTask("Something import to buy", null, tasks.get(1));
@@ -92,7 +92,7 @@ public class TaskListTests extends MaestrocliTest {
         @SuppressWarnings("unchecked")
         List<Task> tasks = EasyMVCAssert.assertAndGetBean(beans, 0, List.class);
 
-        assertEquals(3, tasks.size());
+        assertThat("Task count", tasks.size(), is(3));
 
         Assert.assertTask("First task", null, tasks.get(0));
         Assert.assertTask("Second task with different word", null, tasks.get(1));
@@ -108,7 +108,7 @@ public class TaskListTests extends MaestrocliTest {
         @SuppressWarnings("unchecked")
         List<Task> tasks = EasyMVCAssert.assertAndGetBean(beans, 0, List.class);
 
-        assertEquals(1, tasks.size());
+        assertThat("Task count", tasks.size(), is(1));
 
         Assert.assertTask("With love from me to you", null, tasks.get(0));
     }
@@ -122,7 +122,7 @@ public class TaskListTests extends MaestrocliTest {
         @SuppressWarnings("unchecked")
         List<Task> tasks = EasyMVCAssert.assertAndGetBean(beans, 0, List.class);
 
-        assertEquals(2, tasks.size());
+        assertThat("Task count", tasks.size(), is(2));
 
         Assert.assertTask("Task #2", null, tasks.get(0));
         Assert.assertTask("Task #3", null, tasks.get(1));
