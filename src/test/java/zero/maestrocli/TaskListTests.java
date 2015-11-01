@@ -41,14 +41,48 @@ public class TaskListTests extends MaestrocliTest {
         @SuppressWarnings("unchecked")
         List<Task> tasks = EasyMVCAssert.assertAndGetBean(beans, 0, List.class);
 
-        assertThat("Task count", tasks.size(), is(6));
+        assertThat("Task count", tasks.size(), is(40));
 
-        Assert.assertTask("Parent task", null, tasks.get(5));
-        Assert.assertTask("Sister task", "Parent task", tasks.get(4));
-        Assert.assertTask("Sister sub task", "Sister task", tasks.get(3));
-        Assert.assertTask("The task", "Parent task", tasks.get(2));
-        Assert.assertTask("Sub task", "The task", tasks.get(1));
-        Assert.assertTask("Sub sub task", "Sub task", tasks.get(0));
+        Assert.assertTask("Parent #11", null, tasks.get(0));
+        Assert.assertTask("Parent #10", null, tasks.get(1));
+        Assert.assertTask("Parent #10, sub #2", "Parent #10", tasks.get(2));
+        Assert.assertTask("Parent #10, sub #1", "Parent #10", tasks.get(3));
+        Assert.assertTask("Parent #10, sub #1, sub #1", "Parent #10, sub #1", tasks.get(4));
+        Assert.assertTask("Parent #10, sub #1, sub #2", "Parent #10, sub #1", tasks.get(5));
+        Assert.assertTask("Parent #10, sub #1, sub #4", "Parent #10, sub #1", tasks.get(6));
+        Assert.assertTask("Parent #10, sub #1, sub #3", "Parent #10, sub #1", tasks.get(7));
+        Assert.assertTask("Parent #9", null, tasks.get(8));
+        Assert.assertTask("Parent #8", null, tasks.get(9));
+        Assert.assertTask("Parent #8, sub #1", "Parent #8", tasks.get(10));
+        Assert.assertTask("Parent #8, sub #1, sub #2", "Parent #8, sub #1", tasks.get(11));
+        Assert.assertTask("Parent #8, sub #1, sub #1", "Parent #8, sub #1", tasks.get(12));
+        Assert.assertTask("Parent #8, sub #1, sub #3", "Parent #8, sub #1", tasks.get(13));
+        Assert.assertTask("Parent #7", null, tasks.get(14));
+        Assert.assertTask("Parent #7, sub #4", "Parent #7", tasks.get(15));
+        Assert.assertTask("Parent #7, sub #3", "Parent #7", tasks.get(16));
+        Assert.assertTask("Parent #7, sub #2", "Parent #7", tasks.get(17));
+        Assert.assertTask("Parent #7, sub #2, sub #1", "Parent #7, sub #2", tasks.get(18));
+        Assert.assertTask("Parent #7, sub #2, sub #2", "Parent #7, sub #2", tasks.get(19));
+        Assert.assertTask("Parent #7, sub #2, sub #3", "Parent #7, sub #2", tasks.get(20));
+        Assert.assertTask("Parent #7, sub #1", "Parent #7", tasks.get(21));
+        Assert.assertTask("Parent #7, sub #1, sub #1", "Parent #7, sub #1", tasks.get(22));
+        Assert.assertTask("Parent #7, sub #1, sub #2", "Parent #7, sub #1", tasks.get(23));
+        Assert.assertTask("Parent #7, sub #1, sub #3", "Parent #7, sub #1", tasks.get(24));
+        Assert.assertTask("Parent #7, sub #1, sub #4", "Parent #7, sub #1", tasks.get(25));
+        Assert.assertTask("Parent #6", null, tasks.get(26));
+        Assert.assertTask("Parent #5", null, tasks.get(27));
+        Assert.assertTask("Parent #4", null, tasks.get(28));
+        Assert.assertTask("Parent #4, sub #4", "Parent #4", tasks.get(29));
+        Assert.assertTask("Parent #4, sub #1", "Parent #4", tasks.get(30));
+        Assert.assertTask("Parent #4, sub #2", "Parent #4", tasks.get(31));
+        Assert.assertTask("Parent #4, sub #3", "Parent #4", tasks.get(32));
+        Assert.assertTask("Parent #3", null, tasks.get(33));
+        Assert.assertTask("Parent #3, sub #1", "Parent #3", tasks.get(34));
+        Assert.assertTask("Parent #3, sub #2", "Parent #3", tasks.get(35));
+        Assert.assertTask("Parent #3, sub #3", "Parent #3", tasks.get(36));
+        Assert.assertTask("Parent #3, sub #4", "Parent #3", tasks.get(37));
+        Assert.assertTask("Parent #1", null, tasks.get(38));
+        Assert.assertTask("Parent #2", null, tasks.get(39));
     }
 
     @Test
@@ -61,9 +95,19 @@ public class TaskListTests extends MaestrocliTest {
         @SuppressWarnings("unchecked")
         List<Task> tasks = EasyMVCAssert.assertAndGetBean(beans, 0, List.class);
 
-        assertThat("Task count", tasks.size(), is(1));
+        assertThat("Task count", tasks.size(), is(11));
 
-        Assert.assertTask("Parent task", null, tasks.get(0));
+        Assert.assertTask("Parent #11", null, tasks.get(0));
+        Assert.assertTask("Parent #10", null, tasks.get(1));
+        Assert.assertTask("Parent #9", null, tasks.get(2));
+        Assert.assertTask("Parent #8", null, tasks.get(3));
+        Assert.assertTask("Parent #7", null, tasks.get(4));
+        Assert.assertTask("Parent #6", null, tasks.get(5));
+        Assert.assertTask("Parent #5", null, tasks.get(6));
+        Assert.assertTask("Parent #4", null, tasks.get(7));
+        Assert.assertTask("Parent #3", null, tasks.get(8));
+        Assert.assertTask("Parent #1", null, tasks.get(9));
+        Assert.assertTask("Parent #2", null, tasks.get(10));
     }
 
     @Test
