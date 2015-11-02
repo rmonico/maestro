@@ -53,7 +53,7 @@ public class TaskListColumnsTests extends MaestrocliTest {
     }
 
     @Test
-    @DBUnitDatasetFileNames("dbunit/TaskListTests__should_render_every_possible_columns_for_top_tasks.xml")
+    @DBUnitDatasetFileNames("dbunit/TaskListColumnsTests__should_render_every_possible_columns_for_top_tasks.xml")
     public void should_render_id_column_for_top_tasks() throws EasyMVCException {
         controller.run("task", "ls", "--nosubtasks", "--columns=id");
 
@@ -63,7 +63,7 @@ public class TaskListColumnsTests extends MaestrocliTest {
     }
 
     @Test
-    @DBUnitDatasetFileNames("dbunit/TaskListTests__should_render_every_possible_columns_for_top_tasks.xml")
+    @DBUnitDatasetFileNames("dbunit/TaskListColumnsTests__should_render_every_possible_columns_for_top_tasks.xml")
     public void should_render_name_column_for_top_tasks() throws EasyMVCException {
         controller.run("task", "ls", "--nosubtasks", "--columns=name");
 
@@ -73,7 +73,7 @@ public class TaskListColumnsTests extends MaestrocliTest {
     }
 
     @Test
-    @DBUnitDatasetFileNames("dbunit/TaskListTests__should_render_every_possible_columns_for_top_tasks.xml")
+    @DBUnitDatasetFileNames("dbunit/TaskListColumnsTests__should_render_every_possible_columns_for_top_tasks.xml")
     public void should_render_supertask_column() throws EasyMVCException {
         controller.run("task", "ls", "--columns=supertask");
 
@@ -91,7 +91,7 @@ public class TaskListColumnsTests extends MaestrocliTest {
     }
 
     @Test
-    @DBUnitDatasetFileNames("dbunit/TaskListTests__should_render_every_possible_columns_for_top_tasks.xml")
+    @DBUnitDatasetFileNames("dbunit/TaskListColumnsTests__should_render_every_possible_columns_for_top_tasks.xml")
     public void should_render_subtaskcount_column_for_top_tasks() throws EasyMVCException {
         controller.run("task", "ls", "--nosubtasks", "--columns=subtaskcount");
 
@@ -101,7 +101,7 @@ public class TaskListColumnsTests extends MaestrocliTest {
     }
 
     @Test
-    @DBUnitDatasetFileNames("dbunit/TaskListTests__should_render_every_possible_columns_for_top_tasks.xml")
+    @DBUnitDatasetFileNames("dbunit/TaskListColumnsTests__should_render_every_possible_columns_for_top_tasks.xml")
     public void should_render_tagcount_column_for_top_tasks() throws EasyMVCException {
         controller.run("task", "ls", "--nosubtasks", "--columns=tagcount");
 
@@ -111,7 +111,7 @@ public class TaskListColumnsTests extends MaestrocliTest {
     }
 
     @Test
-    @DBUnitDatasetFileNames("dbunit/TaskListTests__should_render_every_possible_columns_for_top_tasks.xml")
+    @DBUnitDatasetFileNames("dbunit/TaskListColumnsTests__should_render_every_possible_columns_for_top_tasks.xml")
     public void should_render_tags_column_for_top_tasks() throws EasyMVCException {
         controller.run("task", "ls", "--nosubtasks", "--columns=tags");
 
@@ -121,7 +121,7 @@ public class TaskListColumnsTests extends MaestrocliTest {
     }
 
     @Test
-    @DBUnitDatasetFileNames("dbunit/TaskListTests__should_render_every_possible_columns_for_top_tasks.xml")
+    @DBUnitDatasetFileNames("dbunit/TaskListColumnsTests__should_render_every_possible_columns_for_top_tasks.xml")
     public void should_render_properties_of_column_for_top_tasks() throws EasyMVCException {
         controller.run("task", "ls", "--nosubtasks", "--columns=propertiesof:sometag");
 
@@ -131,7 +131,7 @@ public class TaskListColumnsTests extends MaestrocliTest {
     }
 
     @Test
-    @DBUnitDatasetFileNames("dbunit/TaskListTests__should_render_every_possible_columns_for_top_tasks.xml")
+    @DBUnitDatasetFileNames("dbunit/TaskListColumnsTests__should_render_every_possible_columns_for_top_tasks.xml")
     public void should_render_property_column_for_top_tasks() throws EasyMVCException {
         controller.run("task", "ls", "--nosubtasks", "--columns=property:othertag.someattr");
 
@@ -141,7 +141,7 @@ public class TaskListColumnsTests extends MaestrocliTest {
     }
 
     @Test
-    @DBUnitDatasetFileNames("dbunit/TaskListTests__should_render_every_possible_columns_for_top_tasks.xml")
+    @DBUnitDatasetFileNames("dbunit/TaskListColumnsTests__should_render_every_possible_columns_for_top_tasks.xml")
     public void should_render_every_possible_columns_for_top_tasks() throws EasyMVCException {
         controller.run("task", "ls", "--nosubtasks", "--columns=id,name,subtaskcount,tags,tagcount,propertiesof:sometag,property:othertag.someattr");
 
