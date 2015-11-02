@@ -22,13 +22,13 @@ public class Task {
     @DatabaseField
     private String name;
 
-    @DatabaseField(foreign = true, canBeNull = true, foreignAutoRefresh = true)
+    @DatabaseField(foreign = true, canBeNull = true, foreignAutoRefresh = true, maxForeignAutoRefreshLevel = 3)
     private Task superTask;
 
     @ForeignCollectionField
     private Collection<TaskTag> taskTags;
 
-    @ForeignCollectionField
+    @ForeignCollectionField(orderColumnName = "id", orderAscending = false)
     private Collection<Task> subTasks;
 
     public Task() {
