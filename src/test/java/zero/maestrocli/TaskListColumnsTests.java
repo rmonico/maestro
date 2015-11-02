@@ -81,6 +81,13 @@ public class TaskListColumnsTests extends MaestrocliTest {
         assertThat("Header line", wrapper.capturedLines.get(1), is("| Supertask |"));
         assertThat("Data line #1", wrapper.capturedLines.get(3), is("| <null>    |"));
         assertThat("Data line #2", wrapper.capturedLines.get(4), is("| Test task |"));
+        assertThat("Data line #3", wrapper.capturedLines.get(5), is("| Test task |"));
+        assertThat("Data line #4", wrapper.capturedLines.get(6), is("| Test task |"));
+        assertThat("Data line #5", wrapper.capturedLines.get(7), is("| Test task |"));
+        assertThat("Data line #6", wrapper.capturedLines.get(8), is("| Test task |"));
+        assertThat("Data line #7", wrapper.capturedLines.get(9), is("| Test task |"));
+        assertThat("Data line #8", wrapper.capturedLines.get(10), is("| Test task |"));
+        assertThat("Data line #9", wrapper.capturedLines.get(11), is("| Test task |"));
     }
 
     @Test
