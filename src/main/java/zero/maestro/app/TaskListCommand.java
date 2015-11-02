@@ -54,8 +54,6 @@ public class TaskListCommand {
 
         taskBuilder.groupBy(Task.ID_FIELD_NAME);
 
-        taskBuilder.orderBy(Task.ID_FIELD_NAME, false);
-
         PreparedQuery<Task> query = taskBuilder.prepare();
 
         tasks = dao.query(query);
@@ -73,6 +71,8 @@ public class TaskListCommand {
 
             columns = parser.parse(rawColumns);
         }
+
+        tasks.sort(new TaskComparator(new SameLevelTaskComparator()));
     }
 
     private void applyTagsFilter() throws SQLException {
