@@ -16,6 +16,7 @@ import zero.listprinter.ListPrinter;
 import zero.listprinter.ListPrinterException;
 import zero.listprinter.NoParamMethodExtractor;
 import zero.listprinter.ReflectionFieldExtractor;
+import zero.listprinter.SimpleColumn;
 import zero.listprinter.StringFormatter;
 import zero.maestro.model.Task;
 
@@ -23,6 +24,7 @@ public class TaskListRenderer {
 
     private List<Task> tasks;
     private String[] columns;
+    private TaskNameAsTreeExtractor nameColumnExtractor;
 
     @Renderer(path = { "task", "ls" })
     public void render() throws ListPrinterException {
@@ -105,7 +107,10 @@ public class TaskListRenderer {
     }
 
     private Column createNameColumn() {
-        return new FormattedColumn("Name", new ReflectionFieldExtractor("name"), StringFormatter.getInstance());
+        if (nameColumnExtractor == null)
+            nameColumnExtractor = new TaskNameAsTreeExtractor(tasks);
+
+        return new SimpleColumn("Name", nameColumnExtractor);
     }
 
     private Column createSupertaskColumn() {
