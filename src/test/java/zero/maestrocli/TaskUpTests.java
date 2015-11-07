@@ -22,6 +22,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import zero.easymvc.EasyMVCException;
+import zero.utils.sysoutwrapper.SysoutWrapper;
 import zero.utils.test.DBUnitDatasetFileNames;
 
 public class TaskUpTests extends MaestrocliTest {
