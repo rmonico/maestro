@@ -71,7 +71,7 @@ public class DatabaseUpdateTests extends MaestrocliTest {
 
     @Test
     @ForceDatabaseUpdaterToVersion(1)
-    @DBUnitDatasetFileNames("dbunit/DatabaseUpdateTests__should_create_initial_database__expecteddata.xml")
+    @DBUnitDatasetFileNames("dbunit/DatabaseUpdateTests__should_update_database_to_version_1.xml")
     public void should_update_database_to_version_1() throws EasyMVCException, SQLException, DatabaseUnitException, MalformedURLException {
         controller.run("--check-and-update-database");
 
