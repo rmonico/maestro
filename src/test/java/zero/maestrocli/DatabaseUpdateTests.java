@@ -18,7 +18,6 @@ import org.junit.Test;
 
 import zero.easymvc.EasyMVCException;
 import zero.utils.sysoutwrapper.SysoutWrapper;
-import zero.utils.test.DBUnitDatasetFileNames;
 import zero.utils.test.ForceDatabaseUpdaterToVersion;
 
 public class DatabaseUpdateTests extends MaestrocliTest {
@@ -71,7 +70,6 @@ public class DatabaseUpdateTests extends MaestrocliTest {
 
     @Test
     @ForceDatabaseUpdaterToVersion(1)
-    @DBUnitDatasetFileNames("dbunit/DatabaseUpdateTests__should_update_database_to_version_1.xml")
     public void should_update_database_to_version_1() throws EasyMVCException, SQLException, DatabaseUnitException, MalformedURLException {
         controller.run("--check-and-update-database");
 
