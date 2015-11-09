@@ -1,6 +1,7 @@
 package zero.maestrocli;
 
-import zero.easymvc.ormlite.DatabaseVersion;
+import zero.easymvc.ormlite.DatabaseUpdater;
+import zero.easymvc.ormlite.MetaInfUpdater;
 import zero.utils.test.DBUnitUpdater;
 import zero.utils.test.TestApplicationFactory;
 
@@ -9,6 +10,7 @@ import com.j256.ormlite.support.ConnectionSource;
 public class MaestrocliTestApplicationFactory extends MaestrocliApplicationFactory implements TestApplicationFactory {
 
     private String[] datasetFileNames;
+    private int updaterVersion = -1;
 
     public MaestrocliTestApplicationFactory() {
         super(MaestrocliApplicationFactory.BASENAME + "_test");
@@ -21,12 +23,28 @@ public class MaestrocliTestApplicationFactory extends MaestrocliApplicationFacto
     }
 
     @Override
-    protected DatabaseVersion createDatabaseVersion() throws Exception {
+    public void setDatabaseUpdaterVersion(int updaterVersion) {
+        this.updaterVersion = updaterVersion;
+    }
+
+    @Override
+    public DatabaseUpdater getDatabaseUpdater() {
         ConnectionSource connection = connectionManager.getConnection();
 
-        MaestrocliTestUpdater previousVersion = new MaestrocliTestUpdater(connection, super.createDatabaseVersion());
+        return new DBUnitUpdater(connection, getUpdaterFor(connection), datasetFileNames);
+    }
 
-        return new DBUnitUpdater(connection, previousVersion, datasetFileNames);
+    private DatabaseUpdater getUpdaterFor(ConnectionSource connection) {
+        switch (updaterVersion) {
+        case -1:
+            return super.getDatabaseUpdater();
+
+        case 0:
+            return new MetaInfUpdater(connection);
+
+        default:
+            return null;
+        }
     }
 
 }
