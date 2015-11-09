@@ -37,6 +37,7 @@ public class MaestrocliTestApplicationFactory extends MaestrocliApplicationFacto
     private DatabaseUpdater getUpdaterFor(ConnectionSource connection) {
         switch (updaterVersion) {
         case -1:
+        case 1:
             return super.getDatabaseUpdater();
 
         case 0:
