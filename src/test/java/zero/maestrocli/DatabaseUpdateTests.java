@@ -9,14 +9,18 @@ import java.sql.SQLException;
 
 import org.dbunit.Assertion;
 import org.dbunit.DatabaseUnitException;
+import org.dbunit.dataset.DataSetException;
 import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.ITable;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import zero.easymvc.EasyMVCException;
 import zero.utils.sysoutwrapper.SysoutWrapper;
+import zero.utils.test.DBUnitDatasetFileNames;
+import zero.utils.test.ForceDatabaseUpdaterToVersion;
 
 public class DatabaseUpdateTests extends MaestrocliTest {
 
@@ -28,12 +32,27 @@ public class DatabaseUpdateTests extends MaestrocliTest {
         System.setOut(sysoutWrapper);
     }
 
+    private boolean isTableExists(IDataSet dataset, String tableName) throws DataSetException {
+        String[] tableNames = dataset.getTableNames();
+
+        for (String candidateTableName : tableNames) {
+            if (candidateTableName.equals(tableName))
+                return true;
+        }
+
+        return false;
+    }
+
     @Test
+    @ForceDatabaseUpdaterToVersion(0)
     public void should_create_initial_database() throws EasyMVCException, SQLException, DatabaseUnitException, MalformedURLException {
         controller.run("--check-and-update-database");
 
-        IDataSet databaseDataSet = getDBUnitDataset();
-        ITable actualMetainf = databaseDataSet.getTable("metainf");
+        IDataSet dataset = getDBUnitDataset();
+
+        assertThat("metainf table existence", isTableExists(dataset, "metainf"), is(true));
+
+        ITable actualMetainf = dataset.getTable("metainf");
 
         IDataSet expectedDataSet = new FlatXmlDataSetBuilder().build(new File("dbunit/DatabaseUpdateTests__should_create_initial_database__expecteddata.xml"));
         ITable expectedMetainf = expectedDataSet.getTable("metainf");
