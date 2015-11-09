@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
-import zero.easymvc.ormlite.DatabaseVersion;
+import zero.easymvc.ormlite.DatabaseUpdater;
 import zero.easymvc.ormlite.factory.ApplicationFactory;
 import zero.environment.ApplicationPropertyKeys;
 import zero.environment.Environment;
@@ -28,8 +28,10 @@ import zero.maestro.model.Property;
 import zero.maestro.model.Tag;
 import zero.maestro.model.Task;
 import zero.maestro.model.TaskTag;
+import zero.maestrocli.app.DatabaseUpdateCommand;
 import zero.maestrocli.renderer.AttributeCreateRenderer;
 import zero.maestrocli.renderer.AttributeListRenderer;
+import zero.maestrocli.renderer.DatabaseUpdateRenderer;
 import zero.maestrocli.renderer.TagCreateRenderer;
 import zero.maestrocli.renderer.TagListRenderer;
 import zero.maestrocli.renderer.TagRemoveRenderer;
@@ -91,6 +93,7 @@ public class MaestrocliApplicationFactory extends ApplicationFactory {
         commands.add(TaskRemoveCommand.class);
         commands.add(TaskUpCommand.class);
         commands.add(TagRemoveCommand.class);
+        commands.add(DatabaseUpdateCommand.class);
     }
 
     @Override
@@ -106,10 +109,11 @@ public class MaestrocliApplicationFactory extends ApplicationFactory {
         renderers.add(TaskRemoveRenderer.class);
         renderers.add(TaskUpRenderer.class);
         renderers.add(TagRemoveRenderer.class);
+        renderers.add(DatabaseUpdateRenderer.class);
     }
 
     @Override
-    protected DatabaseVersion createDatabaseVersion() throws Exception {
+    public DatabaseUpdater getDatabaseUpdater() {
         return new DatabaseVersion_1(connectionManager.getConnection());
     }
 
