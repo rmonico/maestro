@@ -2,6 +2,7 @@ package zero.maestrocli.app;
 
 import java.sql.SQLException;
 
+import zero.easymvc.Bean;
 import zero.easymvc.CommandHandler;
 import zero.easymvc.Dependency;
 import zero.easymvc.ormlite.DatabaseUpdater;
@@ -20,13 +21,17 @@ public class DatabaseUpdateCommand {
     private MetaInfDao dao;
 
     @Dependency
+    @Bean
     private DatabaseUpdater updater;
+
+    @Bean
+    private int oldDatabaseVersion;
 
     @CommandHandler(path = { "--check-and-update-database" })
     public void run() throws Exception {
-        int version = getDatabaseVersion();
+        oldDatabaseVersion = getDatabaseVersion();
 
-        updater.update(version);
+        updater.update(oldDatabaseVersion);
 
         dao.updateDatabaseVersion(updater.getUpdaterVersion());
 
