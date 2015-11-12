@@ -18,4 +18,9 @@ public class MaestrocliTest extends AbstractEasyMVCOrmliteTest {
         return new MaestrocliTestApplicationFactory();
     }
 
+    @Override
+    protected AbstractApplicationFactory createApplicationFactory(int databaseVersion) {
+        return new MaestrocliTestApplicationFactory(databaseVersion);
+    }
+
 }

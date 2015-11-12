@@ -1,58 +1,56 @@
 package zero.maestrocli;
 
+import java.sql.SQLException;
+import java.util.LinkedList;
+import java.util.List;
+
+import zero.easymvc.ormlite.ConnectionManager;
 import zero.easymvc.ormlite.DatabaseUpdater;
 import zero.easymvc.ormlite.MetaInfUpdater;
+import zero.maestro.database.DatabaseVersion_1;
+import zero.utils.test.AbstractTestApplicationFactory;
 import zero.utils.test.TestApplicationFactory;
 
 import com.j256.ormlite.support.ConnectionSource;
 
 public class MaestrocliTestApplicationFactory extends MaestrocliApplicationFactory implements TestApplicationFactory {
 
-    private int databaseVersion;
+    private AbstractTestApplicationFactory testApplicationFactoryDelegated;
 
     public MaestrocliTestApplicationFactory() {
+        this(AbstractTestApplicationFactory.DATABASE_LAST_VERSION);
+    }
+
+    public MaestrocliTestApplicationFactory(int databaseVersion) {
         super(MaestrocliApplicationFactory.BASENAME + "_test");
+
+        testApplicationFactoryDelegated = new AbstractTestApplicationFactory(databaseVersion);
     }
 
     @Override
-    public void setDatabaseVersion(int databaseVersion) {
-        this.databaseVersion = databaseVersion;
+    public ConnectionManager makeConnectionManager() throws SQLException {
+        ConnectionManager connectionManager = super.makeConnectionManager();
+
+        ConnectionSource connection = connectionManager.getConnection();
+
+        List<DatabaseUpdater> updaters = new LinkedList<DatabaseUpdater>();
+
+        updaters.add(new MetaInfUpdater(connection));
+        updaters.add(new DatabaseVersion_1(connection));
+
+        testApplicationFactoryDelegated.addUpdaters(updaters);
+
+        return connectionManager;
     }
 
     @Override
     public DatabaseUpdater getDatabaseUpdater() {
-        // TODO Extrair este código para uma classe
-        // AbstractTestApplicationFactory, pois todo o TestApplicationFactory
-        // vai fazer do mesmo jeito
-        return getDatabaseUpdater(databaseVersion);
+        return testApplicationFactoryDelegated.getDatabaseUpdater();
     }
 
     @Override
     public DatabaseUpdater getBeforeTestsDatabaseUpdater() {
-        // TODO Extrair este código para uma classe
-        // AbstractTestApplicationFactory, pois todo o TestApplicationFactory
-        // vai fazer do mesmo jeito
-
-        if (databaseVersion == 0)
-            return null;
-        else
-            return getDatabaseUpdater(databaseVersion - 1);
-    }
-
-    private DatabaseUpdater getDatabaseUpdater(int updaterVersion) {
-        ConnectionSource connection = connectionManager.getConnection();
-
-        switch (updaterVersion) {
-        case -1:
-        case 1:
-            return super.getDatabaseUpdater();
-
-        case 0:
-            return new MetaInfUpdater(connection);
-
-        default:
-            return null;
-        }
+        return testApplicationFactoryDelegated.getBeforeTestsDatabaseUpdater();
     }
 
 }
