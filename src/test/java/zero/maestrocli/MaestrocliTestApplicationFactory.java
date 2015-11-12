@@ -2,39 +2,46 @@ package zero.maestrocli;
 
 import zero.easymvc.ormlite.DatabaseUpdater;
 import zero.easymvc.ormlite.MetaInfUpdater;
-import zero.utils.test.DBUnitUpdater;
 import zero.utils.test.TestApplicationFactory;
 
 import com.j256.ormlite.support.ConnectionSource;
 
 public class MaestrocliTestApplicationFactory extends MaestrocliApplicationFactory implements TestApplicationFactory {
 
-    private String[] datasetFileNames;
-    private int updaterVersion = -1;
+    private int databaseVersion;
 
     public MaestrocliTestApplicationFactory() {
         super(MaestrocliApplicationFactory.BASENAME + "_test");
-
     }
 
     @Override
-    public void setDatabaseFileNames(String[] datasetFileNames) {
-        this.datasetFileNames = datasetFileNames;
-    }
-
-    @Override
-    public void setDatabaseUpdaterVersion(int updaterVersion) {
-        this.updaterVersion = updaterVersion;
+    public void setDatabaseVersion(int databaseVersion) {
+        this.databaseVersion = databaseVersion;
     }
 
     @Override
     public DatabaseUpdater getDatabaseUpdater() {
-        ConnectionSource connection = connectionManager.getConnection();
-
-        return new DBUnitUpdater(connection, getUpdaterFor(connection), datasetFileNames);
+        // TODO Extrair este código para uma classe
+        // AbstractTestApplicationFactory, pois todo o TestApplicationFactory
+        // vai fazer do mesmo jeito
+        return getDatabaseUpdater(databaseVersion);
     }
 
-    private DatabaseUpdater getUpdaterFor(ConnectionSource connection) {
+    @Override
+    public DatabaseUpdater getBeforeTestsDatabaseUpdater() {
+        // TODO Extrair este código para uma classe
+        // AbstractTestApplicationFactory, pois todo o TestApplicationFactory
+        // vai fazer do mesmo jeito
+
+        if (databaseVersion == 0)
+            return null;
+        else
+            return getDatabaseUpdater(databaseVersion - 1);
+    }
+
+    private DatabaseUpdater getDatabaseUpdater(int updaterVersion) {
+        ConnectionSource connection = connectionManager.getConnection();
+
         switch (updaterVersion) {
         case -1:
         case 1:
