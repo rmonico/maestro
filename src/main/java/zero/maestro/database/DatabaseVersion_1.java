@@ -1,5 +1,7 @@
 package zero.maestro.database;
 
+import java.sql.SQLException;
+
 import zero.easymvc.ormlite.MetaInfUpdater;
 import zero.maestro.model.Attribute;
 import zero.maestro.model.Property;
@@ -22,11 +24,8 @@ public class DatabaseVersion_1 extends MetaInfUpdater {
     }
 
     @Override
-    public void update(int databaseVersion) throws Exception {
-        super.update(databaseVersion);
-
-        if (!shouldUpdate())
-            return;
+    public void updateStructure() throws SQLException {
+        super.updateStructure();
 
         TableUtils.createTableIfNotExists(connection, Task.class);
         TableUtils.createTableIfNotExists(connection, Tag.class);
