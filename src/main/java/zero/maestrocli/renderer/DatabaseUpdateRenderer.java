@@ -10,9 +10,6 @@ public class DatabaseUpdateRenderer {
 
     @Renderer(path = { "--check-and-update-database" })
     public void render() {
-        int applicationMajorVersion = updater.getApplicationMajorVersion();
-        int applicationMinorVersion = updater.getApplicationMinorVersion();
-
         System.out.println("Checking database structure for updates...");
 
         makeUpdateActionMessage();
@@ -33,8 +30,14 @@ public class DatabaseUpdateRenderer {
     }
 
     private void makeDatabaseStatusMessage() {
-        System.out.println("Database version is 0");
-        System.out.println("Application version is 0.1");
+        String currentDatabaseVersionMessage = String.format("Database version is %d", updater.getUpdaterVersion());
+        System.out.println(currentDatabaseVersionMessage);
+
+        int applicationMajorVersion = updater.getApplicationMajorVersion();
+        int applicationMinorVersion = updater.getApplicationMinorVersion();
+        String applicationVersionMessage = String.format("Application version is %d.%d", applicationMajorVersion, applicationMinorVersion);
+
+        System.out.println(applicationVersionMessage);
         System.out.println("");
         System.out.println("Update done. Everything is OK.");
     }
