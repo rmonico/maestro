@@ -32,13 +32,6 @@ public class DatabaseUpdateCommand {
         oldDatabaseVersion = getDatabaseVersion();
 
         updater.update(oldDatabaseVersion);
-
-        dao.updateDatabaseVersion(updater.getUpdaterVersion());
-
-        int applicationCurrentMajorVersion = updater.getApplicationMajorVersion();
-        int applicationCurrentMinorVersion = updater.getApplicationMinorVersion();
-
-        dao.updateApplicationVersion(applicationCurrentMajorVersion, applicationCurrentMinorVersion);
     }
 
     private int getDatabaseVersion() throws SQLException {
