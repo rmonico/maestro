@@ -18,7 +18,7 @@ import org.junit.Test;
 
 import zero.easymvc.EasyMVCException;
 import zero.utils.sysoutwrapper.SysoutWrapper;
-import zero.utils.test.ForceDatabaseUpdaterToVersion;
+import zero.utils.test.UpdateDatabaseToVersion;
 
 public class DatabaseUpdateTests extends MaestrocliTest {
 
@@ -42,7 +42,7 @@ public class DatabaseUpdateTests extends MaestrocliTest {
     }
 
     @Test
-    @ForceDatabaseUpdaterToVersion(0)
+    @UpdateDatabaseToVersion(0)
     public void should_create_initial_database() throws EasyMVCException, SQLException, DatabaseUnitException, MalformedURLException {
         controller.run("--check-and-update-database");
 
@@ -63,13 +63,13 @@ public class DatabaseUpdateTests extends MaestrocliTest {
         assertThat("Line #1", sysoutWrapper.capturedLines.get(1), is("Database not found! Creating it!"));
         assertThat("Line #2", sysoutWrapper.capturedLines.get(2), is(""));
         assertThat("Line #3", sysoutWrapper.capturedLines.get(3), is("Database version is 0"));
-        assertThat("Line #4", sysoutWrapper.capturedLines.get(4), is("Application version is 0.1"));
+        assertThat("Line #4", sysoutWrapper.capturedLines.get(4), is("Application version is 0.0"));
         assertThat("Line #5", sysoutWrapper.capturedLines.get(5), is(""));
         assertThat("Line #6", sysoutWrapper.capturedLines.get(6), is("Update done. Everything is OK."));
     }
 
     @Test
-    @ForceDatabaseUpdaterToVersion(1)
+    @UpdateDatabaseToVersion(1)
     public void should_update_database_to_version_1() throws EasyMVCException, SQLException, DatabaseUnitException, MalformedURLException {
         controller.run("--check-and-update-database");
 
@@ -87,7 +87,7 @@ public class DatabaseUpdateTests extends MaestrocliTest {
         assertThat("Line #1", sysoutWrapper.capturedLines.get(1), is("Database on version 0 found. Updating it to version 1"));
         assertThat("Line #2", sysoutWrapper.capturedLines.get(2), is(""));
         assertThat("Line #3", sysoutWrapper.capturedLines.get(3), is("Database version is 1"));
-        assertThat("Line #4", sysoutWrapper.capturedLines.get(4), is("Application version is 0.2"));
+        assertThat("Line #4", sysoutWrapper.capturedLines.get(4), is("Application version is 0.6"));
         assertThat("Line #5", sysoutWrapper.capturedLines.get(5), is(""));
         assertThat("Line #6", sysoutWrapper.capturedLines.get(6), is("Update done. Everything is OK."));
     }
