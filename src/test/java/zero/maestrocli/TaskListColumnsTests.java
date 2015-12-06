@@ -116,6 +116,30 @@ public class TaskListColumnsTests extends MaestrocliTest {
     }
 
     @Test
+    @DBUnitDatasetFileNames("dbunit/TaskListColumnsTests__should_render_treename_column.xml")
+    public void should_render_name_column() throws EasyMVCException {
+        controller.run("task", "ls", "-c=id,name");
+
+        assertThat("Line count", wrapper.capturedLines.size(), greaterThanOrEqualTo(17));
+        assertThat("Header line", wrapper.capturedLines.get(1), is("| ID  | Name                              |"));
+        assertThat("Data line #1", wrapper.capturedLines.get(3), is("| #1  | Parent #1                         |"));
+        assertThat("Data line #2", wrapper.capturedLines.get(4), is("| #9  | Parent #1, Sub #2                 |"));
+        assertThat("Data line #3", wrapper.capturedLines.get(5), is("| #13 | Parent #1, Sub #2, Sub #2         |"));
+        assertThat("Data line #4", wrapper.capturedLines.get(6), is("| #15 | Parent #1, Sub #2, Sub #2, Sub #2 |"));
+        assertThat("Data line #5", wrapper.capturedLines.get(7), is("| #14 | Parent #1, Sub #2, Sub #2, Sub #1 |"));
+        assertThat("Data line #6", wrapper.capturedLines.get(8), is("| #10 | Parent #1, Sub #2, Sub #1         |"));
+        assertThat("Data line #7", wrapper.capturedLines.get(9), is("| #12 | Parent #1, Sub #2, Sub #1, Sub #2 |"));
+        assertThat("Data line #8", wrapper.capturedLines.get(10), is("| #11 | Parent #1, Sub #2, Sub #1, Sub #1 |"));
+        assertThat("Data line #9", wrapper.capturedLines.get(11), is("| #2  | Parent #1, Sub #1                 |"));
+        assertThat("Data line #10", wrapper.capturedLines.get(12), is("| #6  | Parent #1, Sub #1, Sub #2         |"));
+        assertThat("Data line #11", wrapper.capturedLines.get(13), is("| #8  | Parent #1, Sub #1, Sub #2, Sub #2 |"));
+        assertThat("Data line #12", wrapper.capturedLines.get(14), is("| #7  | Parent #1, Sub #1, Sub #2, Sub #1 |"));
+        assertThat("Data line #13", wrapper.capturedLines.get(15), is("| #3  | Parent #1, Sub #1, Sub #1         |"));
+        assertThat("Data line #14", wrapper.capturedLines.get(16), is("| #5  | Parent #1, Sub #1, Sub #1, Sub #2 |"));
+        assertThat("Data line #15", wrapper.capturedLines.get(17), is("| #4  | Parent #1, Sub #1, Sub #1, Sub #1 |"));
+    }
+
+    @Test
     @DBUnitDatasetFileNames("dbunit/TaskListColumnsTests__should_render_every_possible_columns_for_top_tasks.xml")
     public void should_render_subtaskcount_column_for_top_tasks() throws EasyMVCException {
         controller.run("task", "ls", "--nosubtasks", "--columns=subtaskcount");
