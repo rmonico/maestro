@@ -50,7 +50,7 @@ public class TaskListColumnsTests extends MaestrocliTest {
 
         assertEquals("Length", 2, columns.length);
         assertEquals("id", columns[0]);
-        assertEquals("name", columns[1]);
+        assertEquals("treename", columns[1]);
     }
 
     @Test
@@ -65,11 +65,11 @@ public class TaskListColumnsTests extends MaestrocliTest {
 
     @Test
     @DBUnitDatasetFileNames("dbunit/TaskListColumnsTests__should_render_every_possible_columns_for_top_tasks.xml")
-    public void should_render_name_column_for_top_tasks() throws EasyMVCException {
-        controller.run("task", "ls", "--nosubtasks", "--columns=name");
+    public void should_render_treename_column_for_top_tasks() throws EasyMVCException {
+        controller.run("task", "ls", "--nosubtasks", "--columns=treename");
 
         assertTrue("Line count", wrapper.capturedLines.size() > 5);
-        assertEquals("Header line", "| Name      |", wrapper.capturedLines.get(1));
+        assertEquals("Header line", "| Hierarchy |", wrapper.capturedLines.get(1));
         assertEquals("Data line", "| Test task |", wrapper.capturedLines.get(3));
     }
 
@@ -92,12 +92,12 @@ public class TaskListColumnsTests extends MaestrocliTest {
     }
 
     @Test
-    @DBUnitDatasetFileNames("dbunit/TaskListColumnsTests__should_render_name_column_as_tree_for_sub_tasks.xml")
-    public void should_render_name_column_as_tree_for_sub_tasks() throws EasyMVCException {
+    @DBUnitDatasetFileNames("dbunit/TaskListColumnsTests__should_render_treename_column.xml")
+    public void should_render_treename_column() throws EasyMVCException {
         controller.run("task", "ls");
 
         assertThat("Line count", wrapper.capturedLines.size(), greaterThanOrEqualTo(17));
-        assertThat("Header line", wrapper.capturedLines.get(1), is("| ID  | Name                                    |"));
+        assertThat("Header line", wrapper.capturedLines.get(1), is("| ID  | Hierarchy                               |"));
         assertThat("Data line #1", wrapper.capturedLines.get(3), is("| #1  | Parent #1                               |"));
         assertThat("Data line #2", wrapper.capturedLines.get(4), is("| #9  | ├ Parent #1, Sub #2                     |"));
         assertThat("Data line #3", wrapper.capturedLines.get(5), is("| #13 | │ ├ Parent #1, Sub #2, Sub #2           |"));
@@ -168,9 +168,9 @@ public class TaskListColumnsTests extends MaestrocliTest {
     @Test
     @DBUnitDatasetFileNames("dbunit/TaskListColumnsTests__should_render_every_possible_columns_for_top_tasks.xml")
     public void should_render_every_possible_columns_for_top_tasks() throws EasyMVCException {
-        controller.run("task", "ls", "--nosubtasks", "--columns=id,name,subtaskcount,tags,tagcount,propertiesof:sometag,property:othertag.someattr");
+        controller.run("task", "ls", "--nosubtasks", "--columns=id,treename,subtaskcount,tags,tagcount,propertiesof:sometag,property:othertag.someattr");
 
-        String expectedHeaderLine = "| ID | Name      | #Tasks | Tags              | #Tags | #sometag                                                        | #othertag:someattr                           |";
+        String expectedHeaderLine = "| ID | Hierarchy | #Tasks | Tags              | #Tags | #sometag                                                        | #othertag:someattr                           |";
         String expectedDataLine = "| #1 | Test task | 8      | sometag, othertag | 2     | [attr:value of attr in sometag on 'Test task';date:30/Mai/2015] | Value of someattr in othertag on 'Test task' |";
 
         assertTrue("Line count", wrapper.capturedLines.size() > 5);
@@ -181,9 +181,9 @@ public class TaskListColumnsTests extends MaestrocliTest {
     @Test
     @DBUnitDatasetFileNames("dbunit/TaskListTests__should_render_no_tag_tasks.xml")
     public void should_render_no_tag_tasks() throws EasyMVCException {
-        controller.run("task", "ls", "--nosubtasks", "--columns=name,tags");
+        controller.run("task", "ls", "--nosubtasks", "--columns=treename,tags");
 
-        String expectedHeaderLine = "| Name      | Tags |";
+        String expectedHeaderLine = "| Hierarchy | Tags |";
         String expectedDataLine = "| Test task |      |";
 
         assertTrue("Line count", wrapper.capturedLines.size() > 5);

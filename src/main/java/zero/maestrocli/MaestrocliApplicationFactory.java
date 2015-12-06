@@ -47,7 +47,7 @@ public class MaestrocliApplicationFactory extends ApplicationFactory {
     public static final String EXECUTABLE_MINOR_VERSION = "1";
     public static final String EXECUTABLE_PROJECT_PHASE = "beta";
     public static final String TASK_LIST_COLUMNS_PROPERTY_KEY = "task_list_columns";
-    private static final String TASK_LIST_COLUMNS_DEFAULT = "id,name";
+    private static final String TASK_LIST_COLUMNS_DEFAULT = "id,treename";
 
     public MaestrocliApplicationFactory() {
         super(BASENAME);

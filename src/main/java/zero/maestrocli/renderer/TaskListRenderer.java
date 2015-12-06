@@ -24,7 +24,7 @@ public class TaskListRenderer {
 
     private List<Task> tasks;
     private String[] columns;
-    private TaskNameAsTreeExtractor nameColumnExtractor;
+    private TaskNameAsTreeExtractor treeNameColumnExtractor;
 
     @Renderer(path = { "task", "ls" })
     public void render() throws ListPrinterException {
@@ -62,8 +62,8 @@ public class TaskListRenderer {
                 break;
             }
 
-            case "name": {
-                defs.add(createNameColumn());
+            case "treename": {
+                defs.add(createTreeNameColumn());
                 break;
             }
 
@@ -106,11 +106,11 @@ public class TaskListRenderer {
         return new FormattedColumn("ID", new ReflectionFieldExtractor("id"), IDFormatter.getInstance());
     }
 
-    private Column createNameColumn() {
-        if (nameColumnExtractor == null)
-            nameColumnExtractor = new TaskNameAsTreeExtractor(tasks);
+    private Column createTreeNameColumn() {
+        if (treeNameColumnExtractor == null)
+            treeNameColumnExtractor = new TaskNameAsTreeExtractor(tasks);
 
-        return new SimpleColumn("Name", nameColumnExtractor);
+        return new SimpleColumn("Hierarchy", treeNameColumnExtractor);
     }
 
     private Column createSupertaskColumn() {
