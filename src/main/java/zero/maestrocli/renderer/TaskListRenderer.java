@@ -62,6 +62,10 @@ public class TaskListRenderer {
                 break;
             }
 
+            case "name": {
+                defs.add(createNameColumn());
+                break;
+            }
             case "treename": {
                 defs.add(createTreeNameColumn());
                 break;
@@ -104,6 +108,10 @@ public class TaskListRenderer {
 
     private Column createIDColumn() {
         return new FormattedColumn("ID", new ReflectionFieldExtractor("id"), IDFormatter.getInstance());
+    }
+
+    private Column createNameColumn() {
+        return new FormattedColumn("Name", new ReflectionFieldExtractor("name"), StringFormatter.getInstance());
     }
 
     private Column createTreeNameColumn() {
