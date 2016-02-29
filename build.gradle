@@ -9,6 +9,7 @@ repositories {
 
 dependencies {
     testCompile 'junit:junit:4.12'
+    compile "zero.easymvc:easymvc_ormlite:1.0-SNAPSHOT"
 }
 
 publishing {
