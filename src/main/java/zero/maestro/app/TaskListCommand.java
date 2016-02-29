@@ -1,6 +1,7 @@
 package zero.maestro.app;
 
 import java.sql.SQLException;
+import java.util.Collections;
 import java.util.List;
 
 import zero.easymvc.ArgumentsBean;
@@ -72,7 +73,7 @@ public class TaskListCommand {
             columns = parser.parse(rawColumns);
         }
 
-        tasks.sort(new TaskComparator(new SameLevelTaskComparator()));
+        Collections.sort(tasks, new TaskComparator(new SameLevelTaskComparator()));
     }
 
     private void applyTagsFilter() throws SQLException {
