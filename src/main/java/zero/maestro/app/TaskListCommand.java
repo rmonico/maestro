@@ -4,6 +4,10 @@ import java.sql.SQLException;
 import java.util.Collections;
 import java.util.List;
 
+import com.j256.ormlite.stmt.PreparedQuery;
+import com.j256.ormlite.stmt.QueryBuilder;
+import com.j256.ormlite.stmt.Where;
+
 import zero.easymvc.ArgumentsBean;
 import zero.easymvc.Bean;
 import zero.easymvc.BeanParserException;
@@ -17,11 +21,6 @@ import zero.maestro.app.dao.TaskTagDao;
 import zero.maestro.model.Tag;
 import zero.maestro.model.Task;
 import zero.maestro.model.TaskTag;
-import zero.maestrocli.MaestrocliApplicationFactory;
-
-import com.j256.ormlite.stmt.PreparedQuery;
-import com.j256.ormlite.stmt.QueryBuilder;
-import com.j256.ormlite.stmt.Where;
 
 public class TaskListCommand {
 
@@ -68,7 +67,7 @@ public class TaskListCommand {
         if (columns == null) {
             StringArrayParser parser = new StringArrayParser();
 
-            String rawColumns = Environment.get().getProperty(MaestrocliApplicationFactory.TASK_LIST_COLUMNS_PROPERTY_KEY);
+            String rawColumns = Environment.get().getProperty(MaestroApplicationFactory.TASK_LIST_COLUMNS_PROPERTY_KEY);
 
             columns = parser.parse(rawColumns);
         }
