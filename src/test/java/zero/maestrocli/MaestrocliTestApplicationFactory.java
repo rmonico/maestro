@@ -4,14 +4,14 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
+import com.j256.ormlite.support.ConnectionSource;
+
 import zero.easymvc.ormlite.ConnectionManager;
 import zero.easymvc.ormlite.DatabaseUpdater;
 import zero.easymvc.ormlite.MetaInfUpdater;
 import zero.maestro.database.DatabaseVersion_1;
 import zero.utils.test.AbstractTestApplicationFactory;
 import zero.utils.test.TestApplicationFactory;
-
-import com.j256.ormlite.support.ConnectionSource;
 
 public class MaestrocliTestApplicationFactory extends MaestrocliApplicationFactory implements TestApplicationFactory {
 
