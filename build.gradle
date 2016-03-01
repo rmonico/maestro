@@ -1,0 +1,16 @@
+apply plugin: 'java'
+apply plugin: 'application'
+apply plugin: 'eclipse'
+
+mainClassName = 'zero.maestrocli.Main'
+
+repositories {
+    mavenLocal()
+}
+
+dependencies {
+    testCompile 'junit:junit:4.12'
+    testCompile 'org.dbunit:dbunit:2.5.0'
+    testCompile 'org.hamcrest:hamcrest-all:1.3'
+    compile 'zero.maestro:maestro-core:0.1'
+}
