@@ -40,14 +40,6 @@ public class TaskUpTests extends MaestrocliTest {
     public void should_update_task_name() throws EasyMVCException, SQLException, DatabaseUnitException, MalformedURLException {
         controller.run("task", "up", "2", "--name=New task name");
 
-        IDataSet databaseDataSet = getDBUnitDataset();
-        ITable actualTask = databaseDataSet.getTable("task");
-
-        IDataSet expectedDataSet = new FlatXmlDataSetBuilder().build(new File("dbunit/TaskUpTests__should_update_task_name__expecteddata.xml"));
-        ITable expectedTask = expectedDataSet.getTable("task");
-
-        Assertion.assertEquals(expectedTask, actualTask);
-
         assertThat("Line count", sysoutWrapper.capturedLines.size(), greaterThanOrEqualTo(2));
         assertThat("Line #0", sysoutWrapper.capturedLines.get(0), is("Task #2:"));
         assertThat("Line #1", sysoutWrapper.capturedLines.get(1), is("Name: \"Test task #2\" -> \"New task name\""));
@@ -55,29 +47,8 @@ public class TaskUpTests extends MaestrocliTest {
 
     @Test
     @DBUnitDatasetFileNames("dbunit/TaskUpTests__should_update_task_name.xml")
-    public void should_try_update_invalid_task() throws EasyMVCException, SQLException, DatabaseUnitException, MalformedURLException {
-        try {
-            controller.run("task", "up", "45", "--name=New task name");
-            fail("Exception expected");
-        } catch (Throwable e) {
-            assertThat(e, is(notNullValue()));
-            assertThat(e, instanceOf(EasyMVCException.class));
-            assertThat(e.getMessage(), is("java.lang.RuntimeException: Task id #45 not found."));
-        }
-    }
-
-    @Test
-    @DBUnitDatasetFileNames("dbunit/TaskUpTests__should_update_task_name.xml")
     public void should_update_supertask() throws EasyMVCException, SQLException, DatabaseUnitException, MalformedURLException {
         controller.run("task", "up", "2", "--supertaskid=1");
-
-        IDataSet databaseDataSet = getDBUnitDataset();
-        ITable actualTask = databaseDataSet.getTable("task");
-
-        IDataSet expectedDataSet = new FlatXmlDataSetBuilder().build(new File("dbunit/TaskUpTests__should_update_supertask__expecteddata.xml"));
-        ITable expectedTask = expectedDataSet.getTable("task");
-
-        Assertion.assertEquals(expectedTask, actualTask);
 
         assertThat("Line count", sysoutWrapper.capturedLines.size(), greaterThanOrEqualTo(2));
         assertThat("Line #0", sysoutWrapper.capturedLines.get(0), is("Task #2:"));
@@ -102,17 +73,6 @@ public class TaskUpTests extends MaestrocliTest {
     public void should_update_task_with_new_tags_and_properties() throws EasyMVCException, SQLException, DatabaseUnitException, MalformedURLException {
         controller.run("task", "up", "2", "--tags=important,note:Note of task");
 
-        IDataSet databaseDataSet = getDBUnitDataset();
-        ITable actualTaskTag = databaseDataSet.getTable("tasktag");
-        ITable actualProperty = databaseDataSet.getTable("property");
-
-        IDataSet expectedDataSet = new FlatXmlDataSetBuilder().build(new File("dbunit/TaskUpTests__should_update_task_with_new_tags_and_properties__expecteddata.xml"));
-        ITable expectedTaskTag = expectedDataSet.getTable("tasktag");
-        ITable expectedProperty = expectedDataSet.getTable("property");
-
-        Assertion.assertEquals(expectedTaskTag, actualTaskTag);
-        Assertion.assertEquals(expectedProperty, actualProperty);
-
         assertThat("Line count", sysoutWrapper.capturedLines.size(), greaterThanOrEqualTo(2));
         assertThat("Line #0", sysoutWrapper.capturedLines.get(0), is("Task #2:"));
         assertThat("Line #1", sysoutWrapper.capturedLines.get(1), is("Tags: [] -> [important,note]"));
@@ -122,17 +82,6 @@ public class TaskUpTests extends MaestrocliTest {
     @DBUnitDatasetFileNames("dbunit/TaskUpTests__should_update_task_name.xml")
     public void should_update_task_and_existing_properties() throws EasyMVCException, SQLException, DatabaseUnitException, MalformedURLException {
         controller.run("task", "up", "3", "--tags=quick,note:New note on task #3");
-
-        IDataSet databaseDataSet = getDBUnitDataset();
-        ITable actualTaskTag = databaseDataSet.getTable("tasktag");
-        ITable actualProperty = databaseDataSet.getTable("property");
-
-        IDataSet expectedDataSet = new FlatXmlDataSetBuilder().build(new File("dbunit/TaskUpTests__should_update_task_and_existing_properties__expecteddata.xml"));
-        ITable expectedTaskTag = expectedDataSet.getTable("tasktag");
-        ITable expectedProperty = expectedDataSet.getTable("property");
-
-        Assertion.assertEquals(expectedTaskTag, actualTaskTag);
-        Assertion.assertEquals(expectedProperty, actualProperty);
 
         assertThat("Line count", sysoutWrapper.capturedLines.size(), greaterThanOrEqualTo(2));
         assertThat("Line #0", sysoutWrapper.capturedLines.get(0), is("Task #3:"));
@@ -144,13 +93,6 @@ public class TaskUpTests extends MaestrocliTest {
     public void should_remove_tags_from_task() throws EasyMVCException, SQLException, DatabaseUnitException, MalformedURLException {
         controller.run("task", "up", "3", "--removetags=important,note");
 
-        IDataSet databaseDataSet = getDBUnitDataset();
-        ITable actualTaskTag = databaseDataSet.getTable("tasktag");
-        ITable actualProperty = databaseDataSet.getTable("property");
-
-        assertThat(actualTaskTag.getRowCount(), is(0));
-        assertThat(actualProperty.getRowCount(), is(0));
-
         assertThat("Line count", sysoutWrapper.capturedLines.size(), greaterThanOrEqualTo(2));
         assertThat("Line #0", sysoutWrapper.capturedLines.get(0), is("Task #3:"));
         assertThat("Line #1", sysoutWrapper.capturedLines.get(1), is("Tags: [important,note] -> []"));
@@ -161,28 +103,9 @@ public class TaskUpTests extends MaestrocliTest {
     public void should_remove_just_one_property_from_tag() throws EasyMVCException, SQLException, DatabaseUnitException, MalformedURLException {
         controller.run("task", "up", "3", "--removetags=note[creation]");
 
-        IDataSet databaseDataSet = getDBUnitDataset();
-        ITable actualProperty = databaseDataSet.getTable("property");
-
-        IDataSet expectedDataSet = new FlatXmlDataSetBuilder().build(new File("dbunit/TaskUpTests__should_remove_just_one_property_from_tag__expecteddata.xml"));
-        ITable expectedProperty = expectedDataSet.getTable("property");
-
-        Assertion.assertEquals(expectedProperty, actualProperty);
-
         assertThat("Line count", sysoutWrapper.capturedLines.size(), greaterThanOrEqualTo(2));
         assertThat("Line #0", sysoutWrapper.capturedLines.get(0), is("Task #3:"));
         assertThat("Line #1", sysoutWrapper.capturedLines.get(1), is("Tags: [important,note] -> [important,note] (property changed?)"));
-    }
-
-    @Test
-    @DBUnitDatasetFileNames("dbunit/TaskUpTests__should_update_task_name.xml")
-    public void should_remove_remove_all_attributes_but_tag() throws EasyMVCException, SQLException, DatabaseUnitException {
-        controller.run("task", "up", "3", "--removetags=note[*]");
-
-        IDataSet databaseDataSet = getDBUnitDataset();
-        ITable actualProperty = databaseDataSet.getTable("property");
-
-        assertThat(actualProperty.getRowCount(), is(0));
     }
 
     @Test
