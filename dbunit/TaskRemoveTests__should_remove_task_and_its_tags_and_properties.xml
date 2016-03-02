@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"  ?>
+<!DOCTYPE dataset SYSTEM "dbunit/maestro.dtd">
+<dataset>
+    <task id="1" name="Test task" />
+    <task id="2" name="Another task for tests" />
+
+    <tag id="1" name="a_tag" />
+    <tag id="2" name="another_tag" />
+
+    <tasktag id="1" task_id="1" tag_id="1" />
+    <tasktag id="2" task_id="1" tag_id="2" />
+    <tasktag id="3" task_id="2" tag_id="1" />
+
+    <attribute id="1" name="default" tag_id="1" type="TEXT" />
+    <attribute id="2" name="count" tag_id="1" type="INTEGER" />
+    <attribute id="3" name="default" tag_id="2" type="TEXT" />
+    <attribute id="4" name="count" tag_id="2" type="INTEGER" />
+
+    <property id="1" tasktag_id="1" attribute_id="1" value="Nothing important" />
+    <property id="2" tasktag_id="1" attribute_id="2" value="3" />
+    <property id="3" tasktag_id="2" attribute_id="3" value="More non-important stuff" />
+    <property id="4" tasktag_id="2" attribute_id="4" value="6" />
+    <property id="5" tasktag_id="3" attribute_id="1" value="xxx" />
+    <property id="6" tasktag_id="3" attribute_id="2" value="666" />
+</dataset>

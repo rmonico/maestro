@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"  ?>
+<!DOCTYPE dataset SYSTEM "dbunit/maestro.dtd">
+<dataset>
+	<task id="1" name="Test task" />
+	<task id="2" name="Sub task #1" supertask_id="1"/>
+	<task id="3" name="Sub task #2" supertask_id="1"/>
+	<task id="4" name="Sub task #3" supertask_id="1"/>
+	<task id="5" name="Sub task #4" supertask_id="1"/>
+	<task id="6" name="Sub task #5" supertask_id="1"/>
+	<task id="7" name="Sub task #6" supertask_id="1"/>
+	<task id="8" name="Sub task #7" supertask_id="1"/>
+	<task id="9" name="Sub task #8" supertask_id="1"/>
+
+	<tag id="1" name="sometag" />
+	<tag id="2" name="othertag" />
+
+	<attribute id="1" name="attr" type="TEXT" tag_id="1"/>
+	<attribute id="2" name="date" type="DATETIME" tag_id="1"/>
+	<attribute id="3" name="someattr" type="TEXT" tag_id="2"/>
+
+	<tasktag id="1" task_id="1" tag_id="1" />
+	<tasktag id="2" task_id="1" tag_id="2" />
+
+	<property id="1" tasktag_id="1" attribute_id="1" value="value of attr in sometag on 'Test task'" />
+	<property id="2" tasktag_id="1" attribute_id="2" value="30/Mai/2015" />
+	<property id="3" tasktag_id="2" attribute_id="3" value="Value of someattr in othertag on 'Test task'" />
+</dataset>

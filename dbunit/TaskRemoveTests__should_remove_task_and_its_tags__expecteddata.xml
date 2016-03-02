@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"  ?>
+<!DOCTYPE dataset SYSTEM "maestro.dtd">
+<dataset>
+	<task id="2" name="Another task for tests" />
+
+	<tag id="1" name="a_tag" />
+	<tag id="2" name="another_tag" />
+</dataset>

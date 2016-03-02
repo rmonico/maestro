@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"  ?>
+<!DOCTYPE dataset SYSTEM "dbunit/maestro.dtd">
+<dataset>
+	<tag id="1" name="first_tag" />
+	<tag id="2" name="second_tag" />
+	<tag id="3" name="third_tag" />
+	
+	<task id="1" name="Task #1, name will not be used in tests" />
+	<task id="2" name="Task #2, name will not be used in tests" />
+	<task id="3" name="Task #3, name will not be used in tests" />
+	<task id="4" name="Task #4, name will not be used in tests" />
+	<task id="5" name="Task #5, name will not be used in tests" />
+	<task id="6" name="Task #6, name will not be used in tests" />
+	
+	<tasktag id="1" task_id="1" tag_id="1" />
+	<tasktag id="2" task_id="2" tag_id="1" />
+	<tasktag id="3" task_id="1" tag_id="2" />
+	<tasktag id="4" task_id="2" tag_id="2" />
+	<tasktag id="5" task_id="3" tag_id="2" />
+	<tasktag id="6" task_id="4" tag_id="2" />
+	<tasktag id="7" task_id="1" tag_id="3" />
+	<tasktag id="8" task_id="2" tag_id="3" />
+	<tasktag id="9" task_id="3" tag_id="3" />
+	<tasktag id="10" task_id="4" tag_id="3" />
+	<tasktag id="11" task_id="5" tag_id="3" />
+	<tasktag id="12" task_id="6" tag_id="3" />
+</dataset>

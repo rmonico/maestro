@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"  ?>
+<!DOCTYPE dataset SYSTEM "dbunit/maestro.dtd">
+<dataset>
+  <task id="1" name="Parent #2" />
+  <task id="2" name="Parent #1" />
+  <task id="3" name="Parent #3" />
+  <task id="4" name="Parent #3, sub #4" supertask_id="3" />
+  <task id="5" name="Parent #3, sub #3" supertask_id="3" />
+  <task id="6" name="Parent #3, sub #2" supertask_id="3" />
+  <task id="7" name="Parent #3, sub #1" supertask_id="3" />
+  <task id="8" name="Parent #4" />
+  <task id="9" name="Parent #5" />
+  <task id="10" name="Parent #4, sub #3" supertask_id="8" />
+  <task id="11" name="Parent #4, sub #2" supertask_id="8" />
+  <task id="12" name="Parent #6" />
+  <task id="13" name="Parent #4, sub #1" supertask_id="8" />
+  <task id="14" name="Parent #4, sub #4" supertask_id="8" />
+  <task id="15" name="Parent #7" />
+  <task id="16" name="Parent #7, sub #1" supertask_id="15" />
+  <task id="17" name="Parent #7, sub #1, sub #4" supertask_id="16" />
+  <task id="18" name="Parent #7, sub #1, sub #3" supertask_id="16" />
+  <task id="19" name="Parent #7, sub #1, sub #2" supertask_id="16" />
+  <task id="20" name="Parent #7, sub #1, sub #1" supertask_id="16" />
+  <task id="21" name="Parent #7, sub #2" supertask_id="15" />
+  <task id="22" name="Parent #7, sub #3" supertask_id="15" />
+  <task id="23" name="Parent #7, sub #2, sub #3" supertask_id="21" />
+  <task id="24" name="Parent #7, sub #2, sub #2" supertask_id="21" />
+  <task id="25" name="Parent #7, sub #4" supertask_id="15" />
+  <task id="26" name="Parent #7, sub #2, sub #1" supertask_id="21" />
+  <task id="27" name="Parent #8" />
+  <task id="28" name="Parent #8, sub #1" supertask_id="27" />
+  <task id="29" name="Parent #9" />
+  <task id="30" name="Parent #8, sub #1, sub #3" supertask_id="28" />
+  <task id="31" name="Parent #8, sub #1, sub #1" supertask_id="28" />
+  <task id="32" name="Parent #8, sub #1, sub #2" supertask_id="28" />
+  <task id="33" name="Parent #10" />
+  <task id="34" name="Parent #10, sub #1" supertask_id="33" />
+  <task id="35" name="Parent #10, sub #2" supertask_id="33" />
+  <task id="36" name="Parent #10, sub #1, sub #3" supertask_id="34" />
+  <task id="37" name="Parent #10, sub #1, sub #4" supertask_id="34" />
+  <task id="38" name="Parent #11" />
+  <task id="39" name="Parent #10, sub #1, sub #2" supertask_id="34" />
+  <task id="40" name="Parent #10, sub #1, sub #1" supertask_id="34" />
+</dataset>

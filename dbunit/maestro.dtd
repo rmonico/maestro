@@ -1,0 +1,32 @@
+<!ELEMENT dataset (metainf*, task*, tag*, attribute*, property*, tasktag*)>
+
+<!ELEMENT metainf (#PCDATA)>
+<!ATTLIST metainf id CDATA #REQUIRED>
+<!ATTLIST metainf key CDATA #REQUIRED>
+<!ATTLIST metainf value CDATA #REQUIRED>
+
+<!ELEMENT task (#PCDATA)>
+<!ATTLIST task id CDATA #REQUIRED>
+<!ATTLIST task name CDATA #REQUIRED>
+<!ATTLIST task supertask_id CDATA #REQUIRED>
+
+<!ELEMENT tag (#PCDATA)>
+<!ATTLIST tag id CDATA #REQUIRED>
+<!ATTLIST tag name CDATA #REQUIRED>
+
+<!ELEMENT attribute (#PCDATA)>
+<!ATTLIST attribute id CDATA #REQUIRED>
+<!ATTLIST attribute name CDATA #REQUIRED>
+<!ATTLIST attribute type CDATA #REQUIRED>
+<!ATTLIST attribute tag_id CDATA #REQUIRED>
+
+<!ELEMENT property (#PCDATA)>
+<!ATTLIST property id CDATA #REQUIRED>
+<!ATTLIST property tasktag_id CDATA #REQUIRED>
+<!ATTLIST property attribute_id CDATA #REQUIRED>
+<!ATTLIST property value CDATA #REQUIRED>
+
+<!ELEMENT tasktag (#PCDATA)>
+<!ATTLIST tasktag id CDATA #REQUIRED>
+<!ATTLIST tasktag task_id CDATA #REQUIRED>
+<!ATTLIST tasktag tag_id CDATA #REQUIRED>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"  ?>
+<!DOCTYPE dataset SYSTEM "dbunit/maestro.dtd">
+<dataset>
+	<task id="1" name="First task" />
+	<task id="2" name="Second task with different word" />
+	<task id="3" name="First task with different and first words" />
+	<task id="4" name="A task should not be listed" />
+</dataset>

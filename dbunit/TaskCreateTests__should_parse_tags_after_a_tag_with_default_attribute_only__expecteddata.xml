@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"  ?>
+<!DOCTYPE dataset SYSTEM "maestro.dtd">
+<dataset>
+	<tag id="1" name="nota" />
+	<tag id="2" name="outra_tag" />
+	<attribute id="1" name="default" type="TEXT" tag_id="1" />
+	<task id="1" name="Buggy task" />
+	<tasktag id="1" task_id="1" tag_id="1" />
+	<property id="1" tasktag_id="1" attribute_id="1" value="valor" />
+</dataset>
