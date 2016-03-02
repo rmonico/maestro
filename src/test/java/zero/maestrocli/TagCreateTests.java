@@ -8,7 +8,7 @@ import zero.easymvc.EasyMVCAssert;
 import zero.easymvc.EasyMVCException;
 import zero.maestro.model.Tag;
 
-public class TagCreateTests extends MaestrocliTest {
+public class TagCreateTests extends MaestroTest {
 
     @Test
     public void should_create_a_new_tag() throws EasyMVCException {

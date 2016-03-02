@@ -9,20 +9,21 @@ import com.j256.ormlite.support.ConnectionSource;
 import zero.easymvc.ormlite.ConnectionManager;
 import zero.easymvc.ormlite.DatabaseUpdater;
 import zero.easymvc.ormlite.MetaInfUpdater;
+import zero.maestro.app.MaestroApplicationFactory;
 import zero.maestro.database.DatabaseVersion_1;
 import zero.utils.test.AbstractTestApplicationFactory;
 import zero.utils.test.TestApplicationFactory;
 
-public class MaestrocliTestApplicationFactory extends MaestrocliApplicationFactory implements TestApplicationFactory {
+public class MaestroTestApplicationFactory extends MaestroApplicationFactory implements TestApplicationFactory {
 
     private AbstractTestApplicationFactory testApplicationFactoryDelegated;
 
-    public MaestrocliTestApplicationFactory() {
+    public MaestroTestApplicationFactory() {
         this(AbstractTestApplicationFactory.DATABASE_LAST_VERSION);
     }
 
-    public MaestrocliTestApplicationFactory(int databaseVersion) {
-        super(MaestrocliApplicationFactory.BASENAME + "_test");
+    public MaestroTestApplicationFactory(int databaseVersion) {
+        super(MaestroApplicationFactory.BASENAME + "_test");
 
         testApplicationFactoryDelegated = new AbstractTestApplicationFactory(databaseVersion);
     }

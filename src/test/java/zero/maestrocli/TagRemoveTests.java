@@ -23,7 +23,7 @@ import zero.easymvc.EasyMVCException;
 import zero.utils.sysoutwrapper.SysoutWrapper;
 import zero.utils.test.DBUnitDatasetFileNames;
 
-public class TagRemoveTests extends MaestrocliTest {
+public class TagRemoveTests extends MaestroTest {
 
     private SysoutWrapper sysoutWrapper;
 

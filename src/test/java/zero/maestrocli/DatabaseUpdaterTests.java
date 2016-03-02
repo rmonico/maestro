@@ -19,7 +19,7 @@ import zero.easymvc.EasyMVCException;
 import zero.utils.sysoutwrapper.SysoutWrapper;
 import zero.utils.test.UpdateDatabaseToVersion;
 
-public class DatabaseUpdaterTests extends MaestrocliTest {
+public class DatabaseUpdaterTests extends MaestroTest {
 
     private SysoutWrapper sysoutWrapper;
 

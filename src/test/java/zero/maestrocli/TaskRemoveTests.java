@@ -16,7 +16,7 @@ import org.junit.Test;
 import zero.easymvc.EasyMVCException;
 import zero.utils.test.DBUnitDatasetFileNames;
 
-public class TaskRemoveTests extends MaestrocliTest {
+public class TaskRemoveTests extends MaestroTest {
 
     @Test
     @DBUnitDatasetFileNames("dbunit/TaskRemoveTests__should_remove_a_task.xml")

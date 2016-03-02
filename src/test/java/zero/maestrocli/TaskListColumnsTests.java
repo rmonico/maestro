@@ -16,7 +16,7 @@ import zero.easymvc.EasyMVCException;
 import zero.utils.sysoutwrapper.SysoutWrapper;
 import zero.utils.test.DBUnitDatasetFileNames;
 
-public class TaskListColumnsTests extends MaestrocliTest {
+public class TaskListColumnsTests extends MaestroTest {
 
     private SysoutWrapper wrapper;
 

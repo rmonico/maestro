@@ -30,7 +30,7 @@ import zero.utils.test.DBUnitDatasetFileNames;
 
 import com.j256.ormlite.dao.ForeignCollection;
 
-public class TaskCreateTests extends MaestrocliTest {
+public class TaskCreateTests extends MaestroTest {
 
     @Test
     public void should_create_a_new_task() throws EasyMVCException {

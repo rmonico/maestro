@@ -10,7 +10,7 @@ import zero.easymvc.EasyMVCAssert;
 import zero.easymvc.EasyMVCException;
 import zero.maestro.model.Tag;
 
-public class AttributeCreateTests extends MaestrocliTest {
+public class AttributeCreateTests extends MaestroTest {
 
     @Test
     public void should_create_a_text_attribute() throws EasyMVCException {

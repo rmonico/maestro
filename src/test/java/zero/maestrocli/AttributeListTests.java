@@ -9,7 +9,7 @@ import zero.easymvc.EasyMVCException;
 import zero.maestro.model.Tag;
 import zero.utils.test.DBUnitDatasetFileNames;
 
-public class AttributeListTests extends MaestrocliTest {
+public class AttributeListTests extends MaestroTest {
 
     @Test
     @DBUnitDatasetFileNames("dbunit/AttributeListTests__should_list_a_tag_attributes.xml")

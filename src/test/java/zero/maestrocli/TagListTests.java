@@ -12,7 +12,7 @@ import zero.easymvc.EasyMVCException;
 import zero.maestro.model.Tag;
 import zero.utils.test.DBUnitDatasetFileNames;
 
-public class TagListTests extends MaestrocliTest {
+public class TagListTests extends MaestroTest {
 
     @Test
     @DBUnitDatasetFileNames("dbunit/TagListTests__should_list_all_three_tags.xml")
