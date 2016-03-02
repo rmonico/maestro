@@ -11,6 +11,15 @@ import zero.easymvc.ormlite.DatabaseUpdater;
 import zero.easymvc.ormlite.MetaInfUpdater;
 import zero.maestro.app.MaestroApplicationFactory;
 import zero.maestro.database.DatabaseVersion_1;
+import zero.maestrocli.renderer.AttributeCreateRenderer;
+import zero.maestrocli.renderer.AttributeListRenderer;
+import zero.maestrocli.renderer.TagCreateRenderer;
+import zero.maestrocli.renderer.TagListRenderer;
+import zero.maestrocli.renderer.TagRemoveRenderer;
+import zero.maestrocli.renderer.TaskCreateRenderer;
+import zero.maestrocli.renderer.TaskListRenderer;
+import zero.maestrocli.renderer.TaskRemoveRenderer;
+import zero.maestrocli.renderer.TaskUpRenderer;
 import zero.utils.test.AbstractTestApplicationFactory;
 import zero.utils.test.TestApplicationFactory;
 
@@ -54,4 +63,18 @@ public class MaestroTestApplicationFactory extends MaestroApplicationFactory imp
         return testApplicationFactoryDelegated.getBeforeTestsDatabaseUpdater();
     }
 
+    @Override
+    protected void createRendererList(List<Class<?>> renderers) {
+        super.createRendererList(renderers);
+
+        renderers.add(AttributeCreateRenderer.class);
+        renderers.add(AttributeListRenderer.class);
+        renderers.add(TagCreateRenderer.class);
+        renderers.add(TagListRenderer.class);
+        renderers.add(TagRemoveRenderer.class);
+        renderers.add(TaskCreateRenderer.class);
+        renderers.add(TaskListRenderer.class);
+        renderers.add(TaskRemoveRenderer.class);
+        renderers.add(TaskUpRenderer.class);
+    }
 }
