@@ -1,15 +1,12 @@
 package zero.maestrocli;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsInstanceOf.instanceOf;
 import static org.hamcrest.core.IsNull.notNullValue;
 import static org.junit.Assert.fail;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.PrintStream;
 import java.net.MalformedURLException;
 import java.sql.SQLException;
 
@@ -18,22 +15,12 @@ import org.dbunit.DatabaseUnitException;
 import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.ITable;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
-import org.junit.Before;
 import org.junit.Test;
 
 import zero.easymvc.EasyMVCException;
-import zero.utils.sysoutwrapper.SysoutWrapper;
 import zero.utils.test.DBUnitDatasetFileNames;
 
 public class TaskUpTests extends MaestroTest {
-
-    private SysoutWrapper sysoutWrapper;
-
-    @Before
-    public void setup() {
-        sysoutWrapper = new SysoutWrapper();
-        System.setOut(sysoutWrapper);
-    }
 
     @Test
     @DBUnitDatasetFileNames("dbunit/TaskUpTests__should_update_task_name.xml")
@@ -47,10 +34,6 @@ public class TaskUpTests extends MaestroTest {
         ITable expectedTask = expectedDataSet.getTable("task");
 
         Assertion.assertEquals(expectedTask, actualTask);
-
-        assertThat("Line count", sysoutWrapper.capturedLines.size(), greaterThanOrEqualTo(2));
-        assertThat("Line #0", sysoutWrapper.capturedLines.get(0), is("Task #2:"));
-        assertThat("Line #1", sysoutWrapper.capturedLines.get(1), is("Name: \"Test task #2\" -> \"New task name\""));
     }
 
     @Test
@@ -78,10 +61,6 @@ public class TaskUpTests extends MaestroTest {
         ITable expectedTask = expectedDataSet.getTable("task");
 
         Assertion.assertEquals(expectedTask, actualTask);
-
-        assertThat("Line count", sysoutWrapper.capturedLines.size(), greaterThanOrEqualTo(2));
-        assertThat("Line #0", sysoutWrapper.capturedLines.get(0), is("Task #2:"));
-        assertThat("Line #1", sysoutWrapper.capturedLines.get(1), is("Supertask: <none> -> \"Test task #1\""));
     }
 
     @Test
@@ -112,10 +91,6 @@ public class TaskUpTests extends MaestroTest {
 
         Assertion.assertEquals(expectedTaskTag, actualTaskTag);
         Assertion.assertEquals(expectedProperty, actualProperty);
-
-        assertThat("Line count", sysoutWrapper.capturedLines.size(), greaterThanOrEqualTo(2));
-        assertThat("Line #0", sysoutWrapper.capturedLines.get(0), is("Task #2:"));
-        assertThat("Line #1", sysoutWrapper.capturedLines.get(1), is("Tags: [] -> [important,note]"));
     }
 
     @Test
@@ -133,10 +108,6 @@ public class TaskUpTests extends MaestroTest {
 
         Assertion.assertEquals(expectedTaskTag, actualTaskTag);
         Assertion.assertEquals(expectedProperty, actualProperty);
-
-        assertThat("Line count", sysoutWrapper.capturedLines.size(), greaterThanOrEqualTo(2));
-        assertThat("Line #0", sysoutWrapper.capturedLines.get(0), is("Task #3:"));
-        assertThat("Line #1", sysoutWrapper.capturedLines.get(1), is("Tags: [important,note] -> [important,note,quick]"));
     }
 
     @Test
@@ -150,10 +121,6 @@ public class TaskUpTests extends MaestroTest {
 
         assertThat(actualTaskTag.getRowCount(), is(0));
         assertThat(actualProperty.getRowCount(), is(0));
-
-        assertThat("Line count", sysoutWrapper.capturedLines.size(), greaterThanOrEqualTo(2));
-        assertThat("Line #0", sysoutWrapper.capturedLines.get(0), is("Task #3:"));
-        assertThat("Line #1", sysoutWrapper.capturedLines.get(1), is("Tags: [important,note] -> []"));
     }
 
     @Test
@@ -168,10 +135,6 @@ public class TaskUpTests extends MaestroTest {
         ITable expectedProperty = expectedDataSet.getTable("property");
 
         Assertion.assertEquals(expectedProperty, actualProperty);
-
-        assertThat("Line count", sysoutWrapper.capturedLines.size(), greaterThanOrEqualTo(2));
-        assertThat("Line #0", sysoutWrapper.capturedLines.get(0), is("Task #3:"));
-        assertThat("Line #1", sysoutWrapper.capturedLines.get(1), is("Tags: [important,note] -> [important,note] (property changed?)"));
     }
 
     @Test
@@ -185,35 +148,4 @@ public class TaskUpTests extends MaestroTest {
         assertThat(actualProperty.getRowCount(), is(0));
     }
 
-    @Test
-    @DBUnitDatasetFileNames("dbunit/TaskUpTests__should_update_task_name.xml")
-    public void should_get_property_value_from_file() throws EasyMVCException, FileNotFoundException, SQLException, DatabaseUnitException, MalformedURLException {
-        File file = new File("notefile");
-
-        try {
-            PrintStream p = new PrintStream(file);
-
-            p.println("Note");
-            p.println("from");
-            p.println("file");
-
-            p.close();
-
-            controller.run("task", "up", "1", "--tags=note:@notefile");
-
-            IDataSet databaseDataSet = getDBUnitDataset();
-            ITable actualTaskTag = databaseDataSet.getTable("tasktag");
-            ITable actualProperty = databaseDataSet.getTable("property");
-
-            IDataSet expectedDataSet = new FlatXmlDataSetBuilder().build(new File("dbunit/TaskUpTests__should_get_property_value_from_file__expecteddata.xml"));
-            ITable expectedTaskTag = expectedDataSet.getTable("tasktag");
-            ITable expectedProperty = expectedDataSet.getTable("property");
-
-            Assertion.assertEquals(expectedTaskTag, actualTaskTag);
-            Assertion.assertEquals(expectedProperty, actualProperty);
-        } finally {
-            file.delete();
-        }
-
-    }
 }

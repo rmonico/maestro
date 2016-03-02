@@ -25,14 +25,6 @@ import zero.utils.test.DBUnitDatasetFileNames;
 
 public class TagRemoveTests extends MaestroTest {
 
-    private SysoutWrapper sysoutWrapper;
-
-    @Before
-    public void setup() {
-        sysoutWrapper = new SysoutWrapper();
-        System.setOut(sysoutWrapper);
-    }
-
     @Test
     @DBUnitDatasetFileNames("dbunit/TagRemoveTests__base_data.xml")
     public void should_remove_a_single_tag() throws EasyMVCException, SQLException, DatabaseUnitException, MalformedURLException {
@@ -45,9 +37,6 @@ public class TagRemoveTests extends MaestroTest {
         ITable expectedTag = expectedDataSet.getTable("tag");
 
         Assertion.assertEquals(expectedTag, actualTag);
-
-        assertThat("Line count", sysoutWrapper.capturedLines.size(), greaterThanOrEqualTo(1));
-        assertThat("Line #0", sysoutWrapper.capturedLines.get(0), is("Tag \"no_attribute_tag\" removed."));
     }
 
     @Test
@@ -65,11 +54,6 @@ public class TagRemoveTests extends MaestroTest {
 
         Assertion.assertEquals(expectedTag, actualTag);
         Assertion.assertEquals(expectedAttribute, actualAttribute);
-
-        assertThat("Line count", sysoutWrapper.capturedLines.size(), greaterThanOrEqualTo(3));
-        assertThat("Line #0", sysoutWrapper.capturedLines.get(0), is("Tag \"tag_with_attributes\" removed."));
-        assertThat("Line #1", sysoutWrapper.capturedLines.get(1), is("Attribute \"attr1\" (type TEXT) removed."));
-        assertThat("Line #2", sysoutWrapper.capturedLines.get(2), is("Attribute \"another_attribute\" (type INTEGER) removed."));
     }
 
     @Test
@@ -87,11 +71,6 @@ public class TagRemoveTests extends MaestroTest {
 
         Assertion.assertEquals(expectedTag, actualTag);
         Assertion.assertEquals(expectedTaskTag, actualTaskTag);
-
-        assertThat("Line count", sysoutWrapper.capturedLines.size(), greaterThanOrEqualTo(3));
-        assertThat("Line #0", sysoutWrapper.capturedLines.get(0), is("Tag \"tag_with_tasks\" removed."));
-        assertThat("Line #1", sysoutWrapper.capturedLines.get(1), is("Task \"A task\" unmarked."));
-        assertThat("Line #2", sysoutWrapper.capturedLines.get(2), is("Task \"Another task\" unmarked."));
     }
 
     @Test
@@ -114,13 +93,6 @@ public class TagRemoveTests extends MaestroTest {
         Assertion.assertEquals(expectedTaskTag, actualTaskTag);
         Assertion.assertEquals(expectedAttribute, actualAttribute);
         assertThat("Property table", actualProperty.getRowCount(), is(0));
-
-        assertThat("Line count", sysoutWrapper.capturedLines.size(), greaterThanOrEqualTo(5));
-        assertThat("Line #0", sysoutWrapper.capturedLines.get(0), is("Tag \"tag_with_tasks_attributes_and_properties\" removed."));
-        assertThat("Line #1", sysoutWrapper.capturedLines.get(1), is("Task \"A task\" unmarked."));
-        assertThat("Line #2", sysoutWrapper.capturedLines.get(2), is("Task \"Another task\" unmarked."));
-        assertThat("Line #3", sysoutWrapper.capturedLines.get(3), is("Attribute \"default\" (type TEXT) removed."));
-        assertThat("Line #4", sysoutWrapper.capturedLines.get(4), is("Attribute \"creation\" (type TEXT) removed."));
     }
 
     @Test
