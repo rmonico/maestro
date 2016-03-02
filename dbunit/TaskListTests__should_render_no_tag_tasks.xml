@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"  ?>
-<!DOCTYPE dataset SYSTEM "dbunit/maestro.dtd">
-<dataset>
-    <task id="1" name="Test task" />
-</dataset>
