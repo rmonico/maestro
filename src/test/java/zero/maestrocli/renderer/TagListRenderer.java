@@ -9,7 +9,9 @@ import zero.maestro.model.Tag;
 
 public class TagListRenderer {
 
+    @SuppressWarnings("unused")
     private List<Tag> tags;
+    @SuppressWarnings("unused")
     private Map<Tag, Integer> taskCount;
 
     @Renderer(path = { "tag", "ls" })

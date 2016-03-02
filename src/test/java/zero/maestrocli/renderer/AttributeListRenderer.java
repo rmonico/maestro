@@ -6,6 +6,7 @@ import zero.maestro.model.Tag;
 
 public class AttributeListRenderer {
 
+    @SuppressWarnings("unused")
     private Tag tag;
 
     @Renderer(path = { "attr", "ls" })

@@ -9,8 +9,11 @@ import zero.maestro.model.TaskTag;
 
 public class TagRemoveRenderer {
 
+    @SuppressWarnings("unused")
     private Tag removedTag;
+    @SuppressWarnings("unused")
     private List<Attribute> attributes;
+    @SuppressWarnings("unused")
     private List<TaskTag> taskTags;
 
     @Renderer(path = { "tag", "rm" })

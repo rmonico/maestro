@@ -6,6 +6,7 @@ import zero.maestro.model.Tag;
 
 public class AttributeCreateRenderer {
 
+    @SuppressWarnings("unused")
     private Tag changedTag;
 
     @Renderer(path = { "attr", "add" })

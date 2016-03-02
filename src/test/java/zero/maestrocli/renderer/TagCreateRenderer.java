@@ -6,6 +6,7 @@ import zero.maestro.model.Tag;
 
 public class TagCreateRenderer {
 
+    @SuppressWarnings("unused")
     private Tag tag;
 
     @Renderer(path = { "tag", "add" })

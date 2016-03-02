@@ -8,9 +8,10 @@ import zero.maestro.model.Task;
 
 public class TaskListRenderer {
 
+    @SuppressWarnings("unused")
     private List<Task> tasks;
+    @SuppressWarnings("unused")
     private String[] columns;
-    //    private TaskNameAsTreeExtractor treeNameColumnExtractor;
 
     @Renderer(path = { "task", "ls" })
     public void render() throws ListPrinterException {
