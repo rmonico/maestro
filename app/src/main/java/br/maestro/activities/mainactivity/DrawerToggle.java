@@ -17,14 +17,14 @@ class DrawerToggle extends ActionBarDrawerToggle {
     public void onDrawerOpened(View drawerView) {
         super.onDrawerOpened(drawerView);
 
-        mainActivity.getActionBar().setTitle(R.string.app_name);
+        mainActivity.getSupportActionBar().setTitle(R.string.app_name);
     }
 
     @Override
     public void onDrawerClosed(View drawerView) {
         super.onDrawerClosed(drawerView);
 
-        mainActivity.getActionBar().setTitle("#Hacklab");
+        mainActivity.getSupportActionBar().setTitle("#Hacklab");
     }
 
 }
