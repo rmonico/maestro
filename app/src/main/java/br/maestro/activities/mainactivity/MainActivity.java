@@ -4,7 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.os.Bundle;
-import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -36,9 +36,6 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.mainactivity);
 
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
-        setSupportActionBar(myToolbar);
-
         initializeControls();
 
         assignEventHandlers();
@@ -49,6 +46,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initializeControls() {
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
+
         drawerFrame = (RelativeLayout) findViewById(R.id.mainactivity_drawerframe);
         drawerList = (ListView) findViewById(R.id.mainactivity_drawerlist);
         mainActivityLayout = (DrawerLayout) findViewById(R.id.mainactivity);

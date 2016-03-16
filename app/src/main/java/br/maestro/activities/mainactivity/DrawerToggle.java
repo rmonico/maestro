@@ -1,6 +1,7 @@
 package br.maestro.activities.mainactivity;
 
-import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import br.maestro.R;
 
@@ -9,7 +10,7 @@ class DrawerToggle extends ActionBarDrawerToggle {
     private MainActivity mainActivity;
 
     DrawerToggle(MainActivity mainActivity) {
-        super(mainActivity, mainActivity.mainActivityLayout, R.mipmap.ic_launcher, R.string.mainactivity_draweropened, R.string.mainactivity_drawerclosed);
+        super(mainActivity, mainActivity.mainActivityLayout, R.string.mainactivity_draweropened, R.string.mainactivity_drawerclosed);
         this.mainActivity = mainActivity;
     }
 
