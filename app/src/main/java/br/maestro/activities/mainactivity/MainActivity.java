@@ -46,8 +46,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initializeControls() {
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.mainactivity_toolbar);
-        setSupportActionBar(myToolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.mainactivity_toolbar);
+        setSupportActionBar(toolbar);
 
         drawerFrame = (RelativeLayout) findViewById(R.id.mainactivity_drawerframe);
         drawerList = (ListView) findViewById(R.id.mainactivity_drawerlist);
