@@ -60,8 +60,7 @@ public class MainActivity extends AppCompatActivity {
     private void assignEventHandlers() {
         drawerToggle = new DrawerToggle(this);
 
-        mainActivityLayout.setDrawerListener(drawerToggle);
-
+        mainActivityLayout.addDrawerListener(drawerToggle);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
