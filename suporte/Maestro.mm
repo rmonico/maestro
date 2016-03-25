@@ -530,17 +530,18 @@
   </body>
 </html></richcontent>
 <node CREATED="1413225596110" ID="ID_1934671788" MODIFIED="1426128478456" TEXT="Bot&#xe3;o da barra de t&#xed;tulo">
-<node CREATED="1413176870892" ID="ID_1670012444" MODIFIED="1413225504516" TEXT="Adicionar tag">
+<node CREATED="1413176870892" ID="ID_1670012444" MODIFIED="1458584932953" TEXT="Adicionar tag">
 <richcontent TYPE="NOTE"><html>
   <head>
     
   </head>
   <body>
     <p>
-      Dispon&#xed;vel no bot&#xe3;o de menu quando a gaveta estiver aberta. Est&#xe1; fun&#xe7;&#xe3;o s&#xf3; dever&#xe1; existir para criar tags da gaveta.
+      Dispon&#237;vel no bot&#227;o de menu quando a gaveta estiver aberta. Est&#225; fun&#231;&#227;o s&#243; dever&#225; existir para criar tags da gaveta.
     </p>
   </body>
-</html></richcontent>
+</html>
+</richcontent>
 </node>
 <node CREATED="1413226214801" ID="ID_1105001107" MODIFIED="1426127094940" TEXT="Reordenar">
 <richcontent TYPE="NOTE"><html>
