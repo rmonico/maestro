@@ -9,9 +9,10 @@ repositories {
 
 dependencies {
     testCompile 'junit:junit:4.12'
-    testCompile 'org.dbunit:dbunit:2.5.0'
-    testCompile 'org.hamcrest:hamcrest-all:1.3'
-    compile "zero.easymvc:easymvc_ormlite:0.1"
+    testCompile 'zero.easymvc:easymvc-testutils:0.1'
+    testCompile 'zero.easymvc:easymvc-ormlite-testutils:0.1'
+
+    compile 'zero.easymvc:easymvc_ormlite:0.1'
 }
 
 publishing {
