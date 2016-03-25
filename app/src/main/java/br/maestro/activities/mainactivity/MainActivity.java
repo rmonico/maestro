@@ -4,8 +4,8 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -17,10 +17,13 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Locale;
 
 import br.maestro.R;
+import zero.easymvc.EasyMVCException;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -40,7 +43,15 @@ public class MainActivity extends AppCompatActivity {
 
         assignEventHandlers();
 
-        setDrawerListAdapter();
+        try {
+            setDrawerListAdapter();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (EasyMVCException e) {
+            e.printStackTrace();
+        }
 
         setUserObjectListAdapter();
     }
@@ -74,10 +85,11 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void setDrawerListAdapter() {
-        List<UserObject> items = UserObject.createItemList(UserObject.createTag("#Hacklab"), UserObject.createTag("#Casa"), UserObject.createTag("#Saúde"));
+    private void setDrawerListAdapter() throws SQLException, IOException, EasyMVCException {
+        TagDrawerListAdapter adapter = new TagDrawerListAdapter();
 
-        UserObjectListAdapter adapter = new UserObjectListAdapter(this, items);
+        adapter.loadData();
+
         drawerList.setAdapter(adapter);
     }
 
