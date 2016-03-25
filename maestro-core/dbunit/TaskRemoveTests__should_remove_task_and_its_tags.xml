@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"  ?>
+<!DOCTYPE dataset SYSTEM "dbunit/maestro.dtd">
+<dataset>
+    <task id="1" name="Test task" />
+    <task id="2" name="Another task for tests" />
+
+    <tag id="1" name="a_tag" />
+    <tag id="2" name="another_tag" />
+
+    <tasktag id="1" task_id="1" tag_id="1" />
+    <tasktag id="2" task_id="1" tag_id="2" />
+</dataset>

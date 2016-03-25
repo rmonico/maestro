@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"  ?>
+<!DOCTYPE dataset SYSTEM "dbunit/maestro.dtd">
+<dataset>
+    <tag id="1" name="note" />
+    <attribute id="1" name="default" type="TEXT" tag_id="1" />
+</dataset>

@@ -1,0 +1,31 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'maven-publish'
+
+repositories {
+    jcenter()
+    mavenLocal()
+}
+
+dependencies {
+    testCompile 'junit:junit:4.12'
+    testCompile 'zero.easymvc:easymvc-testutils:0.1'
+    testCompile 'zero.easymvc:easymvc-ormlite-testutils:0.1'
+
+    compile 'zero.easymvc:easymvc_ormlite:0.1'
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId 'zero.maestro'
+            artifactId 'maestro-core'
+            version '0.1'
+
+            from components.java
+        }
+    }
+    repositories {
+        mavenLocal()
+    }
+}

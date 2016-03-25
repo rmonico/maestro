@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"  ?>
+<!DOCTYPE dataset SYSTEM "maestro.dtd">
+<dataset>
+	<tag id="1" name="first_tag" />
+	<tag id="3" name="tag_with_attributes" />
+	<tag id="4" name="tag_with_tasks" />
+	<tag id="5" name="tag_with_tasks_attributes_and_properties" />
+
+	<attribute id="1" name="attr1" type="TEXT" tag_id="3" />
+	<attribute id="2" name="another_attribute" type="INTEGER" tag_id="3" />
+</dataset>
