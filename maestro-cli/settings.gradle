@@ -1,8 +1,9 @@
-rootProject.name = 'maestro-core'
+rootProject.name = 'maestro-cli'
 
-include ':easymvc', ':easymvc-testutils', ':easymvc-ormlite', ':easymvc-ormlite-testutils'
+include ':easymvc', ':easymvc-testutils', ':easymvc-ormlite', ':easymvc-ormlite-testutils', ':maestro-core'
 
 project(':easymvc').projectDir = new File('../../easymvc/easymvc')
 project(':easymvc-testutils').projectDir = new File('../../easymvc/easymvc-testutils')
 project(':easymvc-ormlite-testutils').projectDir = new File('../../easymvc/easymvc-ormlite-testutils')
 project(':easymvc-ormlite').projectDir = new File('../../easymvc/easymvc-ormlite')
+project(':maestro-core').projectDir = new File('../maestro-core')

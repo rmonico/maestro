@@ -9,10 +9,10 @@ repositories {
 
 dependencies {
     testCompile 'junit:junit:4.12'
-    testCompile 'zero.easymvc:easymvc-testutils:0.1'
-    testCompile 'zero.easymvc:easymvc-ormlite-testutils:0.1'
+    testCompile project(':easymvc-testutils')
+    testCompile project(':easymvc-ormlite-testutils')
 
-    compile 'zero.easymvc:easymvc_ormlite:0.1'
+    compile project(':easymvc-ormlite')
 }
 
 publishing {
