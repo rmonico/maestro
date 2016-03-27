@@ -1,9 +1,11 @@
 package zero.maestro.app;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
+import zero.easymvc.ormlite.ConnectionManager;
 import zero.easymvc.ormlite.DatabaseUpdater;
 import zero.easymvc.ormlite.command.DatabaseUpdateCommand;
 import zero.easymvc.ormlite.factory.ApplicationFactory;
@@ -29,6 +31,7 @@ public class MaestroApplicationFactory extends ApplicationFactory {
     public static final String EXECUTABLE_PROJECT_PHASE = "beta";
     public static final String TASK_LIST_COLUMNS_PROPERTY_KEY = "task_list_columns";
     private static final String TASK_LIST_COLUMNS_DEFAULT = "id,treename";
+    private ConnectionManager connectionManager;
 
     public MaestroApplicationFactory() {
         super(BASENAME);
@@ -75,6 +78,20 @@ public class MaestroApplicationFactory extends ApplicationFactory {
         commands.add(TaskUpCommand.class);
         commands.add(TagRemoveCommand.class);
         commands.add(DatabaseUpdateCommand.class);
+    }
+
+    @Override
+    public ConnectionManager makeConnectionManager() throws SQLException {
+        connectionManager = super.makeConnectionManager();
+
+        return connectionManager;
+    }
+
+    @Override
+    public ConnectionManager createConnectionManager() throws SQLException {
+        connectionManager = super.createConnectionManager();
+
+        return connectionManager;
     }
 
     @Override
