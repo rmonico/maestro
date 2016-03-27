@@ -1,9 +1,6 @@
 package br.maestro;
 
-import android.database.Cursor;
-import android.database.sqlite.SQLiteCursorDriver;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteQuery;
 
 import com.j256.ormlite.android.AndroidConnectionSource;
 import com.j256.ormlite.support.ConnectionSource;
@@ -30,7 +27,7 @@ public class MaestroAndroidApplicationFactory extends MaestroApplicationFactory 
     }
 
     @Override
-    protected ConnectionManager createConnectionManager() throws SQLException {
+    public ConnectionManager createConnectionManager() throws SQLException {
         return new ConnectionManager() {
             public ConnectionSource connectionSource;
 
