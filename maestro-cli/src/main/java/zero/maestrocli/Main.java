@@ -2,7 +2,6 @@ package zero.maestrocli;
 
 import zero.easymvc.EasyMVC;
 import zero.easymvc.StringArrayCommand;
-import zero.easymvc.ormlite.factory.AbstractApplicationFactory;
 
 public class Main {
 
@@ -13,7 +12,7 @@ public class Main {
     }
 
     private void run(String[] args) throws Exception {
-        AbstractApplicationFactory factory = new MaestrocliApplicationFactory();
+        MaestrocliApplicationFactory factory = new MaestrocliApplicationFactory();
 
         factory.makeProperties();
 
