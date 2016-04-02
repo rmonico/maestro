@@ -21,9 +21,10 @@ import zero.maestrocli.renderer.TaskListRenderer;
 import zero.maestrocli.renderer.TaskRemoveRenderer;
 import zero.maestrocli.renderer.TaskUpRenderer;
 import zero.utils.test.AbstractTestApplicationFactory;
+import zero.utils.test.IApplicationFactory;
 import zero.utils.test.TestApplicationFactory;
 
-public class MaestroTestApplicationFactory extends MaestroApplicationFactory implements TestApplicationFactory {
+public class MaestroTestApplicationFactory extends MaestroApplicationFactory implements IApplicationFactory, TestApplicationFactory {
 
     private AbstractTestApplicationFactory testApplicationFactoryDelegated;
 

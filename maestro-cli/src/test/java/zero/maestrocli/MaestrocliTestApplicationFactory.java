@@ -11,9 +11,10 @@ import zero.easymvc.ormlite.DatabaseUpdater;
 import zero.easymvc.ormlite.MetaInfUpdater;
 import zero.maestro.database.DatabaseVersion_1;
 import zero.utils.test.AbstractTestApplicationFactory;
+import zero.utils.test.IApplicationFactory;
 import zero.utils.test.TestApplicationFactory;
 
-public class MaestrocliTestApplicationFactory extends MaestrocliApplicationFactory implements TestApplicationFactory {
+public class MaestrocliTestApplicationFactory extends MaestrocliApplicationFactory implements IApplicationFactory, TestApplicationFactory {
 
     private AbstractTestApplicationFactory testApplicationFactoryDelegated;
 

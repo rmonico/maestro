@@ -1,7 +1,7 @@
 package zero.maestrocli;
 
-import zero.easymvc.ormlite.factory.ApplicationFactory;
 import zero.utils.test.AbstractEasyMVCOrmliteTest;
+import zero.utils.test.IApplicationFactory;
 
 public class MaestroTest extends AbstractEasyMVCOrmliteTest {
 
@@ -14,12 +14,12 @@ public class MaestroTest extends AbstractEasyMVCOrmliteTest {
     }
 
     @Override
-    protected ApplicationFactory createApplicationFactory() {
+    protected IApplicationFactory createApplicationFactory() {
         return new MaestroTestApplicationFactory();
     }
 
     @Override
-    protected ApplicationFactory createApplicationFactory(int databaseVersion) {
+    protected IApplicationFactory createApplicationFactory(int databaseVersion) {
         return new MaestroTestApplicationFactory(databaseVersion);
     }
 
