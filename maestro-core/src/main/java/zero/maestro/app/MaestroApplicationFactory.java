@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 import zero.easymvc.ormlite.ConnectionManager;
-import zero.easymvc.ormlite.DatabaseUpdater;
 import zero.easymvc.ormlite.command.DatabaseUpdateCommand;
 import zero.easymvc.ormlite.factory.ApplicationFactory;
 import zero.environment.ApplicationPropertyKeys;
@@ -91,12 +90,9 @@ public class MaestroApplicationFactory extends ApplicationFactory {
     public ConnectionManager createConnectionManager() throws SQLException {
         connectionManager = super.createConnectionManager();
 
-        return connectionManager;
-    }
+        setDatabaseUpdater(new DatabaseVersion_1(connectionManager.getConnection()));
 
-    @Override
-    public DatabaseUpdater getDatabaseUpdater() {
-        return new DatabaseVersion_1(connectionManager.getConnection());
+        return connectionManager;
     }
 
 }
