@@ -1,7 +1,10 @@
 package zero.maestrocli;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
+import zero.easymvc.EasyMVC;
 import zero.easymvc.ormlite.renderer.DatabaseUpdateRenderer;
 import zero.maestro.app.MaestroApplicationFactory;
 import zero.maestrocli.renderer.AttributeCreateRenderer;
@@ -25,8 +28,10 @@ public class MaestrocliApplicationFactory extends MaestroApplicationFactory {
     }
 
     @Override
-    protected void createRendererList(List<Class<?>> renderers) {
-        super.createRendererList(renderers);
+    public EasyMVC makeController() throws SQLException {
+        EasyMVC controller = super.makeController();
+
+        List<Class<?>> renderers = new ArrayList<>();
 
         renderers.add(TaskListRenderer.class);
         renderers.add(TagListRenderer.class);
@@ -38,6 +43,10 @@ public class MaestrocliApplicationFactory extends MaestroApplicationFactory {
         renderers.add(TaskUpRenderer.class);
         renderers.add(TagRemoveRenderer.class);
         renderers.add(DatabaseUpdateRenderer.class);
+
+        registerRenderers(controller, renderers);
+
+        return controller;
     }
 
 }
