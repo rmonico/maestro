@@ -41,7 +41,7 @@ public class MaestroApplicationFactory {
         this(BASENAME);
     }
 
-    protected MaestroApplicationFactory(String baseName) {
+    public MaestroApplicationFactory(String baseName) {
         applicationFactoryDelegated = new ApplicationFactory(baseName);
     }
 
