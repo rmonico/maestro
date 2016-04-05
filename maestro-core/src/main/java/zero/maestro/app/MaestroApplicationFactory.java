@@ -2,10 +2,15 @@ package zero.maestro.app;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import ch.qos.logback.classic.Logger;
+import zero.easymvc.EasyMVC;
 import zero.easymvc.ormlite.ConnectionManager;
+import zero.easymvc.ormlite.DaoManager;
 import zero.easymvc.ormlite.command.DatabaseUpdateCommand;
 import zero.easymvc.ormlite.factory.ApplicationFactory;
 import zero.environment.ApplicationPropertyKeys;
@@ -22,7 +27,7 @@ import zero.maestro.model.Tag;
 import zero.maestro.model.Task;
 import zero.maestro.model.TaskTag;
 
-public class MaestroApplicationFactory extends ApplicationFactory {
+public class MaestroApplicationFactory {
 
     public static final String BASENAME = "maestro";
     public static final String EXECUTABLE_MAJOR_VERSION = "0";
@@ -30,17 +35,16 @@ public class MaestroApplicationFactory extends ApplicationFactory {
     public static final String EXECUTABLE_PROJECT_PHASE = "beta";
     public static final String TASK_LIST_COLUMNS_PROPERTY_KEY = "task_list_columns";
     private static final String TASK_LIST_COLUMNS_DEFAULT = "id,treename";
-    private ConnectionManager connectionManager;
+    private ApplicationFactory applicationFactoryDelegated;
 
     public MaestroApplicationFactory() {
-        super(BASENAME);
+        this(BASENAME);
     }
 
     protected MaestroApplicationFactory(String baseName) {
-        super(baseName);
+        applicationFactoryDelegated = new ApplicationFactory(baseName);
     }
 
-    @Override
     public void makeProperties() throws IOException {
         Environment.get().setProperty(ApplicationPropertyKeys.EXECUTABLE_MAJOR_VERSION_PROPERTY_KEY, EXECUTABLE_MAJOR_VERSION);
         Environment.get().setProperty(ApplicationPropertyKeys.EXECUTABLE_MINOR_VERSION_PROPERTY_KEY, EXECUTABLE_MINOR_VERSION);
@@ -48,12 +52,11 @@ public class MaestroApplicationFactory extends ApplicationFactory {
 
         Environment.get().setProperty(TASK_LIST_COLUMNS_PROPERTY_KEY, TASK_LIST_COLUMNS_DEFAULT);
 
-        super.makeProperties();
+        applicationFactoryDelegated.makeProperties();
     }
 
-    @Override
-    protected void populateDaoInfo(Map<Class<?>, Class<?>> daoInfo) {
-        super.populateDaoInfo(daoInfo);
+    public DaoManager makeDaoManager() {
+        Map<Class<?>, Class<?>> daoInfo = new HashMap<>();
 
         daoInfo.put(TaskDao.class, Task.class);
         daoInfo.put(TagDao.class, Tag.class);
@@ -61,11 +64,14 @@ public class MaestroApplicationFactory extends ApplicationFactory {
         daoInfo.put(TaskTagDao.class, TaskTag.class);
         daoInfo.put(AttributeDao.class, Attribute.class);
         daoInfo.put(PropertyDao.class, Property.class);
+
+        return applicationFactoryDelegated.createDaoManager(daoInfo);
     }
 
-    @Override
-    protected void createCommandList(List<Class<?>> commands) {
-        super.createCommandList(commands);
+    public EasyMVC makeController() throws SQLException {
+        EasyMVC controller = applicationFactoryDelegated.makeController();
+
+        List<Class<?>> commands = new ArrayList<>();
 
         commands.add(TaskListCommand.class);
         commands.add(TagListCommand.class);
@@ -77,22 +83,26 @@ public class MaestroApplicationFactory extends ApplicationFactory {
         commands.add(TaskUpCommand.class);
         commands.add(TagRemoveCommand.class);
         commands.add(DatabaseUpdateCommand.class);
+
+        applicationFactoryDelegated.registerCommands(controller, commands);
+
+        return controller;
     }
 
-    @Override
     public ConnectionManager makeConnectionManager() throws SQLException {
-        connectionManager = super.makeConnectionManager();
+        ConnectionManager connectionManager = applicationFactoryDelegated.makeConnectionManager();
+
+        applicationFactoryDelegated.setDatabaseUpdater(new DatabaseVersion_1(connectionManager.getConnection()));
 
         return connectionManager;
     }
 
-    @Override
-    public ConnectionManager createConnectionManager() throws SQLException {
-        connectionManager = super.createConnectionManager();
+    public Logger makeLogger() {
+        return applicationFactoryDelegated.makeLogger();
+    }
 
-        setDatabaseUpdater(new DatabaseVersion_1(connectionManager.getConnection()));
-
-        return connectionManager;
+    public void registerRenderers(EasyMVC controller, List<Class<?>> renderers) {
+        applicationFactoryDelegated.registerRenderers(controller, renderers);
     }
 
 }
