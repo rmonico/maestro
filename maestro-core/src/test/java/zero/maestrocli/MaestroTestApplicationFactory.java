@@ -1,5 +1,6 @@
 package zero.maestrocli;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -7,8 +8,10 @@ import java.util.List;
 
 import com.j256.ormlite.support.ConnectionSource;
 
+import ch.qos.logback.classic.Logger;
 import zero.easymvc.EasyMVC;
 import zero.easymvc.ormlite.ConnectionManager;
+import zero.easymvc.ormlite.DaoManager;
 import zero.easymvc.ormlite.DatabaseUpdater;
 import zero.easymvc.ormlite.MetaInfUpdater;
 import zero.maestro.app.MaestroApplicationFactory;
@@ -25,23 +28,24 @@ import zero.maestrocli.renderer.TaskUpRenderer;
 import zero.utils.test.AbstractTestApplicationFactory;
 import zero.utils.test.TestApplicationFactory;
 
-public class MaestroTestApplicationFactory extends MaestroApplicationFactory implements TestApplicationFactory {
+public class MaestroTestApplicationFactory implements TestApplicationFactory {
 
     private AbstractTestApplicationFactory testApplicationFactoryDelegated;
+    private MaestroApplicationFactory maestroApplicationFactoryDelegated;
 
     public MaestroTestApplicationFactory() {
         this(AbstractTestApplicationFactory.DATABASE_LAST_VERSION);
     }
 
     public MaestroTestApplicationFactory(int databaseVersion) {
-        super(MaestroApplicationFactory.BASENAME + "_test");
+        maestroApplicationFactoryDelegated = new MaestroApplicationFactory(MaestroApplicationFactory.BASENAME + "_test");
 
         testApplicationFactoryDelegated = new AbstractTestApplicationFactory(databaseVersion);
     }
 
     @Override
     public ConnectionManager makeConnectionManager() throws SQLException {
-        ConnectionManager connectionManager = super.makeConnectionManager();
+        ConnectionManager connectionManager = maestroApplicationFactoryDelegated.makeConnectionManager();
 
         ConnectionSource connection = connectionManager.getConnection();
 
@@ -67,7 +71,7 @@ public class MaestroTestApplicationFactory extends MaestroApplicationFactory imp
 
     @Override
     public EasyMVC makeController() throws SQLException {
-        EasyMVC controller = super.makeController();
+        EasyMVC controller = maestroApplicationFactoryDelegated.makeController();
 
         List<Class<?>> renderers = new ArrayList<>();
 
@@ -81,9 +85,24 @@ public class MaestroTestApplicationFactory extends MaestroApplicationFactory imp
         renderers.add(TaskRemoveRenderer.class);
         renderers.add(TaskUpRenderer.class);
 
-        registerRenderers(controller, renderers);
+        maestroApplicationFactoryDelegated.registerRenderers(controller, renderers);
 
         return controller;
+    }
+
+    @Override
+    public void makeProperties() throws IOException {
+        maestroApplicationFactoryDelegated.makeProperties();
+    }
+
+    @Override
+    public Logger makeLogger() {
+        return maestroApplicationFactoryDelegated.makeLogger();
+    }
+
+    @Override
+    public DaoManager makeDaoManager() {
+        return maestroApplicationFactoryDelegated.makeDaoManager();
     }
 
 }
