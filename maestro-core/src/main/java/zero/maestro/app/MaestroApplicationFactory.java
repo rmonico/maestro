@@ -65,7 +65,7 @@ public class MaestroApplicationFactory {
         daoInfo.put(AttributeDao.class, Attribute.class);
         daoInfo.put(PropertyDao.class, Property.class);
 
-        return applicationFactoryDelegated.createDaoManager(daoInfo);
+        return applicationFactoryDelegated.makeDaoManager(daoInfo);
     }
 
     public EasyMVC makeController() throws SQLException {
