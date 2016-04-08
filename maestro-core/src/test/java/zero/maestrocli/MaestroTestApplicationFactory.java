@@ -2,7 +2,6 @@ package zero.maestrocli;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -73,19 +72,15 @@ public class MaestroTestApplicationFactory implements TestApplicationFactory {
     public EasyMVC makeController() throws SQLException {
         EasyMVC controller = maestroApplicationFactoryDelegated.makeController();
 
-        List<Class<?>> renderers = new ArrayList<>();
-
-        renderers.add(AttributeCreateRenderer.class);
-        renderers.add(AttributeListRenderer.class);
-        renderers.add(TagCreateRenderer.class);
-        renderers.add(TagListRenderer.class);
-        renderers.add(TagRemoveRenderer.class);
-        renderers.add(TaskCreateRenderer.class);
-        renderers.add(TaskListRenderer.class);
-        renderers.add(TaskRemoveRenderer.class);
-        renderers.add(TaskUpRenderer.class);
-
-        maestroApplicationFactoryDelegated.registerRenderers(controller, renderers);
+        controller.registerRenderer(AttributeCreateRenderer.class);
+        controller.registerRenderer(AttributeListRenderer.class);
+        controller.registerRenderer(TagCreateRenderer.class);
+        controller.registerRenderer(TagListRenderer.class);
+        controller.registerRenderer(TagRemoveRenderer.class);
+        controller.registerRenderer(TaskCreateRenderer.class);
+        controller.registerRenderer(TaskListRenderer.class);
+        controller.registerRenderer(TaskRemoveRenderer.class);
+        controller.registerRenderer(TaskUpRenderer.class);
 
         return controller;
     }

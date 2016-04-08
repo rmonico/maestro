@@ -2,9 +2,7 @@ package zero.maestro.app;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import ch.qos.logback.classic.Logger;
@@ -71,20 +69,16 @@ public class MaestroApplicationFactory {
     public EasyMVC makeController() throws SQLException {
         EasyMVC controller = applicationFactoryDelegated.makeController();
 
-        List<Class<?>> commands = new ArrayList<>();
-
-        commands.add(TaskListCommand.class);
-        commands.add(TagListCommand.class);
-        commands.add(TagCreateCommand.class);
-        commands.add(AttributeCreateCommand.class);
-        commands.add(AttributeListCommand.class);
-        commands.add(TaskCreateCommand.class);
-        commands.add(TaskRemoveCommand.class);
-        commands.add(TaskUpCommand.class);
-        commands.add(TagRemoveCommand.class);
-        commands.add(DatabaseUpdateCommand.class);
-
-        applicationFactoryDelegated.registerCommands(controller, commands);
+        controller.registerCommandHandler(TaskListCommand.class);
+        controller.registerCommandHandler(TagListCommand.class);
+        controller.registerCommandHandler(TagCreateCommand.class);
+        controller.registerCommandHandler(AttributeCreateCommand.class);
+        controller.registerCommandHandler(AttributeListCommand.class);
+        controller.registerCommandHandler(TaskCreateCommand.class);
+        controller.registerCommandHandler(TaskRemoveCommand.class);
+        controller.registerCommandHandler(TaskUpCommand.class);
+        controller.registerCommandHandler(TagRemoveCommand.class);
+        controller.registerCommandHandler(DatabaseUpdateCommand.class);
 
         return controller;
     }
@@ -99,10 +93,6 @@ public class MaestroApplicationFactory {
 
     public Logger makeLogger() {
         return applicationFactoryDelegated.makeLogger();
-    }
-
-    public void registerRenderers(EasyMVC controller, List<Class<?>> renderers) {
-        applicationFactoryDelegated.registerRenderers(controller, renderers);
     }
 
 }
